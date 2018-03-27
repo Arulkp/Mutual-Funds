@@ -1,24 +1,24 @@
 pragma solidity ^0.4.18;
-import "./ERC20.sol";
+import "./ERC20Basic.sol";
 contract MutualFund is ERC20Basic
 {
-    string standard="Token 1.0";
+   
     string public name;
     string public symbol;
     uint256 public totalsupply;
-    uint256  initialallowed;
+    //uint256  initialallowed;
     uint256 public decimals;
   
     address Owner;
 
     mapping(address=>uint) public balanceOf;
-    mapping(address=>mapping(address=>uint256))public allowed;
+   // mapping(address=>mapping(address=>uint256))public allowed;
 
     function MutualFund(string _name,string _symbol,uint256 _decimals,uint256 _totalsupply)public
     {
         totalsupply = _totalsupply;
         balanceOf[msg.sender]=totalsupply;
-        symbol= _symbol;
+        symbol = _symbol;
         name=_name;
         decimals= _decimals;
         Owner = msg.sender;
