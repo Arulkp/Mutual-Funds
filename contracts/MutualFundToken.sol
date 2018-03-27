@@ -12,7 +12,7 @@ contract MutualFund is ERC20Basic
     address Owner;
 
     mapping(address=>uint) public balanceOf;
-   // mapping(address=>mapping(address=>uint256))public allowed;
+  
 
     function MutualFund(string _name,string _symbol,uint256 _decimals,uint256 _totalsupply)public
     {
