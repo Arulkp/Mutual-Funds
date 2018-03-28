@@ -238,7 +238,7 @@ contract BusinessLogic is MutualFund{
     }
 
     //Selecting the Portfoliomanager in the arrayoflist by Investor
-    function SelectProfolioManager(address search) public returns(bool){
+    function SelectProfolioManager(address search) public view returns(bool){
         for(uint i=0;i<ListPortfolio.length;i++){
             if(search == ListPortfolio[i]){
                return true; 
@@ -249,7 +249,7 @@ contract BusinessLogic is MutualFund{
     
 
     //getting the Investor details
-   function GetInvestmentDetails(address _UserAddr)public returns(string,uint256,uint,uint,uint,uint,uint) {
+   function GetInvestmentDetails(address _UserAddr)public view returns(string,uint256,uint,uint,uint,uint,uint) {
         return (InvesMap[_UserAddr].name,InvesMap[msg.sender].eth,InvesMap[msg.sender].Date,InvesMap[msg.sender].Month,InvesMap[msg.sender].Year,InvesMap[msg.sender].Hour,InvesMap[msg.sender].Minute);
     }
     
