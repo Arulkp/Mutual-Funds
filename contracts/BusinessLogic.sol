@@ -92,7 +92,7 @@ contract BusinessLogic is MutualFund{
     }
     
 
-    //Generating the FundToken By the Investor
+    //Generating the FundToken By the Portfolio manager
      function MutualFund(string _name,string _symbol,uint256 _decimals,uint256 _totalsupply)public
     {
         totalsupply = _totalsupply;
@@ -100,6 +100,11 @@ contract BusinessLogic is MutualFund{
         symbol = _symbol;
         name=_name;
         decimals= _decimals;
+        var port_tokD = PortToken[msg.sender];
+        port_tokD.tkname = name;
+        port_tokD.tksymbol = symbol;
+        port_tokD.tkdecimal = decimals;
+        port_tokD.tktotalsup = totalsupply; 
 
         
     }
@@ -172,16 +177,7 @@ contract BusinessLogic is MutualFund{
     }
    
    
-   //function for getting the generated token 
-    function generatedTK(string _tkname,string _tksymbol,uint256 _tkdecimals,uint256 tktotalsup_) public
-    {
-        var port_tokD = PortToken[msg.sender];
-        port_tokD.tkname = _tkname;
-        port_tokD.tksymbol = _tksymbol;
-        port_tokD.tkdecimal = _tkdecimals;
-        port_tokD.tktotalsup = tktotalsup_; 
-        
-    }
+  
     
  
     
@@ -238,7 +234,7 @@ contract BusinessLogic is MutualFund{
     }
 
     //Selecting the Portfoliomanager in the arrayoflist by Investor
-    function SelectProfolioManager(address search) public view returns(bool){
+    function SelectProfolioManager(address search) public returns(bool){
         for(uint i=0;i<ListPortfolio.length;i++){
             if(search == ListPortfolio[i]){
                return true; 
@@ -249,7 +245,7 @@ contract BusinessLogic is MutualFund{
     
 
     //getting the Investor details
-   function GetInvestmentDetails(address _UserAddr)public view returns(string,uint256,uint,uint,uint,uint,uint) {
+   function GetInvestmentDetails(address _UserAddr)public returns(string,uint256,uint,uint,uint,uint,uint) {
         return (InvesMap[_UserAddr].name,InvesMap[msg.sender].eth,InvesMap[msg.sender].Date,InvesMap[msg.sender].Month,InvesMap[msg.sender].Year,InvesMap[msg.sender].Hour,InvesMap[msg.sender].Minute);
     }
     
