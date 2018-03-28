@@ -1,14 +1,14 @@
 body{
     margin:0;
     padding:0;
-    background:url(fidastro.jpg);
+    background:url(fidastrin.jpg);
     background-size:cover;
     font-family: sans-serif;
 }
 .loginbox{
     width:420px;
-    height:490px;
-    background:rgba(243, 91, 142, 0.924);
+    height:500px;
+    background:rgb(205, 123, 243);
     color:black;
     top: 50%;
     left:50%;
@@ -16,13 +16,13 @@ body{
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;   
-    opacity:0.6;  
+    opacity:0.8;  
 }
 .ether
 {
     width:100px;
     height: 100px;
-    background-color:(0,0,0,0.5);
+    background-color: aqua;
     border-radius: 50%;
     position: absolute;
     top:-50px;
@@ -41,41 +41,39 @@ h1{
 }
 .loginbox input{
     width: 100%;
-    margin-bottom:25px;
+    margin-bottom:38px;
 }
-.loginbox input[type="text"],
-.loginbox input[type="password"]
+.loginbox input[type="text"],input[type="password"]
 {
 border:none;
+border-bottom: 1px solid black;
 background:transparent;
-border-bottom: 2px solid black;
 outline:none;
-height:30px;
-color:blue;
+height:20px;
+color:rgb(20, 15, 10);
 font-size:20px;
 }
 .loginbox input[type="submit"]
 {
 border:none;
 outline:none;
-height:50px;
-background:pink;
-color:rgb(111, 17, 235);
+height:35px;
+background:blue;
+color:brown;
 font-size: 20px;
-border-radius: 22px;
+border-radius: 30px;
 }
 .loginbox input[type="submit"]:hover{
     cursor:pointer;
-    background: #ffc187;
-    color: #000;
+    background: #0832eb;
+    color:peru ;
     }
     .loginbox a{
         text-decoration:none;
-        font-size:18px;
-        line-height: 20px;
-        color: rgb(63, 13, 128);
+        font-size:20px;
+        line-height: 35px;
+        color:rgb(93, 22, 207);
     }
 .loginbox a:hover{
-    color:rgb(17, 21, 243);
-
+    color:blue;
 }
