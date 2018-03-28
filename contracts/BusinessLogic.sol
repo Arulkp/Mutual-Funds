@@ -95,16 +95,12 @@ contract BusinessLogic is MutualFund{
     //Generating the FundToken By the Portfolio manager
      function MutualFund(string _name,string _symbol,uint256 _decimals,uint256 _totalsupply)public
     {
-        totalsupply = _totalsupply;
-        balanceOf[msg.sender]=totalsupply;
-        symbol = _symbol;
-        name=_name;
-        decimals= _decimals;
+        MutualFundCreation(_name,_symbol,_decimals,_totalsupply);
         var port_tokD = PortToken[msg.sender];
-        port_tokD.tkname = name;
-        port_tokD.tksymbol = symbol;
-        port_tokD.tkdecimal = decimals;
-        port_tokD.tktotalsup = totalsupply; 
+        port_tokD.tkname = _name;
+        port_tokD.tksymbol = _symbol;
+        port_tokD.tkdecimal = _decimals;
+        port_tokD.tktotalsup = _totalsupply; 
 
         
     }
