@@ -82,13 +82,25 @@ contract BusinessLogic is MutualFund{
         uint256 time;
     }
     
-    //Structure for portfolio manager fundtokens and puchase Tokens
+    //Structure for portfolio manager fundtokens
     struct Tokens
     {
         string tkname;
         string tksymbol;
         uint256 tkdecimal;
         uint256 tktotalsup;
+    }
+
+    //Structure for portfolio manager purchase token
+    struct purchaseTK
+    {
+        string tkname;
+        string tksymbol;
+        uint256 tkdecimal;
+        uint256 tktotalsup;
+        uint256 buyrate;
+        address vendor;
+
     }
     
 
@@ -136,7 +148,7 @@ contract BusinessLogic is MutualFund{
         uint256 time;
     }
     
-    mapping(address=>Reg) RegMap;  //Map for portfoliomanager 
+    mapping(address=>Reg) public RegMap;  //Map for portfoliomanager 
     mapping(address => Tokens) public PortToken; //Map for portfoliomangertokens
     mapping(address=>mapping(address =>  InvestorProfile )) public InvestorP; //Map for Investor profile page
     mapping(address=>InvestorDetails) InvesMap; //Map for InvestorInvestment
@@ -144,6 +156,7 @@ contract BusinessLogic is MutualFund{
     mapping(address =>  ProtfolioMProfile ) public PortfolioMP; //Map for PortfolioManager Profile
     mapping(address => InvestmentD) public InvestorInvestD; // Map for InestorInvestment details
     mapping(address => mapping(address => Dividends)) public MapDivide; //Map for Divident details
+    mapping(address => purchaseTK) public PURTK; // Map for portfoliomanager purchased token details 
     
     
     //Function for portfolio manager registration
@@ -166,10 +179,12 @@ contract BusinessLogic is MutualFund{
     //Function for Investor registration
         function InvestmentRegister(address _UserAddr,string _name)public
         {
+          if(msg.value / 1000000000000000000 == 5){ 
         UserAddr.push(msg.sender);
-        
         IRegMap[msg.sender].UserAddr=_UserAddr;
         IRegMap[msg.sender].name=_name;
+        owner.transfer(msg.value);
+          }
     }
    
    
@@ -221,7 +236,12 @@ contract BusinessLogic is MutualFund{
         InvesMap[msg.sender].Year=DateTime.getYear(time);
     }
   
+    //function For purchasing the ERC20 tokens by the portfoliomanager
 
+    function bought(address _vendor,uint256 _amount)
+    {
+        _vendor.send(_amount);
+    }
     
   
    //Portfolio manager ArrayList for viewing 
