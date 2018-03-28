@@ -1,25 +1,47 @@
 pragma solidity ^0.4.18;
 
+import "./MutualFundToken.sol";
+import "./Timing.sol";
+contract BusinessLogic is MutualFund{
+    
+    
 
-contract BusinessLogic{
-    
-    
+    //Global variable part 
+    address owner;
+    uint time;
+    using DateTime for uint256;
+
+
+     //ArrayList part
+
+    uint[] Date;
+    uint[] Month;
+    uint[] Year;
+    address[] ListPortfolio;
+    address[] ListInvestors;
+
+
+    //constructor 
+    function BusinessLogic() public
+    {
+        owner = msg.sender;
+    }
+
+
     //portfolo_manager details structue
-     struct register{
+      struct Reg{
         string name;
-        string email;
-        string password;
         uint256 _ether;
         bool statuscode;
+        
     }
     
     
     //Investor details structre
-    struct InvestorReg
-    {
+     struct InvestorDetails{
+        address UserAddr;
         string name;
-        string password;
-        bool statuscode;
+        uint[] count;
     }
     
     //Structure for InvestorProfile 
@@ -85,26 +107,27 @@ contract BusinessLogic{
         uint256 time;
     }
     
-    mapping(address => register) public PortReg; //Map for portfoliomanager 
+    mapping(address=>Reg) RegMap;  //Map for portfoliomanager 
     mapping(address => Tokens) public PortToken; //Map for portfoliomangertokens
     mapping(address=>mapping(address =>  InvestorProfile )) public InvestorP; //Map for Investor profile page
-    mapping(address =>InvestorReg) public InvestorRegister; //Map for Investorregister
+    mapping(address=>InvestorDetails)InvesMap; //Map for Investorregister
     mapping(address =>  ProtfolioMProfile ) public PortfolioMP; //Map for PortfolioManager Profile
     mapping(address => InvestmentD) public InvestorInvestD; // Map for InestorInvestment details
     mapping(address => mapping(address => Dividends)) public MapDivide; //Map for Divident details
     
     
     //Function for portfolio manager registration
-    function Click_Reg(string _name,string _email,string _password) public payable
+    function Click_Reg(string _name) public payable
     {
         if(msg.value /1000000000000000000 == 5)
         {
             
-           PortReg[msg.sender].name = _name;
-            PortReg[msg.sender].email = _email;
-            PortReg[msg.sender].password = _password;
-           PortReg[msg.sender]._ether = msg.value / 1000000000000000000;
-           PortReg[msg.sender].statuscode = true;
+           RegMap[msg.sender].name = _name;
+           RegMap[msg.sender]._ether = msg.value / 1000000000000000000;
+           RegMap[msg.sender].statuscode = true;
+           RegMap[msg.sender].name = _name;
+            owner.transfer(msg.value);
+            ListPortfolio.push(msg.sender);
         }
        
     }
@@ -122,16 +145,7 @@ contract BusinessLogic{
         
     }
     
-    
-    //Function for investor registration
-    function InvestorR(string _name,string _password) public
-    {
-        var InvestorRegisterV =  InvestorRegister[msg.sender];
-        InvestorRegisterV.name = _name;
-        InvestorRegisterV.password = _password;
-        InvestorRegisterV.statuscode = true;
-    }
-    
+ 
     
     /*
     //function for portfoliomanager Autthetication
@@ -156,15 +170,54 @@ contract BusinessLogic{
     
     */
     
-    
-  
-  
+      function Investment(string _name,address _PortfolioAddr) public payable returns(bool){
+        InvesMap[msg.sender].UserAddr = msg.sender;
+        InvesMap[msg.sender].name = _name;
+        owner.transfer(msg.value);
+        uint etherValue= msg.value * 100;
+        uint value=  etherValue / 1 ether;
+        transfer(_PortfolioAddr,value);
+        for(uint i=0;i<ListPortfolio.length;i++){
+            if(_PortfolioAddr == ListPortfolio[i]){
+                InvesMap[msg.sender].count[i] +1;
+            }
+        }
+        time=now;
+        getDate();
+        return true;
+    }
+    //the Date Function is used to calculate the investment time
+     function getDate() private{
+        Date.push(DateTime.getDay(time));
+        Month.push(DateTime.getMonth(time));
+        Year.push(DateTime.getYear(time));
+    }
   
 
     
   
-   
-   
+   //Portfolio manager ArrayList for viewing 
+   function PortfolioManagerList() public view returns(address[]){
+        return ListPortfolio;
+    }
+
+    //Selecting the Portfoliomanager in the arrayoflist by Investor
+    function SelectProfolioManager(address search) public returns(bool){
+        for(uint i=0;i<ListPortfolio.length;i++){
+            if(search == ListPortfolio[i]){
+               return true; 
+            }
+        }
+    }
+    
+    
+
+    //getting the Investor details
+    function GetInvestorsDetails(address _UserAddr)public returns(string,uint,uint,uint,uint) {
+        for(uint i=0;i<InvesMap[_UserAddr].name.length;i++){
+            return (InvesMap[_UserAddr].name[i],InvesMap[_UserAddr].count[i],Date[i],Month[i],Year[i]);  
+        }
+    }
     
     
     
