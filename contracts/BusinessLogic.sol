@@ -18,7 +18,10 @@ contract BusinessLogic is MutualFund{
     uint[] Month;
     uint[] Year;
     address[] ListPortfolio;
-    address[] ListInvestors;
+    address[] UserAddr;
+    
+
+
 
 
     //constructor 
@@ -37,11 +40,23 @@ contract BusinessLogic is MutualFund{
     }
     
     
-    //Investor details structre
+    //InvestorInvestnet details structre
      struct InvestorDetails{
         address UserAddr;
         string name;
-        uint[] count;
+        uint Date;
+        uint Month;
+        uint Year;
+        uint Hour;
+        uint Minute;
+        uint256 eth;
+    }
+
+    //Structure For Investor registration
+     struct InvestorRegister{
+        address UserAddr;
+        string name;
+        uint256 eth;
     }
     
     //Structure for InvestorProfile 
@@ -74,6 +89,19 @@ contract BusinessLogic is MutualFund{
         string tksymbol;
         uint256 tkdecimal;
         uint256 tktotalsup;
+    }
+    
+
+    //Generating the FundToken By the Investor
+     function MutualFund(string _name,string _symbol,uint256 _decimals,uint256 _totalsupply)public
+    {
+        totalsupply = _totalsupply;
+        balanceOf[msg.sender]=totalsupply;
+        symbol = _symbol;
+        name=_name;
+        decimals= _decimals;
+
+        
     }
     
     //structue for portfoliomanager profile
@@ -110,7 +138,8 @@ contract BusinessLogic is MutualFund{
     mapping(address=>Reg) RegMap;  //Map for portfoliomanager 
     mapping(address => Tokens) public PortToken; //Map for portfoliomangertokens
     mapping(address=>mapping(address =>  InvestorProfile )) public InvestorP; //Map for Investor profile page
-    mapping(address=>InvestorDetails)InvesMap; //Map for Investorregister
+    mapping(address=>InvestorDetails) InvesMap; //Map for InvestorInvestment
+    mapping(address=> InvestorRegister)public IRegMap; //Map for Investorregistration
     mapping(address =>  ProtfolioMProfile ) public PortfolioMP; //Map for PortfolioManager Profile
     mapping(address => InvestmentD) public InvestorInvestD; // Map for InestorInvestment details
     mapping(address => mapping(address => Dividends)) public MapDivide; //Map for Divident details
@@ -132,6 +161,15 @@ contract BusinessLogic is MutualFund{
        
     }
     
+
+    //Function for Investor registration
+        function InvestmentRegister(address _UserAddr,string _name)public
+        {
+        UserAddr.push(msg.sender);
+        
+        IRegMap[msg.sender].UserAddr=_UserAddr;
+        IRegMap[msg.sender].name=_name;
+    }
    
    
    //function for getting the generated token 
@@ -170,27 +208,25 @@ contract BusinessLogic is MutualFund{
     
     */
     
-      function Investment(string _name,address _PortfolioAddr) public payable returns(bool){
-        InvesMap[msg.sender].UserAddr = msg.sender;
-        InvesMap[msg.sender].name = _name;
+   function Investment(address _PortfolioAddr) public payable returns(bool){
         owner.transfer(msg.value);
+       InvesMap[msg.sender].eth= InvesMap[msg.sender].eth + msg.value;
         uint etherValue= msg.value * 100;
         uint value=  etherValue / 1 ether;
         transfer(_PortfolioAddr,value);
-        for(uint i=0;i<ListPortfolio.length;i++){
-            if(_PortfolioAddr == ListPortfolio[i]){
-                InvesMap[msg.sender].count[i] +1;
-            }
-        }
         time=now;
         getDate();
         return true;
     }
+
+
     //the Date Function is used to calculate the investment time
-     function getDate() private{
-        Date.push(DateTime.getDay(time));
-        Month.push(DateTime.getMonth(time));
-        Year.push(DateTime.getYear(time));
+      function getDate() private{
+        InvesMap[msg.sender].Hour=DateTime.getHour(time);
+        InvesMap[msg.sender].Minute=DateTime.getMinute(time);
+        InvesMap[msg.sender].Date=DateTime.getDay(time);
+        InvesMap[msg.sender].Month=DateTime.getMonth(time);
+        InvesMap[msg.sender].Year=DateTime.getYear(time);
     }
   
 
@@ -213,10 +249,8 @@ contract BusinessLogic is MutualFund{
     
 
     //getting the Investor details
-    function GetInvestorsDetails(address _UserAddr)public returns(string,uint,uint,uint,uint) {
-        for(uint i=0;i<InvesMap[_UserAddr].name.length;i++){
-            return (InvesMap[_UserAddr].name[i],InvesMap[_UserAddr].count[i],Date[i],Month[i],Year[i]);  
-        }
+   function GetInvestmentDetails(address _UserAddr)public returns(string,uint256,uint,uint,uint,uint,uint) {
+        return (InvesMap[_UserAddr].name,InvesMap[msg.sender].eth,InvesMap[msg.sender].Date,InvesMap[msg.sender].Month,InvesMap[msg.sender].Year,InvesMap[msg.sender].Hour,InvesMap[msg.sender].Minute);
     }
     
     

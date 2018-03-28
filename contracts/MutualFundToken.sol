@@ -14,17 +14,7 @@ contract MutualFund is ERC20Basic
     mapping(address=>uint) public balanceOf;
   
 
-    function MutualFund(string _name,string _symbol,uint256 _decimals,uint256 _totalsupply)public
-    {
-        totalsupply = _totalsupply;
-        balanceOf[msg.sender]=totalsupply;
-        symbol = _symbol;
-        name=_name;
-        decimals= _decimals;
-        Owner = msg.sender;
-        
-    }
-    
+   
     function transfer(address to, uint256 value) public returns (bool)
     {
         require(value<=balanceOf[msg.sender]);
