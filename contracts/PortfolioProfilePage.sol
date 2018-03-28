@@ -1,5 +1,5 @@
 pragma solidity ^0.4.11;
-import "./Timing.sol";
+
 
 import "./MutualFundToken.sol";
 contract portfolioManagerProfile is MutualFund {
@@ -17,9 +17,8 @@ contract portfolioManagerProfile is MutualFund {
         owner=msg.sender;
     }
     address[] TotalInvesterDetails;    
-  //  address[] portfolioProfile;
-    using DateTime for uint16;
-   // uint256 d1;
+  
+    
     struct portfolioManager{
      
        bytes32[] tokennames;
