@@ -6,8 +6,10 @@ import "./FundToken.sol";
 contract DMF is FundToken{
     
         address owner;
-        uint256 public rate = 0.001 ether;
-
+        uint256 rate = 0.001 ether;
+        
+        address public newadd;
+   
                        //Phase -2
             
             struct PortfolioMFTK
@@ -16,10 +18,19 @@ contract DMF is FundToken{
                 //address contractAdd;
                 uint256 Eth;
             }
-            function Main()public{
-                owner=msg.sender;
+            
+            struct InvestorPTk
+            {
+                address buyer;
+                uint256 Eth;
+                uint256 howTK;
             }
-          
+            function DMF()public{
+                owner=msg.sender;
+                newadd=address(this);
+                
+            }
+       
             
       
       mapping(address => PortfolioMFTK) public BuyTK;
@@ -36,13 +47,19 @@ contract DMF is FundToken{
          function GetFundToken() private{
             uint256 tokens = msg.value / rate;
             balanceOf[msg.sender] = balanceOf[msg.sender] + tokens;
-    
+            Transfer(0,msg.sender,msg.value);
             balanceOf[Owner] = balanceOf[Owner] - tokens;
          }
 
       function GetBal()public view returns(uint256){
           return this.balance/ 1 ether; //converting wei value to ether
       }
-     
+      
+      function getContractaddress() public view returns(address)
+      {
+          return newadd;
+      }
+      
+    
 
 }

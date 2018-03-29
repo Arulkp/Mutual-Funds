@@ -38,27 +38,28 @@ window.App = {
 
       accounts = accs;
       account = accounts[0];
-      document.getElementById("oa").value = account
-      self.refreshBalance();
+    
+      self.cadd();
       self.tot();
       self.tnam();
       self.teth();
       self.tdec();
       self.ethb();
+
     });
   },
 
  
-  refreshBalance: function() {
+  cadd:function() {
     var self = this;
 
     var meta;
     MetaCoin.deployed().then(function(instance) {
       meta = instance;
-      return meta.totalSupply.call(account, {from: account});
+      return meta.getContractaddress();
     }).then(function(value) {
-      var balance_element = document.getElementById("ts");
-      balance_element.innerHTML = value.valueOf();
+      var balance_element = document.getElementById("oa");
+      balance_element.value = value;
     }).catch(function(e) {
       console.log(e);
       //self.setStatus("Error getting balance; see log.");
@@ -133,8 +134,7 @@ window.App = {
       meta = instance;
       return meta.GetBal();
     }).then(function(value) {
-      var balance_element = document.getElementById("eb
-      .");
+      var balance_element = document.getElementById("eb");
       balance_element.value = value;
     }).catch(function(e) {
       console.log(e);

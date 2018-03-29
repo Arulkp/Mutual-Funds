@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.0;
 import "./ERC20.sol";
 contract FundToken is ERC20Basic
 {
@@ -77,15 +77,6 @@ contract FundToken is ERC20Basic
  
    
    
-    function buytokens() public payable {
-       
-     //calculate the tokens per rate form user entered amount
-    
-    //Dostrix Tokens are minted by following way
-    
-    Transfer(0,msg.sender,msg.value);
-
-    
-   }
+  
                        
 }
