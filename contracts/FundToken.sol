@@ -1,39 +1,38 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.18;
 import "./ERC20.sol";
-contract Markettoken is ERC20Basic
+contract FundToken is ERC20Basic
 {
-   
+    string standard="Token 1.0";
     string public name;
     string public symbol;
     uint256 public totalsupply;
     uint256  initialallowed;
     uint256 public decimals;
-  
     address Owner;
 
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
 
-    function Markettoken(string _name,string _symbol,uint256 _decimals)public
+    function FundToken()public
     {
         totalsupply=10000;
         balanceOf[msg.sender]=totalsupply;
-        symbol= _symbol;
-        name= _name;
+        symbol="DTX";
+        name="DostrixToken";
         initialallowed=500;
-        decimals = _decimals;
+        decimals=0;
         Owner = msg.sender;
         
     }
     function transferFrom(address from, address to, uint256 value)public returns(bool) 
     {
-        require(to != address(0));
-       require(value <= balanceOf[from]);
-        require(value <= allowed[from][msg.sender]);
+        //require(to != address(0));
+       //require(value <= balanceOf[from]);
+        //require(value <= allowed[from][msg.sender]);
     
         balanceOf[from]=balanceOf[from]-value;
         balanceOf[to] =balanceOf[to]+value;
-        allowed[from][msg.sender] = allowed[from][msg.sender]-(value);
+        //allowed[from][msg.sender] = allowed[from][msg.sender]-(value);
         Transfer(from,to,value);
         return true;
     }
@@ -75,6 +74,18 @@ contract Markettoken is ERC20Basic
         return balanceOf[_addr];
     }
     
+ 
+   
+   
+    function buytokens() public payable {
+       
+     //calculate the tokens per rate form user entered amount
     
-        
+    //Dostrix Tokens are minted by following way
+    
+    Transfer(0,msg.sender,msg.value);
+
+    
+   }
+                       
 }
