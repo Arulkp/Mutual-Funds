@@ -41,6 +41,10 @@ window.App = {
       document.getElementById("oa").value = account
       self.refreshBalance();
       self.tot();
+      self.tnam();
+      self.teth();
+      self.tdec();
+      self.ethb();
     });
   },
 
@@ -82,9 +86,55 @@ window.App = {
     var meta;
     MetaCoin.deployed().then(function(instance) {
       meta = instance;
-      return meta.name;
+      return meta.name();
     }).then(function(value) {
       var balance_element = document.getElementById("tn");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  teth:function(){
+    var self = this;
+
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      return meta.symbol();
+    }).then(function(value) {
+      var balance_element = document.getElementById("tsy");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  tdec:function(){
+    var self = this;
+
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      return meta.decimals();
+    }).then(function(value) {
+      var balance_element = document.getElementById("td");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  ethb:function(){
+    var self = this;
+
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      return meta.GetBal();
+    }).then(function(value) {
+      var balance_element = document.getElementById("eb
+      .");
       balance_element.value = value;
     }).catch(function(e) {
       console.log(e);
