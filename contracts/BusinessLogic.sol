@@ -2,7 +2,7 @@ pragma solidity ^0.4.18;
 
 import "./MutualFundToken.sol";
 import "./Timing.sol";
-contract BusinessLogic is MutualFund{
+contract BusinessLogic {
     
     
 
