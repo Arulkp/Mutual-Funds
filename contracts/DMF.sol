@@ -87,8 +87,8 @@ contract DMF {
             uint256 tokens = value / rate;
             FundToken(contractAddress).updateD(msg.sender,tokens);
             //Transfer(0,msg.sender,msg.value);
-            balanceOf[msg.sender] = balanceOf[msg.sender] + tokens;
-            Transfer(0,msg.sender,msg.value);
+           
+           
             portfolioMAdd.push(msg.sender);
          }
 
