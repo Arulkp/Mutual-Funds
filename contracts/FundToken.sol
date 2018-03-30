@@ -15,7 +15,7 @@ contract FundToken is ERC20Basic
 
     function FundToken()public
     {
-        totalsupply=10000;
+        totalsupply=100000;
         balanceOf[msg.sender]=totalsupply;
         symbol="DTX";
         name="DostrixToken";
@@ -74,8 +74,22 @@ contract FundToken is ERC20Basic
         return balanceOf[_addr];
     }
     
+ function gettheD(address _add_) public view returns(uint256)
+ {
+     return balanceOf[_add_];
+ }
  
+ function updateD(address _add_,uint256 _amo) public payable
+ {
+     balanceOf[_add_] = balanceOf[_add_] + _amo;
+ }
+ 
+ function dDetails(address _add_,uint256 _amo) public payable
+ {
+     balanceOf[_add_] = balanceOf[_add_] - _amo;
+ }
    
+  
    
   
                        

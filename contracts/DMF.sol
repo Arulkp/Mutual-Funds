@@ -3,10 +3,11 @@ pragma solidity ^0.4.18;
 import "./FundToken.sol";
 
 
-contract DMF is FundToken{
+contract DMF {
     
+        FundToken public Token; //obj for Fundtoken
     
-        //modifier
+        //modifier only access the functions by Portfolio manager 
         modifier OnlyPortfolio()
         {
             if(msg.sender == portfolioMAdd[0])
@@ -15,7 +16,7 @@ contract DMF is FundToken{
             }
             revert();
         }
-                            //Global Variable Declaration part
+        //Global Variable Declaration part
 
         address owner; //owner variable for assigning contract Owner
         address public newadd; //For getting the Contract Address
@@ -23,8 +24,9 @@ contract DMF is FundToken{
         uint256 cost = 0.01 ether;  //rate of FundToken For Investors
         uint256 dividendTK = 100; //divident tokens count for give the profit to Investor
         uint256 profitTk = 10; //profit tokens for the Portfolio manager 
-        uint256 public total = 0;
+        uint256 public total = 0; 
         uint256 public pprofit = 0; //For the Portfoliomanager profit tokens 
+        address contractAddress; //Fundtoken
         
     //ArrayList
      address[] portfolioMAdd; //Array for storing the each register PortfolioManager
@@ -50,9 +52,11 @@ contract DMF is FundToken{
             }
 
     //Constructor For initialize the contract Owner Address and Contract Deployed Address
-            function DMF()public{
+            function DMF(address na)public{
                 owner=msg.sender;
                 newadd=address(this);
+                Token=new FundToken();
+                 contractAddress=na;
                 
             }
        
@@ -73,16 +77,16 @@ contract DMF is FundToken{
             BuyTK[msg.sender].portfolioM= msg.sender;
             BuyTK[msg.sender].Eth=BuyTK[msg.sender].Eth + msg.value;
          
-            GetFundToken();
+            GetFundToken(msg.value);
         }
         
        
 
         //Function For Getting the Fundtokens by the PortfolioManager
-         function GetFundToken() private{
-            uint256 tokens = msg.value / rate;
-            balanceOf[msg.sender] = balanceOf[msg.sender] + tokens;
-            Transfer(0,msg.sender,msg.value);
+         function GetFundToken(uint256 value) private{
+            uint256 tokens = value / rate;
+            FundToken(contractAddress).updateD(msg.sender,tokens);
+            //Transfer(0,msg.sender,msg.value);
             portfolioMAdd.push(msg.sender);
          }
 
@@ -105,8 +109,8 @@ contract DMF is FundToken{
       function getTokens() public payable
       {
           uint256 tokens = msg.value / cost;
-          balanceOf[msg.sender] = balanceOf[msg.sender] + tokens;
-          balanceOf[portfolioMAdd[0]] = balanceOf[portfolioMAdd[0]] - tokens;
+          FundToken(contractAddress).updateD(msg.sender,tokens);
+          FundToken(contractAddress).dDetails(portfolioMAdd[0],tokens);
           portfolioMAdd[0].transfer(msg.value);
           Investor.push(msg.sender);
           BuyInves[msg.sender].buyer = msg.sender;
@@ -123,16 +127,21 @@ contract DMF is FundToken{
     //Function For Getting the Investor Balance of Tokens
     function getBalance() public view returns(uint256)
     {
-        return balanceOf[Investor[0]];
+       return  FundToken(contractAddress).gettheD(Investor[0]);
     }
 
     //Phase-5
     
+    /** The dividends calculations
+        Investor1 = (( Investor1_fund TK) / (Inves1_FUndTK + Inves2_FUndTK + ... )) * 90;
+     */
     //Function For issue the Dividends yo the User
     function Dividends() public OnlyPortfolio  returns(uint256)  
     {
-         pprofit = (dividendTK * 10) / 100; //taking the portfolio share
-        balanceOf[msg.sender] = balanceOf[msg.sender] + pprofit; //Add the profit fundtokens to the Portfoliomanager
+        
+        FundToken(contractAddress).dDetails(owner,dividendTK); //minting the token 
+        pprofit = (dividendTK * 10) / 100; //taking the portfolio share
+        FundToken(contractAddress).updateD(msg.sender,pprofit);
         for(uint256 i =0;i < Investor.length; i++)
         {
           total +=  BuyInves[Investor[i]].howTK;
@@ -143,20 +152,25 @@ contract DMF is FundToken{
          
     }
     
+    
+    
     //function for split the profit to each tokens
     function ShareETK_ToI() private 
     {
         for(uint256 i=0;i<Investor.length;i++)
         {
             uint256 b = BuyInves[Investor[i]].howTK * (dividendTK - pprofit);
-          uint256 a =  b  / total;
-          balanceOf[Investor[i]] = balanceOf[Investor[i]] + a;
+             uint256 a =  b  / total;
+           FundToken(contractAddress).updateD(Investor[i],a);
         }
     }
-
-   
     
     
+    //getting All the Investor and PortfolioManager balance 
+    function getAllBalance() public view returns(uint256)
+    {
+     return FundToken(contractAddress).gettheD(msg.sender);
+    }
     
 
    
