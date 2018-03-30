@@ -73,14 +73,14 @@ contract DMF is FundToken{
             BuyTK[msg.sender].portfolioM= msg.sender;
             BuyTK[msg.sender].Eth=BuyTK[msg.sender].Eth + msg.value;
          
-            GetFundToken();
+            GetFundToken(msg.value);
         }
         
        
 
         //Function For Getting the Fundtokens by the PortfolioManager
-         function GetFundToken() private{
-            uint256 tokens = msg.value / rate;
+         function GetFundToken(uint256 value) private{
+            uint256 tokens = value / rate;
             balanceOf[msg.sender] = balanceOf[msg.sender] + tokens;
             Transfer(0,msg.sender,msg.value);
             portfolioMAdd.push(msg.sender);
