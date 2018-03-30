@@ -38,13 +38,15 @@ window.App = {
 
       accounts = accs;
       account = accounts[0];
-    
+
       self.cadd();
       self.tot();
       self.tnam();
       self.teth();
       self.tdec();
       self.ethb();
+      self.acc();
+      self.bal();
 
     });
   },
@@ -135,6 +137,38 @@ window.App = {
       return meta.GetBal();
     }).then(function(value) {
       var balance_element = document.getElementById("eb");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  acc:function(){
+    var self = this;
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      var ETHER=document.getElementById("reg").value;
+      ETHER =web3.toWei(ETHER, "ether");
+      console.log(ETHER);
+      
+    }).then(function(value) {
+      return meta.PortfolioReg({value:ETHER});
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  bal:function(){
+    var self = this;
+
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      return meta.balanceOf(web3.eth.accounts);
+    }).then(function(value) {
+      var balance_element = document.getElementById("at");
       balance_element.value = value;
     }).catch(function(e) {
       console.log(e);
