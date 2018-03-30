@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ body 
+{
+    margin:0;
+    padding:0;
+  
+    background-size:center;
+    font-family: sans-serif;
+}
+.ether
+{
+    width:100px;
+    height: 100px;
+    background-color: aqua;
+    border-radius: 50%;
+    position: absolute;
+    top:100px;
+    left:900px;
+    }
+
+input[type=text] {
+    width: 90%;
+    height:20%;
+    padding: 15px 10px;
+    margin: 8px 0 ;
+    display: inline-block;
+    border: 1px solid rgb(38, 120, 228);
+    box-sizing: border-box;
+}
+
+button {
+    background-color: rgb(72, 184, 218);
+    color:white;
+    padding: 14px 30px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+
+.cancelbtn {
+    width: 30%;
+    padding: 10px 18px;
+    background-color: #2c09f0;
+    opacity: 0.5;
+}
+.container {
+    padding: 20px;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(10, 172, 236, 0.842); 
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 80px;
+}
+.modal-content {
+    background-color:plum;
+    margin: 5% auto 15% auto; 
+    border: 1px solid #888;
+    width: 40%; 
+}
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 30px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color:slateblue;
+    cursor: pointer;
+}
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+@media screen and (max-width: 100px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 40%;
+    }
+}
+#di{
+	margin-top:100px;
+	width:900px;
+	margin-left:500px;
+ }
+h1 {
+    font-size: 40px;
+    margin-top:300px;
+	width:500px;
+	border:1px solid black;
+	margin-left:700px;
+    background-color: rgb(205, 134, 233);
+}
+</style>
+</head>
+<body>
+<div class="loginform">
+    <h1><center>REGISTER NOW</center></h1>
+<div id="di" style="color:black">
+    <center>
+<button onclick="document.getElementById('id01').style.display='block'" style="width:200px;">SUBMIT</button>
+</center></div>
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+       
+        <b>Ether Value</b>
+        <input type="text" size=54 id="ETHER"/><br><br>
+        <br><br>
+        <a href="http://localhost:8080/app/page2.html">submit</a>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+    </div>
+  </form>
+</div>
+<script>
+    function Tokens()
+		{
+		var ETHER=document.getElementById("reg").value;
+		ETHER =web3.toWei(ETHER, "ether");
+		meta.PortfolioReg({value:ETHER}, function(err, result){ if(!err)alert(result); });	
+	}
+		var BUTS = document.getElementById("at");
+	BUTS.addEventListener('click',function(){
+       Tokens();
+     });
+var modal = document.getElementById('id01');
+
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+</script>
+</body>
+</html>
