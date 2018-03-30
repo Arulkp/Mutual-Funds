@@ -85,13 +85,10 @@ contract DMF {
         //Function For Getting the Fundtokens by the PortfolioManager
          function GetFundToken(uint256 value) private{
             uint256 tokens = value / rate;
-<<<<<<< HEAD
             FundToken(contractAddress).updateD(msg.sender,tokens);
             //Transfer(0,msg.sender,msg.value);
-=======
             balanceOf[msg.sender] = balanceOf[msg.sender] + tokens;
             Transfer(0,msg.sender,msg.value);
->>>>>>> b63d4b3cc8027c0c31416e6ced9988b820af2a23
             portfolioMAdd.push(msg.sender);
          }
 
