@@ -12,6 +12,8 @@ contract DMF is FundToken{
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
         uint256 cost = 0.01 ether;  //rate of FundToken For Investors
         uint256 dividendTK = 100; //divident tokens count for give the profit to Investor
+        uint256 profitTk = 10; //profit tokens for the Portfolio manager 
+        uint256 public total = 0;
         
     //ArrayList
      address[] portfolioMAdd; //Array for storing the each register PortfolioManager
@@ -47,7 +49,7 @@ contract DMF is FundToken{
                              //Mapping Area
 
       mapping(address => PortfolioMFTK) public BuyTK; //Map for getting and storing the PortfolioManager resgistration Details
-      
+      mapping(address => InvestorPTk) public BuyInves; //map for getting and storing the Investor getting token details
       //Fallback Function For Holding the Ether in Contract
       function () public payable{
           
@@ -94,8 +96,13 @@ contract DMF is FundToken{
           balanceOf[portfolioMAdd[0]] = balanceOf[portfolioMAdd[0]] - tokens;
           portfolioMAdd[0].transfer(msg.value);
           Investor.push(msg.sender);
+          BuyInves[msg.sender].buyer = msg.sender;
+          BuyInves[msg.sender].Eth = msg.value;
+          BuyInves[msg.sender].howTK = tokens;
+          
       }
     
+  
 
     //Phase-4
 
@@ -108,6 +115,14 @@ contract DMF is FundToken{
 
     //Phase-5
 
+    function Dividends() public payable returns(uint256)  
+    {
+        for(uint256 i =0;i < Investor.length; i++)
+        {
+          total +=  BuyInves[Investor[i]].howTK; 
+          return total;
+        }
+    }
     
 
    
