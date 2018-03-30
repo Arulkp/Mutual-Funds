@@ -5,6 +5,16 @@ import "./FundToken.sol";
 
 contract DMF is FundToken{
     
+    
+        //modifier
+        modifier OnlyPortfolio()
+        {
+            if(msg.sender == portfolioMAdd[0])
+            {
+                _;
+            }
+            revert();
+        }
                             //Global Variable Declaration part
 
         address owner; //owner variable for assigning contract Owner
@@ -14,10 +24,11 @@ contract DMF is FundToken{
         uint256 dividendTK = 100; //divident tokens count for give the profit to Investor
         uint256 profitTk = 10; //profit tokens for the Portfolio manager 
         uint256 public total = 0;
+        uint256 public pprofit = 0; //For the Portfoliomanager profit tokens 
         
     //ArrayList
      address[] portfolioMAdd; //Array for storing the each register PortfolioManager
-     address[] Investor; //Array for storing the each register Investors
+     address[] public Investor; //Array for storing the each register Investors
    
     //Phase -2
                             //Structure Area
@@ -64,6 +75,8 @@ contract DMF is FundToken{
          
             GetFundToken();
         }
+        
+       
 
         //Function For Getting the Fundtokens by the PortfolioManager
          function GetFundToken() private{
@@ -114,15 +127,36 @@ contract DMF is FundToken{
     }
 
     //Phase-5
-
-    function Dividends() public payable returns(uint256)  
+    
+    //Function For issue the Dividends yo the User
+    function Dividends() public OnlyPortfolio  returns(uint256)  
     {
+         pprofit = (dividendTK * 10) / 100; //taking the portfolio share
+        balanceOf[msg.sender] = balanceOf[msg.sender] + pprofit; //Add the profit fundtokens to the Portfoliomanager
         for(uint256 i =0;i < Investor.length; i++)
         {
-          total +=  BuyInves[Investor[i]].howTK; 
-          return total;
+          total +=  BuyInves[Investor[i]].howTK;
+        }
+        
+         ShareETK_ToI();
+         
+         
+    }
+    
+    //function for split the profit to each tokens
+    function ShareETK_ToI() private 
+    {
+        for(uint256 i=0;i<Investor.length;i++)
+        {
+            uint256 b = BuyInves[Investor[i]].howTK * (dividendTK - pprofit);
+          uint256 a =  b  / total;
+          balanceOf[Investor[i]] = balanceOf[Investor[i]] + a;
         }
     }
+
+   
+    
+    
     
 
    
