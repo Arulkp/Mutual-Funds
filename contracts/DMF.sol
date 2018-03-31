@@ -94,7 +94,7 @@ contract DMF {
          }
 
         //Function For Getting the Contract Ether Balance 
-      function GetBal()public view returns(uint256){
+      function GetContractEtherBalance()public view returns(uint256){
           return this.balance/ 1 ether; //converting wei value to ether
       }
       
@@ -193,8 +193,8 @@ contract DMF {
       }
       
     }
-   // function TokenDetails() view returns(uint256,string,string,uint256){
-     //   return (FundToken(contractAddress).totalSupply(),,FundToken(contractAddress).tokenSymbol(),FundToken(contractAddress).tokenDecimals());
-
+    function TokenDetails() view returns(uint256,string,string,uint256){
+        return FundToken(contractAddress).totalSupply();
+    }
    
 }
