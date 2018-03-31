@@ -193,7 +193,7 @@ contract DMF {
       }
       
     }
-    function TokenDetails() view returns(uint256,string,string,uint256){
+    function TokenDetails() view returns(uint256){
         return FundToken(contractAddress).totalSupply();
     }
    
