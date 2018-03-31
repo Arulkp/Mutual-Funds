@@ -11,6 +11,7 @@ contract DMF is FundToken{
         address public newadd; //For getting the Contract Address
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
         uint256 cost = 0.01 ether;  //rate of FundToken For Investors
+        uint256 dividendTK = 100; //divident tokens count for give the profit to Investor
         
     //ArrayList
      address[] portfolioMAdd; //Array for storing the each register PortfolioManager
@@ -95,11 +96,17 @@ contract DMF is FundToken{
           Investor.push(msg.sender);
       }
     
+
+    //Phase-4
+
+
     //Function For Getting the Investor Balance of Tokens
     function getBalance() public view returns(uint256)
     {
         return balanceOf[Investor[0]];
     }
+
+    //Phase-5
 
    
 }
