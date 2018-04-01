@@ -44,7 +44,7 @@ window.App = {
 
       accounts = accs;
       account = accounts[0];
-
+      //
       self.cadd();
       self.tot();
       self.tnam();
@@ -61,7 +61,7 @@ window.App = {
  
  
  
-
+  
   cadd:function() {
     var self = this;
 
@@ -155,21 +155,7 @@ window.App = {
   },
   
 
-  bals:function(){
-    var self = this;
-
-    var meta;
-    MetaCoin.deployed().then(function(instance) {
-      meta = instance;
-      return meta.balanceOf(web3.eth.accounts);
-    }).then(function(value) {
-      var balance_element = document.getElementById("at");
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
+ 
 
 
   sendCoin: function() {
@@ -195,7 +181,58 @@ window.App = {
   subm : function(){
     $("#result").html('');
     $("#result").html('<h1>Register:</h1><br>\
-    <input type="text" size=54 id="reg"/><br><br></div><br><button onclick="App.register();">Register</button>');
+    <input type="text" size=54 id="reg"/><br><br></div><br><button onclick="App.register();">Register</button> <br><button><a href="./app/page2.html">next</a></button>');
+  },
+
+  bal: function(){
+    $("#result").html('');
+    $("#result").html('<h1>Tokens:</h1><br>\
+    <input type="text" size=54 id="tok"/><br><br></div><br><button onclick="App.bal();">Tokens</button>');
+  },
+  inv : function(){
+    $("#result").html('');
+    $("#result").html('<h1>Invest:</h1><br>\
+    <input type="text" size=54 id="invs"/><br><br></div><br><button onclick="App.invest();">Invest</button>');
+  },
+  invest : function (){
+    var reg_e = $("#id03").val();
+    var self = this;
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.InvesterGetToken({from: account,value:web3.toWei(reg_e,'ether')});
+    }).then(function(result) {
+      console.log(result);
+      // self.setStatus("Transaction complete!");
+      // self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      // self.setStatus("Error sending coin; see log.");
+    });
+  },
+
+
+
+  bal: function() {
+    var self = this;
+
+   // var amount = web3.eth.accounts[0];
+  var addres=document.getElementById("ads").value;
+    //this.setStatus("Initiating transaction... (please wait)");
+
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      return meta.balanceOf(addres, {from: account});
+    }).then(function(result) {
+     // self.setStatus("Transaction complete!");
+     var res=document.getElementById("at");
+     res.value=result;
+      self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error sending coin; see log.");
+    });
   },
 
   register : function (){
@@ -215,6 +252,8 @@ window.App = {
     });
   }
 };
+
+
 
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)

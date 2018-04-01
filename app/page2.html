@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
+    <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+            <script src="../app.js"></script> 
+    </head>
 <style>
-    
+ 
 
 body{
     margin:0;
@@ -103,31 +107,32 @@ button:hover {
     margin-left:25px;
 }
 </style>
-<body background="./app/images/1.jpg">
-        
+<body>
+         <p><center><b>Address:</b></p>
+        <input type=text1 id="ads" value=""/><br><br>
+        <button id="tok" value="tokens" onclick="App.bal();">Tokens</button>
         <p><center><b>Available Token:</b></p>
         <input type=text1 id="at" value=""/><br><br>
  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Invested</button></div>
 
 <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-    <form class="modal-content" action="/action_page.php">
+    <form class="modal-content" >
     <div class="container">
     <center>
       
-      <label for="Address"><b>Address:</b></label>
-      <input type="text" id="address" value="" name="address" required><br>
 
-      <label for="value"><b>Value:</b></label>
-      <input type="text" id="id02" onkeyup="convert('c')" value="" name="value" required><br>
-		
-      <label for="Tokens"><b>Tokens:</b></label>
-      <input type="text" id="id03"  value=""  name="tokens" required><br>
+
+      <label for="Tokens"><b>Amount of Tokens:</b></label>
+      <input type="text" id="id02" onkeyup="convert('c')" value=""  name="tokens" required><br>
       
+      <label for="value"><b>Ether:</b></label>
+      <input type="text" id="id03"   value="" name="value" required><br>
+      <button onclick="App.inv();">Invest</button>
     <div class="clearfix">
         
-    <button type="inverst" class="invbtn">Inverst</button>
-    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button></center>
+    <!--<button type="inverst" class="invbtn" onclick="App.inv();">Inverst</button>
+    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button></center>-->
       </div>
     </div>
   </form>
@@ -136,9 +141,10 @@ button:hover {
 <script>
 var x;
 function convert(math)
-{
-    x = document.getElementById('id02').value * 0.1;
-    document.getElementById('id03').value = x;
+{  
+   X = document.getElementById('id02').value ;
+document.getElementById('id03').value = X * 0.1;
+   
 }
 
 var modal = document.getElementById('id01');
