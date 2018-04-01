@@ -1,6 +1,6 @@
 pragma solidity ^0.4.0;
 import "./ERC20.sol";
-contract FundToken is ERC20
+contract FundToken is ERC20Basic
 {
     string standard="Token 1.0";
     string public name;
@@ -17,8 +17,8 @@ contract FundToken is ERC20
     {
         totalsupply=100000;
         balanceOf[msg.sender]=totalsupply;
-        symbol="DTX";
-        name="DostrixToken";
+        symbol="$";
+        name="DMF";
         initialallowed=500;
         decimals=0;
         Owner = msg.sender;
@@ -74,23 +74,18 @@ contract FundToken is ERC20
         return balanceOf[_addr];
     }
     
- function gettheD(address _add_) public view returns(uint256)
- {
-     return balanceOf[_add_];
- }
- 
- function updateD(address _add_,uint256 _amo) public payable
+ //function gettheD(address _add_) public view returns(uint256)
+ //{
+    // return balanceOf[_add_];
+// }
+ //updted
+ function mintToken(address _add_,uint256 _amo) public
  {
      balanceOf[_add_] = balanceOf[_add_] + _amo;
  }
- 
- function dDetails(address _add_,uint256 _amo) public payable
+ //dDetails
+ function tokenDecrease(address _add_,uint256 _amo) public payable
  {
      balanceOf[_add_] = balanceOf[_add_] - _amo;
  }
-   
-  
-   
-  
-                       
 }
