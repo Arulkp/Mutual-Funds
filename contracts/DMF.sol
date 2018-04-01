@@ -75,9 +75,8 @@ contract DMF {
         //Function For PortfolioManager Resgistration
         function PortfolioReg() public payable{
         Portfolio[msg.sender].portfolioM= msg.sender;
-            Portfolio[msg.sender].Eth=Portfolio[msg.sender].Eth + msg.value;
-         
-            GetFundToken(msg.value);
+        Portfolio[msg.sender].Eth=Portfolio[msg.sender].Eth + msg.value;
+        GetFundToken(msg.value);
         }
         
        
@@ -130,10 +129,10 @@ contract DMF {
 
 
     //Function For Getting the Investor Balance of Tokens
-  //  function getBalance() public view returns(uint256)
-    //{
-      // return  FundToken(contractAddress).gettheD(TotalInvestorAddress[0]);
-    //}
+    function getBalance() public view returns(uint256)
+    {
+       return FundToken(contractAddress).balanceOf(TotalInvestorAddress[0]);
+    }
 
     //Phase-5
     
@@ -144,8 +143,8 @@ contract DMF {
    function Dividends() public OnlyPortfolio  returns(uint256)  
     {
         
-        FundToken(contractAddress).mintToken(owner,dividendToken); //minting the token 
-       PortfolioManagerprofit = (dividendToken* 10) / 100; //taking the portfolio share
+        FundToken(contractAddress).mintToken(msg.sender,dividendToken); //minting the token 
+        PortfolioManagerprofit = (dividendToken* 10) / 100; //taking the portfolio share
         FundToken(contractAddress).mintToken(msg.sender,PortfolioManagerprofit);
        // for(uint256 i =0;i < Investor.length; i++)
         //{
@@ -168,6 +167,7 @@ contract DMF {
             uint256 b = invester[TotalInvestorAddress[i]].TokenCount * (dividendToken - PortfolioManagerprofit);
              uint256 a =  b  / InvestersTotalToken;
            FundToken(contractAddress).mintToken(TotalInvestorAddress[i],a);
+           FundToken(contractAddress).tokenDecrease(msg.sender,a);
         }
     }
     //function for split the profit to each tokens
@@ -180,22 +180,15 @@ contract DMF {
     }
     
  
+      //Phase-6 
     function ReturnTokenToPortfolioManager(uint256 value)public payable{
      
-       require(value<=invester[msg.sender].TokenCount);
-     
-      for(uint256 i=0;i<TotalInvestorAddress.length;i++){
-          if(msg.sender == TotalInvestorAddress[i]){
-              FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
-        etherCalculation=(value*cost);
-        (msg.sender).transfer(etherCalculation);
-          }
-      }
+    FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
+    
       
     }
     
-   // function TokenDetails() view returns(uint256,string,string,uint256){
-     //   return (FundToken(contractAddress).totalSupply(),,FundToken(contractAddress).tokenSymbol(),FundToken(contractAddress).tokenDecimals());
+   
 
    function listOfPortfolioManager()public view returns(address){
        return ToatlportfolioMAddress[0];
