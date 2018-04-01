@@ -189,11 +189,6 @@ window.App = {
     $("#result").html('<h1>Tokens:</h1><br>\
     <input type="text" size=54 id="tok"/><br><br></div><br><button onclick="App.bal();">Tokens</button>');
   },
-  inv : function(){
-    $("#result").html('');
-    $("#result").html('<h1>Invest:</h1><br>\
-    <input type="text" size=54 id="invs"/><br><br></div><br><button onclick="App.invest();">Invest</button>');
-  },
   invest : function (){
     var reg_e = $("#id03").val();
     var self = this;

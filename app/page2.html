@@ -113,9 +113,8 @@ button:hover {
         <button id="tok" value="tokens" onclick="App.bal();">Tokens</button>
         <p><center><b>Available Token:</b></p>
         <input type=text1 id="at" value=""/><br><br>
- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Invested</button></div>
-
-<div id="id01" class="modal">
+        <button onclick="document.getElementById('id01').style.display='block' "App.inv();"" style="width:auto;">Invested</button></div>
+        <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
     <form class="modal-content" >
     <div class="container">
@@ -128,7 +127,7 @@ button:hover {
       
       <label for="value"><b>Ether:</b></label>
       <input type="text" id="id03"   value="" name="value" required><br>
-      <button onclick="App.inv();">Invest</button>
+      <button onclick="App.invest();">Invest</button>
     <div class="clearfix">
         
     <!--<button type="inverst" class="invbtn" onclick="App.inv();">Inverst</button>
