@@ -187,8 +187,32 @@ window.App = {
   bal: function(){
     $("#result").html('');
     $("#result").html('<h1>Tokens:</h1><br>\
-    <input type="text" size=54 id="tok"/><br><br></div><br><button onclick="App.bal();">Tokens</button>');
+    <input type="text" size=54 id="tok"/><br><br></div><br><button onclick="App.bal();">Tokens</button><br>');
   },
+ 
+  Ibal: function() {
+    var self = this;
+
+   // var amount = web3.eth.accounts[0];
+  var addres=document.getElementById("adr").value;
+    //this.setStatus("Initiating transaction... (please wait)");
+
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      return meta.balanceOf(addres, {from: account});
+    }).then(function(result) {
+     // self.setStatus("Transaction complete!");
+     var res=document.getElementById("str");
+     res.value=result;
+      self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error sending coin; see log.");
+    });
+  },
+
+
   invest : function (){
     var reg_e = $("#id03").val();
     var self = this;
