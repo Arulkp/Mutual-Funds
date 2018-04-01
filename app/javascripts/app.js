@@ -6,14 +6,15 @@ import { default as Web3} from 'web3';
 import { default as contract } from 'truffle-contract'
 
 // Import our contract artifacts and turn them into usable abstractions.
+import FundToken from '../../build/contracts/FundToken.json'
 import DMF from '../../build/contracts/DMF.json'
 
-import dead from '../../migrations/3_deploy_migrations'
+//import dead from '../../migrations/3_deploy_migrations'
 
 
 // MetaCoin is our usable abstraction, which we'll use through the code below.
-var MetaCoin = contract(DMF);
-var julius =  contract(dead);
+var MetaCoin = contract(FundToken);
+var MetaCoins = contract(DMF);
 
 // The following code is simple to show off interacting with your contracts.
 // As your needs grow you will likely need to change its form and structure.
@@ -27,6 +28,7 @@ window.App = {
 
     // Bootstrap the MetaCoin abstraction for Use.
     MetaCoin.setProvider(web3.currentProvider);
+    MetaCoins.setProvider(web3.currentProvider);
 
     // Get the initial account balance so it can be displayed.
     web3.eth.getAccounts(function(err, accs) {
@@ -55,12 +57,13 @@ window.App = {
     });
   },
 
+
  
   cadd:function() {
     var self = this;
 
     var meta;
-    MetaCoin.deployed().then(function(instance) {
+    MetaCoins.deployed().then(function(instance) {
       meta = instance;
       return meta.getContractaddress();
     }).then(function(value) {
@@ -136,7 +139,7 @@ window.App = {
     var self = this;
 
     var meta;
-    MetaCoin.deployed().then(function(instance) {
+    MetaCoins.deployed().then(function(instance) {
       meta = instance;
       return meta.GetBal();
     }).then(function(value) {
@@ -147,24 +150,9 @@ window.App = {
       //self.setStatus("Error getting balance; see log.");
     });
   },
-  acc:function(){
-    var self = this;
-    var meta;
-    MetaCoin.deployed().then(function(instance) {
-      meta = instance;
-      var ETHER=document.getElementById("reg").value;
-      ETHER =web3.toWei(ETHER, "ether");
-      console.log(ETHER);
-      
-    }).then(function(value) {
-      return meta.PortfolioReg({value:ETHER});
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  bal:function(){
+  
+
+  bals:function(){
     var self = this;
 
     var meta;
