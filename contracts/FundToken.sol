@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.18;
 import "./ERC20.sol";
 contract FundToken is ERC20Basic
 {
@@ -17,8 +17,8 @@ contract FundToken is ERC20Basic
     {
         totalsupply=100000;
         balanceOf[msg.sender]=totalsupply;
-        symbol="$";
-        name="DMF";
+        symbol="DTX";
+        name="PheonixToken";
         initialallowed=500;
         decimals=0;
         Owner = msg.sender;
@@ -74,11 +74,7 @@ contract FundToken is ERC20Basic
         return balanceOf[_addr];
     }
     
- //function gettheD(address _add_) public view returns(uint256)
- //{
-    // return balanceOf[_add_];
-// }
- //updted
+
  function mintToken(address _add_,uint256 _amo) public
  {
      balanceOf[_add_] = balanceOf[_add_] + _amo;
