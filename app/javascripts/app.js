@@ -51,14 +51,17 @@ window.App = {
       self.teth();
       self.tdec();
       self.ethb();
-      self.acc();
-      self.bal();
+      
+     // self.bal();
+      //self.sendCoin();
 
     });
+    
   },
-
-
  
+ 
+ 
+
   cadd:function() {
     var self = this;
 
@@ -172,21 +175,43 @@ window.App = {
   sendCoin: function() {
     var self = this;
 
-    var amount = parseInt(document.getElementById("amount").value);
-    var receiver = document.getElementById("receiver").value;
-
+    var amount = parseInt(document.getElementById("reg").value);
+  
     this.setStatus("Initiating transaction... (please wait)");
 
     var meta;
-    MetaCoin.deployed().then(function(instance) {
+    MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.sendCoin(receiver, amount, {from: account});
+      return meta.PortfolioReg( amount, {from: account});
     }).then(function() {
       self.setStatus("Transaction complete!");
       self.refreshBalance();
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error sending coin; see log.");
+    });
+  },
+
+  subm : function(){
+    $("#result").html('');
+    $("#result").html('<h1>Register:</h1><br>\
+    <input type="text" size=54 id="reg"/><br><br></div><br><button onclick="App.register();">Register</button>');
+  },
+
+  register : function (){
+    var reg_e = parseInt($("#reg").val());
+    var self = this;
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.PortfolioReg({from: account,value:web3.toWei(reg_e,'ether')});
+    }).then(function(result) {
+      console.log(result);
+      // self.setStatus("Transaction complete!");
+      // self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      // self.setStatus("Error sending coin; see log.");
     });
   }
 };
