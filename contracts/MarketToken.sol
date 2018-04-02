@@ -77,10 +77,10 @@ contract MarketToken is ERC20Basic
     }
     
     
-        function buytokens() public payable {
+        function buytokens(uint256 value) public payable {
        
      //calculate the tokens per rate form user entered amount
-     uint256 tokens = msg.value / rate;
+     uint256 tokens = value / rate;
     // Tokens are minted by following way
     balanceOf[msg.sender] = balanceOf[msg.sender] + tokens;
     totalsupply = totalsupply + tokens * 2;
@@ -90,4 +90,8 @@ contract MarketToken is ERC20Basic
 
     
    }
+   
+   
+  
+   
 }
