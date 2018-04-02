@@ -52,7 +52,7 @@ window.App = {
       self.tdec();
       self.ethb();
       self.pbal();
-      self.pads();
+     // self.pads();
       
      // self.bal();
       //self.sendCoin();
@@ -60,7 +60,7 @@ window.App = {
     });
     
   },
-  pads:function() {
+  /*pads:function() {
     var self = this;
 
     var meta;
@@ -74,20 +74,21 @@ window.App = {
       console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
-  },
+  }, */
   pbal: function() {
     var self = this;
 
-   // var amount = web3.eth.accounts[0];
-  var addres=document.getElementById("ads").value;
+   var amount = web3.eth.accounts;
+ // var addres=document.getElementById("ads").value;
     //this.setStatus("Initiating transaction... (please wait)");
 
     var meta;
     MetaCoin.deployed().then(function(instance) {
       meta = instance;
-      return meta.balanceOf(addres, {from: account});
+      return meta.balanceOf(web3.eth.accounts, {from: account});
     }).then(function(result) {
      // self.setStatus("Transaction complete!");
+     document.getElementById("ads").value=amount;
      var res=document.getElementById("at");
      res.value=result;
       self.refreshBalance();
