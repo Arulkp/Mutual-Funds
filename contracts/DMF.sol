@@ -79,7 +79,7 @@ contract DMF {
     mapping(address=>uint256)public toCheckbln;
     mapping(address => PortfolioDetails) public Portfolio ; //Map for getting and storing the PortfolioManager resgistration Details
     mapping(address => InvestorDetails) public invester ; //map for getting and storing the Investor getting token details
-    mapping(address => MarketTokenPurchase) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
+    mapping(address => mapping(address =>MarketTokenPurchase)) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
      
       //Fallback Function For Holding the Ether in Contract
       function () public payable{
@@ -220,7 +220,20 @@ contract DMF {
        return ToatlportfolioMAddress[0];
    }
 
-
+   //Phase-8
+   
+   //Function for Purchase the market tokens by the PortfolioManager
+   function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public
+   {
+       MarketToken(_contractadd).transfer(msg.sender,_totacount);
+       Market[msg.sender][_contractadd].name = _name;
+       Market[msg.sender][_contractadd].symbol = _symbol;
+       Market[msg.sender][_contractadd].decimal = 0;
+       Market[msg.sender][_contractadd].totalbuycount = _totacount;
+       Market[msg.sender][_contractadd].contractAdd = _contractadd;
+       
+       
+   }
    
    
 }
