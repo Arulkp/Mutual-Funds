@@ -1,5 +1,6 @@
 pragma solidity ^0.4.18;
 
+import "./MarketToken.sol";
 import "./FundToken.sol";
 
 contract DMF {
@@ -36,6 +37,9 @@ contract DMF {
         uint256 public PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
         address contractAddress; //Fundtoken
         uint256 public InvestersTotalToken=0; //invester total token count
+        uint256 public ReturnsEther = 0.1 ether; //returns ether amount for Investor 
+        uint256 public Ret = 0;
+        address public Pendingreturnaddress;
     //ArrayList
      address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
      address[] public TotalInvestorAddress; //Array for storing the each register Investors
@@ -59,12 +63,24 @@ contract DMF {
                 uint256 TokenCount;
             }
 
+   //Structure For MarketToken Purchase Details
+   struct MarketTokenPurchase
+   {
+       address contractAdd;
+       string name;
+       string symbol;
+       uint256 decimal;
+       uint256 totalbuycount;
+
+   }
    
           //For assigning totalsuply 
-                             //Mapping Area
+    //Mapping Area
     mapping(address=>uint256)public toCheckbln;
-      mapping(address => PortfolioDetails) public Portfolio ; //Map for getting and storing the PortfolioManager resgistration Details
-      mapping(address => InvestorDetails) public invester ; //map for getting and storing the Investor getting token details
+    mapping(address => PortfolioDetails) public Portfolio ; //Map for getting and storing the PortfolioManager resgistration Details
+    mapping(address => InvestorDetails) public invester ; //map for getting and storing the Investor getting token details
+    mapping(address => MarketTokenPurchase) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
+     
       //Fallback Function For Holding the Ether in Contract
       function () public payable{
           
@@ -146,10 +162,7 @@ contract DMF {
         FundToken(contractAddress).mintToken(msg.sender,dividendToken); //minting the token 
         PortfolioManagerprofit = (dividendToken* 10) / 100; //taking the portfolio share
         FundToken(contractAddress).mintToken(msg.sender,PortfolioManagerprofit);
-       // for(uint256 i =0;i < Investor.length; i++)
-        //{
-         // total +=  BuyInves[Investor[i]].howTK;
-        //}
+       
         
          ShareETK_ToI();
          
@@ -181,16 +194,33 @@ contract DMF {
     
  
       //Phase-6 
+      
+      //Function for Sell The Tokens to the PortfolioManager
     function ReturnTokenToPortfolioManager(uint256 value)public payable{
      
-    FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
-    
-      
-    }
+        FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
+        Ret = value * ReturnsEther;
+        Pendingreturnaddress = msg.sender;
+     }
+     
+     //Function Give the Ether for Investor return Tokens 
+     function SendEther(address _add)  public  payable
+     {
+         if(_add == ToatlportfolioMAddress[0])
+         {
+         Pendingreturnaddress.transfer(msg.value);
+         Ret = 0;
+         Pendingreturnaddress = 0;
+         }
+     }
     
    
 
    function listOfPortfolioManager()public view returns(address){
        return ToatlportfolioMAddress[0];
    }
+
+
+   
+   
 }
