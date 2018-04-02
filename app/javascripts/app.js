@@ -91,14 +91,30 @@ window.App = {
      document.getElementById("ads").value=amount;
      var res=document.getElementById("at");
      res.value=result;
-      self.refreshBalance();
+      //self.refreshBalance();
     }).catch(function(e) {
       console.log(e);
       //self.setStatus("Error sending coin; see log.");
     });
   },
 
- 
+ div:function() {
+  var self = this;
+  var meta;
+  MetaCoins.deployed().then(function(instance) {
+    meta = instance;
+    return meta.Dividends({from:account});
+  }).then(function(value) {
+    var res = document.getElementById("div");
+    //balance_element.value = value;
+    res.value=result;
+    self.refreshBalance();
+  }).catch(function(e) {
+    console.log(e);
+
+    //self.setStatus("Error getting balance; see log.");
+  });
+},
  
   
   cadd:function() {
@@ -264,7 +280,22 @@ window.App = {
       // self.setStatus("Error sending coin; see log.");
     });
   },
-
+  SEL: function (){
+    var reg_s = $("#id05").val();
+    var self = this;
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.ReturnTokenToPortfolioManager(reg_s, {from: account});
+    }).then(function(result) {
+      console.log(result);
+      // self.setStatus("Transaction complete!");
+      // self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      // self.setStatus("Error sending coin; see log.");
+    });
+  },
 
 
   bal: function() {
