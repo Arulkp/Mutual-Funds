@@ -51,6 +51,8 @@ window.App = {
       self.teth();
       self.tdec();
       self.ethb();
+      self.pbal();
+      self.pads();
       
      // self.bal();
       //self.sendCoin();
@@ -58,7 +60,43 @@ window.App = {
     });
     
   },
- 
+  pads:function() {
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.listOfPortfolioManager({from: account});
+    }).then(function(value) {
+      var balance_element = document.getElementById("ads");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  pbal: function() {
+    var self = this;
+
+   // var amount = web3.eth.accounts[0];
+  var addres=document.getElementById("ads").value;
+    //this.setStatus("Initiating transaction... (please wait)");
+
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      return meta.balanceOf(addres, {from: account});
+    }).then(function(result) {
+     // self.setStatus("Transaction complete!");
+     var res=document.getElementById("at");
+     res.value=result;
+      self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error sending coin; see log.");
+    });
+  },
+
  
  
   
@@ -70,7 +108,7 @@ window.App = {
       meta = instance;
       return meta.getContractaddress();
     }).then(function(value) {
-      var balance_element = document.getElementById("oa");
+      var balance_element = document.getElementById("cad");
       balance_element.value = value;
     }).catch(function(e) {
       console.log(e);
@@ -184,11 +222,7 @@ window.App = {
     <input type="text" size=54 id="reg"/><br><br></div><br><button onclick="App.register();">Register</button> <br><button><a href="./app/page2.html">next</a></button>');
   },
 
-  bal: function(){
-    $("#result").html('');
-    $("#result").html('<h1>Tokens:</h1><br>\
-    <input type="text" size=54 id="tok"/><br><br></div><br><button onclick="App.bal();">Tokens</button><br>');
-  },
+  
  
   Ibal: function() {
     var self = this;
@@ -242,7 +276,7 @@ window.App = {
     var meta;
     MetaCoin.deployed().then(function(instance) {
       meta = instance;
-      return meta.balanceOf(addres, {from: account});
+      return meta.balanceOf( {from: account});
     }).then(function(result) {
      // self.setStatus("Transaction complete!");
      var res=document.getElementById("at");

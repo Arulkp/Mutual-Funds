@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>decentralize mutual funds</title>
+  <meta name="author" content="Jake Rocheleau">
+  <link rel="shortcut icon" href="http://designshack.net/favicon.ico">
+  <link rel="icon" href="http://designshack.net/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="../app/stylesheets/app.css">
+  <script type="text/javascript" src="../app/javascripts/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="../app/javascripts/jquery.scrollTo.js"></script>
+  <script src="../app.js"></script>
+</head>
+<body>
+  <div id="topbar">
+  </div>
+  <h1>PORTFOLIO MANAGER PAGE</h1>
+  <div id="w">
+    <div id="content">
+      <nav id="stickynav">
+        <ul id="nav" class="clearfix">
+          <li><a href="#topbar">ERC20Token</a></li>
+          <li><a href="#about">REGISTER</a></li>
+          <li><a href="#photos">PROFILE</a></li>
+        </ul>
+      </nav>
+     
+
+       
+       <h2>ERC20 Tokens</h2>
+      <div class="container" style="background-color:white">
+       Contract Address: <input type="text" id="cad"  readonly>
+        Token Name<input type="text" id="tn"  readonly>
+        Token Symbol <input type="text"  id="tsy" readonly>
+        Decimal Value<input type="text" id="td"  readonly>
+        TotalSupply <input type="text"id="ts"  readonly>
+        Ether value<input type="text" id="eb"  readonly>
+        
+     
+  
+    
+    
+      <br><br><br><br>
+      <div>
+      <a id="about" class="section"></a>
+      <h2>REGISTER</h2>
+      <div class="container" style="background-color:white">
+       Enter Ether Value<input type="text" id="reg">  
+      
+      
+     <div class="container">
+     <input type="submit" value="Subscribe"  onclick="App.register();">
+      </div>
+      
+    
+<br><br><br><br><br><br>
+      
+      <section id="photos" class="section" >
+      <h2>PORTFOLIO PROFILE</h2>
+      <div class="container" style="background-color:white">
+      Protfolio Address: <input type="text" id="ads" readonly>
+     Available Tokens<input type="text" id="at" readonly>
+      </section>
+      
+      </div>
+           <br><br><br><br><br><br> 
+    </div><!-- @end #content -->
+  </div><!-- @end #w -->
+<script type="text/javascript">
+
+  $('.section').on('click',function(){
+    $.sectionScroll({
+    scrollElement: $('body'),
+    scrollTarget: '#' +this.id
+  });
+ return false;
+ 
+});
+</script>
+</body>
+</html>

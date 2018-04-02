@@ -37,7 +37,7 @@ contract DMF {
         address contractAddress; //Fundtoken
         uint256 public InvestersTotalToken=0; //invester total token count
     //ArrayList
-     address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
+     address[] public ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
      address[] public TotalInvestorAddress; //Array for storing the each register Investors
      uint256 public etherCalculation;
     //Phase -2
@@ -101,7 +101,7 @@ contract DMF {
       //Function For Getting the Contract Address
       function getContractaddress() public view returns(address)
       {
-          return newadd;
+          return contractAddress;
       }
       
       
