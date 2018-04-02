@@ -233,11 +233,7 @@ window.App = {
     });
   },
 
-  subm : function(){
-    $("#result").html('');
-    $("#result").html('<h1>Register:</h1><br>\
-    <input type="text" size=54 id="reg"/><br><br></div><br><button onclick="App.register();">Register</button> <br><button><a href="./app/page2.html">next</a></button>');
-  },
+ 
 
   
  
