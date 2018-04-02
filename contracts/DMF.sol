@@ -38,7 +38,6 @@ contract DMF {
         address contractAddress; //Fundtoken
         uint256 public InvestersTotalToken=0; //invester total token count
         uint256 public ReturnsEther = 0.1 ether; //returns ether amount for Investor 
-        uint256 public Ret = 0;
         address public Pendingreturnaddress;
     //ArrayList
      address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
@@ -199,7 +198,6 @@ contract DMF {
     function ReturnTokenToPortfolioManager(uint256 value)public payable{
      
         FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
-        Ret = value * ReturnsEther;
         Pendingreturnaddress = msg.sender;
      }
      
@@ -209,7 +207,6 @@ contract DMF {
          if(_add == ToatlportfolioMAddress[0])
          {
          Pendingreturnaddress.transfer(msg.value);
-         Ret = 0;
          Pendingreturnaddress = 0;
          }
      }
