@@ -41,7 +41,7 @@ contract DMF {
         uint256 public Ret = 0;
         address public Pendingreturnaddress;
     //ArrayList
-     address[] public ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
+     address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
      address[] public TotalInvestorAddress; //Array for storing the each register Investors
      uint256 public etherCalculation;
     //Phase -2
@@ -117,7 +117,7 @@ contract DMF {
       //Function For Getting the Contract Address
       function getContractaddress() public view returns(address)
       {
-          return contractAddress;
+          return newadd;
       }
       
       
@@ -223,9 +223,9 @@ contract DMF {
    //Phase-8
    
    //Function for Purchase the market tokens by the PortfolioManager
-   function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public
+   function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public payable
    {
-       MarketToken(_contractadd).transfer(msg.sender,_totacount);
+       MarketToken(_contractadd).buytokens(msg.value);
        Market[msg.sender][_contractadd].name = _name;
        Market[msg.sender][_contractadd].symbol = _symbol;
        Market[msg.sender][_contractadd].decimal = 0;
