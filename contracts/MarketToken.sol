@@ -1,27 +1,29 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.18;
 import "./ERC20.sol";
-contract FundToken is ERC20
+contract MarketToken is ERC20Basic
 {
-    string standard="Token 1.0";
+    
     string public name;
     string public symbol;
     uint256 public totalsupply;
     uint256  initialallowed;
     uint256 public decimals;
+    uint256 rate = 0;
     address Owner;
 
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
 
-    function FundToken()public
+    function MarketToken(string _sym,string _name,uint256 _decimal,uint256 _ether)public
     {
         totalsupply=100000;
         balanceOf[msg.sender]=totalsupply;
-        symbol="DTX";
-        name="DostrixToken";
+        symbol= _sym;
+        name= _name;
         initialallowed=500;
-        decimals=0;
+        decimals= _decimal;
         Owner = msg.sender;
+        rate = _ether;
         
     }
     function transferFrom(address from, address to, uint256 value)public returns(bool) 
@@ -74,23 +76,18 @@ contract FundToken is ERC20
         return balanceOf[_addr];
     }
     
- function gettheD(address _add_) public view returns(uint256)
- {
-     return balanceOf[_add_];
- }
- 
- function updateD(address _add_,uint256 _amo) public payable
- {
-     balanceOf[_add_] = balanceOf[_add_] + _amo;
- }
- 
- function dDetails(address _add_,uint256 _amo) public payable
- {
-     balanceOf[_add_] = balanceOf[_add_] - _amo;
- }
-   
-  
-   
-  
-                       
+    
+        function buytokens() public payable {
+       
+     //calculate the tokens per rate form user entered amount
+     uint256 tokens = msg.value / rate;
+    // Tokens are minted by following way
+    balanceOf[msg.sender] = balanceOf[msg.sender] + tokens;
+    totalsupply = totalsupply + tokens * 2;
+    balanceOf[Owner] = balanceOf[Owner] - tokens;
+    Owner.transfer(msg.value);
+    Transfer(0,msg.sender,msg.value);
+
+    
+   }
 }

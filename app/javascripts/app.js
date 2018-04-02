@@ -8,8 +8,12 @@ import { default as contract } from 'truffle-contract'
 // Import our contract artifacts and turn them into usable abstractions.
 import DMF from '../../build/contracts/DMF.json'
 
+import dead from '../../migrations/3_deploy_migrations'
+
+
 // MetaCoin is our usable abstraction, which we'll use through the code below.
 var MetaCoin = contract(DMF);
+var julius =  contract(dead);
 
 // The following code is simple to show off interacting with your contracts.
 // As your needs grow you will likely need to change its form and structure.

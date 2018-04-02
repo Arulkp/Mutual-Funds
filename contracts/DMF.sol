@@ -27,6 +27,7 @@ contract DMF {
         uint256 public total = 0; 
         uint256 public pprofit = 0; //For the Portfoliomanager profit tokens 
         address contractAddress; //Fundtoken
+        uint256 taken_rate = 0.1 ether;
         
     //ArrayList
      address[] portfolioMAdd; //Array for storing the each register PortfolioManager
@@ -173,6 +174,20 @@ contract DMF {
     {
      return FundToken(contractAddress).gettheD(msg.sender);
     }
+    
+    
+    //Phase-6
+    
+    //Function For Sell the fundtokens by the Investor to the PortfolioManager
+    
+    function Sell(uint256 _amo_) public 
+    {
+        FundToken(contractAddress).updateD(portfolioMAdd[0],_amo_);
+        FundToken(contractAddress).dDetails(msg.sender,_amo_);
+        
+        //uint256 cal = _amo_ * taken_rate;
+        //(msg.sender).transfer(cal);
+     }
     
 
    
