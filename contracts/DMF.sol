@@ -31,6 +31,7 @@ contract DMF {
         address owner; //owner variable for assigning contract Owner
         address public newadd; //For getting the Contract Address
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
+        uint256 cost = 0.1 ether; //rate of Fundtokens For Investor 
        uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
         uint256 profitToken = 10; //profit tokens for the Portfolio manager 
         uint256 public PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
