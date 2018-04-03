@@ -18,7 +18,7 @@ contract MarketToken is ERC20Basic
     function MarketToken(string _sym,string _name,uint256 _decimal)public
     {
         totalsupply=100000;
-        balanceOf[msg.sender]=totalsupply;
+        
         symbol= _sym;
         name= _name;
         initialallowed=500;
