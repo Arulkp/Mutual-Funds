@@ -43,7 +43,7 @@ contract DMF {
      address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
      address[] public TotalInvestorAddress; //Array for storing the each register Investors
      uint256 public etherCalculation;
-    //Phase -2
+    //Phase -2                                                                                                                                                                                                                                                                
                             //Structure Area
      
 
@@ -233,4 +233,4 @@ contract DMF {
    }
    
    
-}
+}                                                                                     

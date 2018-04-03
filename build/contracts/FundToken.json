@@ -8079,13 +8079,19 @@
     "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
   },
   "networks": {
+    "4447": {
+      "events": {},
+      "links": {},
+      "address": "0x345ca3e014aaf5dca488057592ee47305d9b3e10",
+      "transactionHash": "0x79d94124991033b1572821d18a447c5cea49a94fec9a0b7c460197e0fcb3c7c8"
+    },
     "1522660546255": {
       "events": {},
       "links": {},
-      "address": "0x76c66f5adab15309ac5e67a4da293fd8b9c4255e",
-      "transactionHash": "0x2e2c88b13cc1ceb55e604d41ae68e0bb3311eab73c5e7c12e90aefe54424165f"
+      "address": "0x5b189463d8448b961d3043b3282f7967becfd183",
+      "transactionHash": "0x7439dc3cb080b32589c84747726156cafeefe616a42573c515078aac8a9613f3"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-02T10:31:45.569Z"
+  "updatedAt": "2018-04-02T12:27:01.490Z"
 }
