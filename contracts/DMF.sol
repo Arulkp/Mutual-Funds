@@ -31,13 +31,12 @@ contract DMF {
         address owner; //owner variable for assigning contract Owner
         address public newadd; //For getting the Contract Address
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
-        uint256 cost = 0.01 ether;  //rate of FundToken For Investors
-        uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
+       uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
         uint256 profitToken = 10; //profit tokens for the Portfolio manager 
         uint256 public PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
         address contractAddress; //Fundtoken
         uint256 public InvestersTotalToken=0; //invester total token count
-        uint256 public ReturnsEther = 0.1 ether; //returns ether amount for Investor 
+        
         address public Pendingreturnaddress;
     //ArrayList
      address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
@@ -125,7 +124,7 @@ contract DMF {
       //Function For Buying the FundTokens by the Investor From the PortfolioManager
       function InvesterGetToken() public payable
       {
-          uint256 tokens = msg.value / cost;
+          uint256 tokens = msg.value / rate;
           InvestersTotalToken += tokens;
           FundToken(contractAddress).transferFrom(ToatlportfolioMAddress[0],msg.sender,tokens);
           //FundToken(contractAddress).mintToken(msg.sender,tokens);
