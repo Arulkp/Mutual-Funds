@@ -247,36 +247,7 @@ contract DMF {
        return MarketToken(MarketToken1).DisplayTheAddress();
    }
 
-    //Market Token-2
-
-    /**
-   function DisplayTotalsupMarkTK2() public view returns(uint256)
-   {
-       return MarketToken(MarketToken2).DisplayTotalsupply();
-   }
-
-   function DisplayDecimalMarkTK2() public view returns(uint256)
-   {
-       return MarketToken(MarketToken2).DisplayDecimal();
-   }
-
-   function DisplayRateMarkTK2() public view returns(uint256)
-   {
-       return MarketToken(MarketToken2).DisplaytheRate();
-   }
-
-   function DisplayBalanceMarkTK2(address _add) public view returns(uint256)
-   {
-       return MarketToken(MarketToken2).DisplayBalance(_add);
-   }
-
-   function DisplayAddressMarkTK2() public view returns(address)
-   {
-       return MarketToken(MarketToken2).DisplayTheAddress();
-   }
-
-
-*/
+    
 
    //Phase-8
    
