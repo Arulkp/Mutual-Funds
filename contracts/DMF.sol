@@ -155,7 +155,7 @@ contract DMF {
         Investor1 = (( Investor1_fund TK) / (Inves1_FUndTK + Inves2_FUndTK + ... )) * 90;
      */
     //Function For issue the Dividends yo the User
-   function Dividends() public OnlyPortfolio  returns(uint256)  
+   function Dividends() public OnlyPortfolio   
     {
         
         FundToken(contractAddress).mintToken(msg.sender,dividendToken); //minting the token 
