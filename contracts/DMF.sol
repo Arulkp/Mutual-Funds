@@ -125,7 +125,7 @@ contract DMF {
       //Function For Buying the FundTokens by the Investor From the PortfolioManager
       function InvesterGetToken() public payable
       {
-          uint256 tokens = msg.value / rate;
+          uint256 tokens = msg.value / cost;
           InvestersTotalToken += tokens;
           FundToken(contractAddress).transferFrom(ToatlportfolioMAddress[0],msg.sender,tokens);
           TotalInvestorAddress.push(msg.sender);
