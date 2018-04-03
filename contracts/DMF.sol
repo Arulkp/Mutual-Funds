@@ -8,12 +8,13 @@ contract DMF {
         FundToken public Token; //obj for Fundtoken3
     
      //Constructor For initialize the contract Owner Address and Contract Deployed Address
-            function DMF(address na)public payable{
+            function DMF(address na,address _mark1,address _mark2)public payable{
                 owner=msg.sender;
                 newadd=address(this);
                 Token=new FundToken();
                  contractAddress=na;
-            
+                 MarketToken1 = _mark1;
+                 MarketToken2 = _mark2;         
     
                 
             }
@@ -36,6 +37,8 @@ contract DMF {
         uint256 profitToken = 10; //profit tokens for the Portfolio manager 
         uint256 public PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
         address contractAddress; //Fundtoken
+        address MarketToken1; //Address for MarketToken1
+        address MarketToken2; //Address For MarketToken2
         uint256 public InvestersTotalToken=0; //invester total token count
         
         address public Pendingreturnaddress;
@@ -213,6 +216,67 @@ contract DMF {
    function listOfPortfolioManager()public view returns(address){
        return ToatlportfolioMAddress[0];
    }
+
+
+   //Phase-7
+
+   //market Token-1
+
+   function DisplayTotalsupMarkTK1() public view returns(uint256)
+   {
+       return MarketToken(MarketToken1).DisplayTotalsupply();
+   }
+
+   function DisplayDecimalMarkTK1() public view returns(uint256)
+   {
+       return MarketToken(MarketToken1).DisplayDecimal();
+   }
+
+   function DisplayRateMarkTK1() public view returns(uint256)
+   {
+       return MarketToken(MarketToken1).DisplaytheRate();
+   }
+
+   function DisplayBalanceMarkTK1(address _add) public view returns(uint256)
+   {
+       return MarketToken(MarketToken1).DisplayBalance(_add);
+   }
+
+   function DisplayAddressMarkTK1() public view returns(address)
+   {
+       return MarketToken(MarketToken1).DisplayTheAddress();
+   }
+
+    //Market Token-2
+
+    
+   function DisplayTotalsupMarkTK2() public view returns(uint256)
+   {
+       return MarketToken(MarketToken2).DisplayTotalsupply();
+   }
+
+   function DisplayDecimalMarkTK2() public view returns(uint256)
+   {
+       return MarketToken(MarketToken2).DisplayDecimal();
+   }
+
+   function DisplayRateMarkTK2() public view returns(uint256)
+   {
+       return MarketToken(MarketToken2).DisplaytheRate();
+   }
+
+   function DisplayBalanceMarkTK2(address _add) public view returns(uint256)
+   {
+       return MarketToken(MarketToken2).DisplayBalance(_add);
+   }
+
+   function DisplayAddressMarkTK2() public view returns(address)
+   {
+       return MarketToken(MarketToken2).DisplayTheAddress();
+   }
+
+
+
 
    //Phase-8
    
