@@ -8,14 +8,14 @@ contract MarketToken is ERC20Basic
     uint256 public totalsupply;
     uint256  initialallowed;
     uint256 public decimals;
-    uint256 rate = 0;
+    uint256 rate = 0.1 ether;
     address Owner;
     address public newadd;
 
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
 
-    function MarketToken(string _sym,string _name,uint256 _decimal,uint256 _ether)public
+    function MarketToken(string _sym,string _name,uint256 _decimal)public
     {
         totalsupply=100000;
         balanceOf[msg.sender]=totalsupply;
@@ -24,8 +24,7 @@ contract MarketToken is ERC20Basic
         initialallowed=500;
         decimals= _decimal;
         Owner = msg.sender;
-        rate = _ether;
-        newadd=address(this);
+         newadd=address(this);
         
     }
     function transferFrom(address from, address to, uint256 value)public returns(bool) 

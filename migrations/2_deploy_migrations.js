@@ -21,7 +21,7 @@ module.exports = function (deployer) {
 module.exports= function(deployer)
 {
   deployer.deploy(FundToken);
-  deployer.deploy(MarketToken,"DTX","AppleToken",0,100000000000000000).then(function()
+  deployer.deploy(MarketToken,"DTX","AppleToken",0).then(function()
 {
   return deployer.deploy(DMF,FundToken.address,MarketToken.address);
 })

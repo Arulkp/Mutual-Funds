@@ -280,6 +280,7 @@ window.App = {
       //self.setStatus("Error getting balance; see log.");
     });
   },
+  
   ethb:function(){
     var self = this;
 
