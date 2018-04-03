@@ -10,6 +10,7 @@ contract MarketToken is ERC20Basic
     uint256 public decimals;
     uint256 rate = 0;
     address Owner;
+    address public newadd;
 
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
@@ -24,6 +25,7 @@ contract MarketToken is ERC20Basic
         decimals= _decimal;
         Owner = msg.sender;
         rate = _ether;
+        newadd=address(this);
         
     }
     function transferFrom(address from, address to, uint256 value)public returns(bool) 
@@ -91,7 +93,32 @@ contract MarketToken is ERC20Basic
     
    }
    
+
+   //Omitting
+
+   function DisplayTotalsupply() public view returns(uint256)
+   {
+       return  totalsupply;
+   }
+
+   function DisplayDecimal() public view returns(uint256)
+   {
+       return decimals;
+   }
+   function DisplaytheRate() public view returns(uint256)
+   {
+       return rate;
+   }
+
+   function DisplayBalance(address _addr) public view returns(uint256)
+   {
+       return balanceOf[_addr];
+   }
    
+   function DisplayTheAddress() public view returns(address)
+   {
+       return newadd;
+   }
   
    
 }

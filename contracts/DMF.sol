@@ -8,12 +8,13 @@ contract DMF {
         FundToken public Token; //obj for Fundtoken3
     
      //Constructor For initialize the contract Owner Address and Contract Deployed Address
-            function DMF(address na)public payable{
+            function DMF(address na,address _mark1,address _mark2)public payable{
                 owner=msg.sender;
                 newadd=address(this);
                 Token=new FundToken();
                  contractAddress=na;
-            
+                 MarketToken1 = _mark1;
+                 MarketToken2 = _mark2;         
     
                 
             }
@@ -31,19 +32,21 @@ contract DMF {
         address owner; //owner variable for assigning contract Owner
         address public newadd; //For getting the Contract Address
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
-        uint256 cost = 0.01 ether;  //rate of FundToken For Investors
-        uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
+        uint256 cost = 0.1 ether; //rate of Fundtokens For Investor 
+       uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
         uint256 profitToken = 10; //profit tokens for the Portfolio manager 
         uint256 public PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
         address contractAddress; //Fundtoken
+        address MarketToken1; //Address for MarketToken1
+        address MarketToken2; //Address For MarketToken2
         uint256 public InvestersTotalToken=0; //invester total token count
-        uint256 public ReturnsEther = 0.1 ether; //returns ether amount for Investor 
+        
         address public Pendingreturnaddress;
     //ArrayList
      address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
      address[] public TotalInvestorAddress; //Array for storing the each register Investors
      uint256 public etherCalculation;
-    //Phase -2
+    //Phase -2                                                                                                                                                                                                                                                                
                             //Structure Area
      
 
@@ -128,9 +131,6 @@ contract DMF {
           uint256 tokens = msg.value / cost;
           InvestersTotalToken += tokens;
           FundToken(contractAddress).transferFrom(ToatlportfolioMAddress[0],msg.sender,tokens);
-          //FundToken(contractAddress).mintToken(msg.sender,tokens);
-        //  FundToken(contractAddress).tokende(ToatlportfolioMAddress[0],tokens);
-          ToatlportfolioMAddress[0].transfer(msg.value);
           TotalInvestorAddress.push(msg.sender);
           invester[msg.sender].buyer = msg.sender;
           invester[msg.sender].Eth = msg.value;
@@ -217,6 +217,67 @@ contract DMF {
        return ToatlportfolioMAddress[0];
    }
 
+
+   //Phase-7
+
+   //market Token-1
+
+   function DisplayTotalsupMarkTK1() public view returns(uint256)
+   {
+       return MarketToken(MarketToken1).DisplayTotalsupply();
+   }
+
+   function DisplayDecimalMarkTK1() public view returns(uint256)
+   {
+       return MarketToken(MarketToken1).DisplayDecimal();
+   }
+
+   function DisplayRateMarkTK1() public view returns(uint256)
+   {
+       return MarketToken(MarketToken1).DisplaytheRate();
+   }
+
+   function DisplayBalanceMarkTK1(address _add) public view returns(uint256)
+   {
+       return MarketToken(MarketToken1).DisplayBalance(_add);
+   }
+
+   function DisplayAddressMarkTK1() public view returns(address)
+   {
+       return MarketToken(MarketToken1).DisplayTheAddress();
+   }
+
+    //Market Token-2
+
+    
+   function DisplayTotalsupMarkTK2() public view returns(uint256)
+   {
+       return MarketToken(MarketToken2).DisplayTotalsupply();
+   }
+
+   function DisplayDecimalMarkTK2() public view returns(uint256)
+   {
+       return MarketToken(MarketToken2).DisplayDecimal();
+   }
+
+   function DisplayRateMarkTK2() public view returns(uint256)
+   {
+       return MarketToken(MarketToken2).DisplaytheRate();
+   }
+
+   function DisplayBalanceMarkTK2(address _add) public view returns(uint256)
+   {
+       return MarketToken(MarketToken2).DisplayBalance(_add);
+   }
+
+   function DisplayAddressMarkTK2() public view returns(address)
+   {
+       return MarketToken(MarketToken2).DisplayTheAddress();
+   }
+
+
+
+
    //Phase-8
    
    //Function for Purchase the market tokens by the PortfolioManager
@@ -233,4 +294,4 @@ contract DMF {
    }
    
    
-}
+}                                                                                     
