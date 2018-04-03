@@ -367,7 +367,7 @@ window.App = {
     });
   },
   SEL: function (){
-    var reg_s = $("#id05").val();
+    var reg_s = $("#id04").val();
     var self = this;
     var meta;
     MetaCoins.deployed().then(function(instance) {
