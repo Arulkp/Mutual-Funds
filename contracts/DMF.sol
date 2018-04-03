@@ -8,13 +8,13 @@ contract DMF {
         FundToken public Token; //obj for Fundtoken3
     
      //Constructor For initialize the contract Owner Address and Contract Deployed Address
-            function DMF(address na,address _mark1,address _mark2)public payable{
+            function DMF(address na,address _mark1)public payable{
                 owner=msg.sender;
                 newadd=address(this);
                 Token=new FundToken();
                  contractAddress=na;
                  MarketToken1 = _mark1;
-                 MarketToken2 = _mark2;         
+                      
     
                 
             }
@@ -81,7 +81,7 @@ contract DMF {
     mapping(address=>uint256)public toCheckbln;
     mapping(address => PortfolioDetails) public Portfolio ; //Map for getting and storing the PortfolioManager resgistration Details
     mapping(address => InvestorDetails) public invester ; //map for getting and storing the Investor getting token details
-    mapping(address => mapping(address =>MarketTokenPurchase)) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
+    mapping(address => MarketTokenPurchase) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
      
       //Fallback Function For Holding the Ether in Contract
       function () public payable{
@@ -237,9 +237,9 @@ contract DMF {
        return MarketToken(MarketToken1).DisplaytheRate();
    }
 
-   function DisplayBalanceMarkTK1(address _add) public view returns(uint256)
+   function DisplayBalanceMarkTK1() public view returns(uint256)
    {
-       return MarketToken(MarketToken1).DisplayBalance(_add);
+       return MarketToken(MarketToken1).DisplayBalance(msg.sender);
    }
 
    function DisplayAddressMarkTK1() public view returns(address)
@@ -249,7 +249,7 @@ contract DMF {
 
     //Market Token-2
 
-    
+    /**
    function DisplayTotalsupMarkTK2() public view returns(uint256)
    {
        return MarketToken(MarketToken2).DisplayTotalsupply();
@@ -276,7 +276,7 @@ contract DMF {
    }
 
 
-
+*/
 
    //Phase-8
    
@@ -284,14 +284,18 @@ contract DMF {
    function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public payable
    {
        MarketToken(_contractadd).buytokens(msg.value);
-       Market[msg.sender][_contractadd].name = _name;
-       Market[msg.sender][_contractadd].symbol = _symbol;
-       Market[msg.sender][_contractadd].decimal = 0;
-       Market[msg.sender][_contractadd].totalbuycount = _totacount;
-       Market[msg.sender][_contractadd].contractAdd = _contractadd;
+       Market[msg.sender].name = _name;
+       Market[msg.sender].symbol = _symbol;
+       Market[msg.sender].decimal = 0;
+       Market[msg.sender].totalbuycount = _totacount;
+       Market[msg.sender].contractAdd = _contractadd;
        
        
    }
-   
+
+function DisplayPurchasedTokendetails() public view returns(string,address,string,uint256)
+{
+    return (Market[msg.sender].name,Market[msg.sender].contractAdd,Market[msg.sender].symbol,Market[msg.sender].totalbuycount);
+}
    
 }                                                                                     
