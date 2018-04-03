@@ -9,12 +9,15 @@ import { default as contract } from 'truffle-contract'
 import FundToken from '../../build/contracts/FundToken.json'
 import DMF from '../../build/contracts/DMF.json'
 
+
 //import dead from '../../migrations/3_deploy_migrations'
 
 
 // MetaCoin is our usable abstraction, which we'll use through the code below.
 var MetaCoin = contract(FundToken);
 var MetaCoins = contract(DMF);
+
+
 
 // The following code is simple to show off interacting with your contracts.
 // As your needs grow you will likely need to change its form and structure.
@@ -29,6 +32,7 @@ window.App = {
     // Bootstrap the MetaCoin abstraction for Use.
     MetaCoin.setProvider(web3.currentProvider);
     MetaCoins.setProvider(web3.currentProvider);
+   
 
     // Get the initial account balance so it can be displayed.
     web3.eth.getAccounts(function(err, accs) {
@@ -52,6 +56,7 @@ window.App = {
       self.tdec();
       self.ethb();
       self.pbal();
+   
      // self.pads();
       
      // self.bal();
@@ -232,11 +237,6 @@ window.App = {
       self.setStatus("Error sending coin; see log.");
     });
   },
-
- 
-
-  
- 
   Ibal: function() {
     var self = this;
 

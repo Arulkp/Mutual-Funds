@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head><title>My Design</title>
+        
+    <link rel="stylesheet" type="text/css" href="../app/stylesheets/purchase.css">
+    <script src="../app.js"></script>
+    </head>
+    <body><header>
+            <center><h1>Sample Token Market</h1></center>
+        </header>
+        
+   <div class="ico">
+    <center>
+    <div class="col-xs-12 col-ms-6 col-sm-6 col-md-3">
+	<div class="ico-content"> <br>
+    <p>Token Name: </p><input type="text" id="name"/>
+    <p>Token Symbol: </p><input type="text" id="sym"/>
+    <p>Token Decimals: </p><input type="text" id="dec"/>
+    <p>Total Supply:</p> </p><input type="text" id="tos"/>
+    <p>Token Value:</p>
+    <input type="text" id="id02" onkeyup="convert('c')" value="" name="Token_value" required><br>
+       <p>Ether value:</p>
+    <input type="text" id="id03"  value=""  name="Ether_value" required><br><br>
+        
+        </div>
+        <button>Purchase Tokens</a></button>
+    </div>
+</center>
+</div>
+<div class="ico">
+    <center>
+<div class="col-xs-12 col-ms-6 col-sm-6 col-md-3">
+<div class="ico-content"><br>
+            <p>Token Name:</p> <input type="text" id="name"/>
+            <p>Token Symbol:</p> <input type="text" id="sym"/>
+            <p>Token Decimals:</p> <input type="text" id="dec"/>
+            <p>Total Supply:</p> <input type="text" id="tos"/> 
+        <p>Token Value:</p>
+    <input type="text" id="id2" onkeyup="converts('c')" value="" name="Tok_value" required><br>
+       <p>Ether value:</p>
+    <input type="text" id="id3"  value=""  name="Ether_val" required><br><br>
+        
+<button> Purchase Tokens</a></button>
+</div>
+</div>
+</center>
+</div>
+<script>
+var x;
+function convert(math)
+{
+  x = document.getElementById('id02').value * 0.1;
+  document.getElementById('id03').value = x;
+}
+var X1;
+function converts(math)
+{
+  X1 = document.getElementById('id2').value * 0.2;
+  document.getElementById('id3').value = X1;
+}
+</script>
+
+</body>
+    </html>
