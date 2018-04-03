@@ -127,9 +127,6 @@ contract DMF {
           uint256 tokens = msg.value / rate;
           InvestersTotalToken += tokens;
           FundToken(contractAddress).transferFrom(ToatlportfolioMAddress[0],msg.sender,tokens);
-          //FundToken(contractAddress).mintToken(msg.sender,tokens);
-        //  FundToken(contractAddress).tokende(ToatlportfolioMAddress[0],tokens);
-          ToatlportfolioMAddress[0].transfer(msg.value);
           TotalInvestorAddress.push(msg.sender);
           invester[msg.sender].buyer = msg.sender;
           invester[msg.sender].Eth = msg.value;
