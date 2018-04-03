@@ -61,6 +61,7 @@ window.App = {
       self.trat();
       self.tadm();
       
+      
    
      // self.pads();
       
@@ -228,7 +229,7 @@ window.App = {
       return meta.symbol();
     }).then(function(value) {
       var balance_element = document.getElementById("tsy");
-      balance_element.value = value;
+      balance_element.value= value;
     }).catch(function(e) {
       console.log(e);
       //self.setStatus("Error getting balance; see log.");
@@ -243,6 +244,36 @@ window.App = {
       return meta.decimals();
     }).then(function(value) {
       var balance_element = document.getElementById("td");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  ad:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayBalanceMarkTK1();
+    }).then(function(value) {
+      var balance_element = document.getElementById("5");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  ads:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayAddressMarkTK1();
+    }).then(function(value) {
+      var balance_element = document.getElementById("1");
       balance_element.value = value;
     }).catch(function(e) {
       console.log(e);
@@ -338,12 +369,15 @@ window.App = {
       meta = instance;
       return meta.DisplayPurchasedTokendetails();
     }).then(function(value) {
-      var balance_element = document.getElementById("4");
-      var balance_element = document.getElementById("1");
-      var balance_element = document.getElementById("3");
-      var balance_element = document.getElementById("5");
+      var balance_element1 = document.getElementById("4");
+      var balance_element2= document.getElementById("1");
+      var balance_element3= document.getElementById("3");
+      var balance_element4= document.getElementById("5");
       
-      balance_element.value = value;
+      balance_element1.value = value[0];
+      balance_element2.value = value[1];
+      balance_element3.value = value[2];
+      balance_element4.value = value[3];
     }).catch(function(e) {
       console.log(e);
       //self.setStatus("Error getting balance; see log.");

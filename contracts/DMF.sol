@@ -111,7 +111,7 @@ contract DMF {
 
         //Function For Getting the Contract Ether Balance 
       function GetBal()public view returns(uint256){
-          return this.balance;
+          return this.balance/ 1 ether;
          // 1 ether; //converting wei value to ether
       }
       
