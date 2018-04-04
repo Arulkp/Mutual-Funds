@@ -79,7 +79,7 @@ window.App = {
       self.AR();
       self.ARS();
       self.mtad2();
-      
+      self.ps();
       
    
      // self.pads();
@@ -246,11 +246,30 @@ window.App = {
     var meta;
     mtok1.deployed().then(function(instance) {
       meta = instance;
+      
+      return meta.DisplayTheAddress();
+    }).then(function(value) {
+      var balance_element = document.getElementById("tad1");
+      balance_element.value = value;
+    }).catch(function(e) {
+      
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  ps:function(){
+    var self = this;
+
+    var meta;
+    mtok1.deployed().then(function(instance) {
+      meta = instance;
+      
       return meta.DisplayTheAddress();
     }).then(function(value) {
       var balance_element = document.getElementById("6");
       balance_element.value = value;
     }).catch(function(e) {
+      
       console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
@@ -428,6 +447,23 @@ window.App = {
       return meta.decimals();
     }).then(function(value) {
       var balance_element = document.getElementById("td");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  pss:function(){
+    var self = this;
+
+    var meta;
+    var adk1 = document.getElementById("6").value;
+  
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayBalanceMarkTK1(adk1,{from:account});
+    }).then(function(value) {
+      var balance_element = document.getElementById("7");
       balance_element.value = value;
     }).catch(function(e) {
       console.log(e);
