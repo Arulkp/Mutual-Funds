@@ -246,11 +246,13 @@ window.App = {
     var meta;
     mtok1.deployed().then(function(instance) {
       meta = instance;
+      
       return meta.DisplayTheAddress();
     }).then(function(value) {
-      var balance_element = document.getElementById("6");
+      var balance_element = document.getElementById("tad1");
       balance_element.value = value;
     }).catch(function(e) {
+      
       console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
