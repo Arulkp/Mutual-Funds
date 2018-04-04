@@ -1,21 +1,32 @@
 pragma solidity ^0.4.18;
 
-import "./MarketToken.sol";
+import "./MarketToken1.sol";
 import "./FundToken.sol";
+import "./MarketToken2.sol";
 
 contract DMF {
-    
+//rketToken1 public a;
+            address public m1;
+            address public m2;
+            
+           Mam1 ab;
+           Man2 bb;
+           
         FundToken public Token; //obj for Fundtoken3
-    
+       
+         
      //Constructor For initialize the contract Owner Address and Contract Deployed Address
-            function DMF(address na,address _mark1)public payable{
+            function DMF(address na,address Mark1,address Mark2)public payable{
                 owner=msg.sender;
                 newadd=address(this);
                 Token=new FundToken();
                  contractAddress=na;
-                 MarketToken1 = _mark1;
-                      
-    
+                 m1=Mark1;
+                 m2=Mark2;
+                bb=new Man2();
+                 ab=new Mam1();
+            //rketToke new
+               //=new MarketToken2();
                 
             }
        
@@ -214,32 +225,7 @@ contract DMF {
 
    //Phase-7
 
-   //market Token-1
 
-   function DisplayTotalsupMarkTK1() public view returns(uint256)
-   {
-       return MarketToken(MarketToken1).DisplayTotalsupply();
-   }
-
-   function DisplayDecimalMarkTK1() public view returns(uint256)
-   {
-       return MarketToken(MarketToken1).DisplayDecimal();
-   }
-
-   function DisplayRateMarkTK1() public view returns(uint256)
-   {
-       return MarketToken(MarketToken1).DisplaytheRate();
-   }
-
-   function DisplayBalanceMarkTK1() public view returns(uint256)
-   {
-       return MarketToken(MarketToken1).DisplayBalance(msg.sender);
-   }
-
-   function DisplayAddressMarkTK1() public view returns(address)
-   {
-       return MarketToken(MarketToken1).DisplayTheAddress();
-   }
 
     
 
@@ -249,7 +235,16 @@ contract DMF {
    function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public payable
    {
        uint256 x = msg.value;
-       MarketToken(_contractadd).buytokens(x,msg.sender);
+       if( m1 == _contractadd)
+       {
+           Mam1(m1).buytokens1(x,msg.sender);
+           //arketToken1(_contractadd).buytokens1(x,msg.sender);
+       }
+       else if(m2 == _contractadd)
+       {
+          //n2
+         Man2(m2).buytokens2(x,msg.sender);
+       }
        Market[msg.sender].name = _name;
        Market[msg.sender].symbol = _symbol;
        Market[msg.sender].decimal = 0;
@@ -258,6 +253,20 @@ contract DMF {
        
        
    }
+
+    function DisplayBalanceMarkTK1(address _contractadd) public view returns(uint256)
+   {
+       if( m1 == _contractadd)
+       {
+           return Mam1(m1).DisplayBalance(msg.sender);
+       }
+       else if(m2 == _contractadd)
+       {
+           return Man2(m2).DisplayBalance(msg.sender);
+       }
+       
+   }
+
 
 
    

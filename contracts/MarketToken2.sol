@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 import "./ERC20.sol";
-contract MarketToken is ERC20Basic
+contract Man2 is ERC20Basic
 {
     
     string public name;
@@ -8,7 +8,7 @@ contract MarketToken is ERC20Basic
     uint256 public totalsupply;
     uint256  initialallowed;
     uint256 public decimals;
-    uint256 rate = 0.1 ether;
+    uint256 rate = 0.2 ether;
     address Owner;
     address public newadd;
     
@@ -17,14 +17,14 @@ contract MarketToken is ERC20Basic
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
 
-    function MarketToken(string _sym,string _name,uint256 _decimal)public
+    function Man2()public
     {
         totalsupply=100000;
         
-        symbol= _sym;
-        name= _name;
+        symbol= "Xerox#$";
+        name= "PheonixToken";
         initialallowed=500;
-        decimals= _decimal;
+        decimals= 0;
         Owner = msg.sender;
          newadd=address(this);
         
@@ -82,7 +82,7 @@ contract MarketToken is ERC20Basic
     
     
     
-        function buytokens(uint256 _value,address _add) public payable {
+        function buytokens2(uint256 _value,address _add) public payable {
        
             uint256 tokens = _value / rate;
             transfer(_add,tokens);

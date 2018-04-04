@@ -1,6 +1,9 @@
 var FundToken = artifacts.require('FundToken')
 var DMF = artifacts.require('DMF')
-var MarketToken = artifacts.require("MarketToken")
+var MarketToken1 = artifacts.require("Mam1")
+var MarketToken2 = artifacts.require("Man2")
+
+
 
 
 /*
@@ -21,9 +24,10 @@ module.exports = function (deployer) {
 module.exports= function(deployer)
 {
   deployer.deploy(FundToken);
-  deployer.deploy(MarketToken,"DTX","AppleToken",0).then(function()
+  deployer.deploy(MarketToken1)
+  deployer.deploy(MarketToken2).then(function()
 {
-  return deployer.deploy(DMF,FundToken.address,MarketToken.address);
+  return deployer.deploy(DMF,FundToken.address,MarketToken1.address,MarketToken2.address);
 })
 }
 /*
