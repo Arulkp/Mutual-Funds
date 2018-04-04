@@ -77,6 +77,7 @@ window.App = {
       self.mtdec2();
       self.mtsub2();
       self.AR();
+      self.ARS();
       self.mtad2();
       
       
@@ -454,11 +455,18 @@ window.App = {
     var self = this;
 
     var meta;
+<<<<<<< HEAD
     var adk = document.getElementById("6").value;
   
     mtok1.deployed().then(function(instance) {
+=======
+    var adk1 = document.getElementById("6").value;
+
+    MetaCoins.deployed().then(function(instance) {
+  
+>>>>>>> ce7072ba73edb29cd24f56e066b94a94646b7ad4
       meta = instance;
-      return meta.DisplayBalanceMarkTK1(adk,{from:account});
+      return meta.DisplayBalanceMarkTK1(adk1,{from:account});
     }).then(function(value) {
       var balance_element = document.getElementById("7");
       balance_element.value = value;
