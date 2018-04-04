@@ -81,7 +81,7 @@ contract DMF {
     mapping(address=>uint256)public toCheckbln;
     mapping(address => PortfolioDetails) public Portfolio ; //Map for getting and storing the PortfolioManager resgistration Details
     mapping(address => InvestorDetails) public invester ; //map for getting and storing the Investor getting token details
-    mapping(address => mapping(address =>MarketTokenPurchase)) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
+    mapping(address => MarketTokenPurchase) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
      
       //Fallback Function For Holding the Ether in Contract
       function () public payable{
@@ -237,9 +237,9 @@ contract DMF {
        return MarketToken(MarketToken1).DisplaytheRate();
    }
 
-   function DisplayBalanceMarkTK1(address _add) public view returns(uint256)
+   function DisplayBalanceMarkTK1() public view returns(uint256)
    {
-       return MarketToken(MarketToken1).DisplayBalance(_add);
+       return MarketToken(MarketToken1).DisplayBalance(msg.sender);
    }
 
    function DisplayAddressMarkTK1() public view returns(address)
@@ -284,14 +284,18 @@ contract DMF {
    function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public payable
    {
        MarketToken(_contractadd).buytokens(msg.value);
-       Market[msg.sender][_contractadd].name = _name;
-       Market[msg.sender][_contractadd].symbol = _symbol;
-       Market[msg.sender][_contractadd].decimal = 0;
-       Market[msg.sender][_contractadd].totalbuycount = _totacount;
-       Market[msg.sender][_contractadd].contractAdd = _contractadd;
+       Market[msg.sender].name = _name;
+       Market[msg.sender].symbol = _symbol;
+       Market[msg.sender].decimal = 0;
+       Market[msg.sender].totalbuycount = _totacount;
+       Market[msg.sender].contractAdd = _contractadd;
        
        
    }
-   
+
+function DisplayPurchasedTokendetails() public view returns(string,address,string,uint256)
+{
+    return (Market[msg.sender].name,Market[msg.sender].contractAdd,Market[msg.sender].symbol,Market[msg.sender].totalbuycount);
+}
    
 }                                                                                     
