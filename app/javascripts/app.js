@@ -604,6 +604,27 @@ window.App = {
       // self.setStatus("Error sending coin; see log.");
     });
   },
+  purchases : function (){
+    var b=parseInt(document.getElementById("idx1").value);
+    var x=document.getElementById("tad1").value;
+    var y=document.getElementById("name1").value;
+    var z=document.getElementById("sym1").value;
+    var a=parseInt(document.getElementById("id2").value);
+    
+    var self = this;
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.Purchasingtoken(x,y,z,a, {from: account,value:web3.toWei(b,'ether')});
+    }).then(function(result) {
+      console.log(result);
+      // self.setStatus("Transaction complete!");
+      // self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      // self.setStatus("Error sending coin; see log.");
+    });
+  },
   pdetail:function(){
     var self = this;
 
