@@ -1,21 +1,31 @@
 pragma solidity ^0.4.18;
 
-import "./MarketToken.sol";
+import "./MarketToken1.sol";
 import "./FundToken.sol";
+import "./MarketToken2.sol";
 
 contract DMF {
-    
+//rketToken1 public a;
+            address public m1;
+            address public m2;
+            
+           Mam1 ab;
+           Man2 bb;
+           
         FundToken public Token; //obj for Fundtoken3
-    
+       
+         
      //Constructor For initialize the contract Owner Address and Contract Deployed Address
-            function DMF(address na,address _mark1)public payable{
+            function DMF(address na,address Mark1,address Mark2)public payable{
                 owner=msg.sender;
                 newadd=address(this);
                 Token=new FundToken();
                  contractAddress=na;
-                 MarketToken1 = _mark1;
-                      
-    
+                 m1=Mark1;
+                 m2=Mark2;
+                bb=new Man2();
+                 ab=new Mam1();
+            
                 
             }
        
@@ -33,19 +43,21 @@ contract DMF {
         address public newadd; //For getting the Contract Address
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
         uint256 cost = 0.1 ether; //rate of Fundtokens For Investor 
-       uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
+        uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
         uint256 profitToken = 10; //profit tokens for the Portfolio manager 
         uint256 public PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
         address contractAddress; //Fundtoken
-        address MarketToken1; //Address for MarketToken1
-        address MarketToken2; //Address For MarketToken2
         uint256 public InvestersTotalToken=0; //invester total token count
+    
         
         address public Pendingreturnaddress;
     //ArrayList
      address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
      address[] public TotalInvestorAddress; //Array for storing the each register Investors
      uint256 public etherCalculation;
+
+
+     
     //Phase -2                                                                                                                                                                                                                                                                
                             //Structure Area
      
@@ -198,18 +210,11 @@ contract DMF {
     function ReturnTokenToPortfolioManager(uint256 value)public payable{
      
         FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
-        Pendingreturnaddress = msg.sender;
+        uint256 TR = value / cost;
+        msg.sender.transfer(TR);
+        
      }
      
-     //Function Give the Ether for Investor return Tokens 
-     function SendEther(address _add)  public  payable
-     {
-         if(_add == ToatlportfolioMAddress[0])
-         {
-         Pendingreturnaddress.transfer(msg.value);
-         Pendingreturnaddress = 0;
-         }
-     }
     
    
 
@@ -220,32 +225,7 @@ contract DMF {
 
    //Phase-7
 
-   //market Token-1
-
-   function DisplayTotalsupMarkTK1() public view returns(uint256)
-   {
-       return MarketToken(MarketToken1).DisplayTotalsupply();
-   }
-
-   function DisplayDecimalMarkTK1() public view returns(uint256)
-   {
-       return MarketToken(MarketToken1).DisplayDecimal();
-   }
-
-   function DisplayRateMarkTK1() public view returns(uint256)
-   {
-       return MarketToken(MarketToken1).DisplaytheRate();
-   }
-
-   function DisplayBalanceMarkTK1() public view returns(uint256)
-   {
-       return MarketToken(MarketToken1).DisplayBalance(msg.sender);
-   }
-
-   function DisplayAddressMarkTK1() public view returns(address)
-   {
-       return MarketToken(MarketToken1).DisplayTheAddress();
-   }
+                //Two Sample Market is successfully created 
 
     
 
@@ -254,7 +234,17 @@ contract DMF {
    //Function for Purchase the market tokens by the PortfolioManager
    function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public payable
    {
-       MarketToken(_contractadd).buytokens(msg.value);
+       uint256 x = msg.value;
+       if( m1 == _contractadd)
+       {
+           Mam1(m1).buytokens1(x,msg.sender);
+           
+       }
+       else if(m2 == _contractadd)
+       {
+
+         Man2(m2).buytokens2(x,msg.sender);
+       }
        Market[msg.sender].name = _name;
        Market[msg.sender].symbol = _symbol;
        Market[msg.sender].decimal = 0;
@@ -264,9 +254,20 @@ contract DMF {
        
    }
 
-function DisplayPurchasedTokendetails() public view returns(string,address,string,uint256)
-{
-    return (Market[msg.sender].name,Market[msg.sender].contractAdd,Market[msg.sender].symbol,Market[msg.sender].totalbuycount);
-}
+    function DisplayBalanceMarkTK1(address _contractadd) public view returns(uint256)
+   {
+       if( m1 == _contractadd)
+       {
+           return Mam1(m1).DisplayBalance(msg.sender);
+       }
+       else if(m2 == _contractadd)
+       {
+           return Man2(m2).DisplayBalance(msg.sender);
+       }
+       
+   }
+
+
+
    
 }                                                                                     
