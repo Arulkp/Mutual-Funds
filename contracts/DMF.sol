@@ -25,8 +25,7 @@ contract DMF {
                  m2=Mark2;
                 bb=new Man2();
                  ab=new Mam1();
-            //rketToke new
-               //=new MarketToken2();
+            
                 
             }
        
@@ -48,8 +47,6 @@ contract DMF {
         uint256 profitToken = 10; //profit tokens for the Portfolio manager 
         uint256 public PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
         address contractAddress; //Fundtoken
-        address MarketToken1; //Address for MarketToken1
-        address MarketToken2; //Address For MarketToken2
         uint256 public InvestersTotalToken=0; //invester total token count
     
         
@@ -58,6 +55,9 @@ contract DMF {
      address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
      address[] public TotalInvestorAddress; //Array for storing the each register Investors
      uint256 public etherCalculation;
+
+
+     
     //Phase -2                                                                                                                                                                                                                                                                
                             //Structure Area
      
@@ -225,7 +225,7 @@ contract DMF {
 
    //Phase-7
 
-
+                //Two Sample Market is successfully created 
 
     
 
@@ -238,11 +238,11 @@ contract DMF {
        if( m1 == _contractadd)
        {
            Mam1(m1).buytokens1(x,msg.sender);
-           //arketToken1(_contractadd).buytokens1(x,msg.sender);
+           
        }
        else if(m2 == _contractadd)
        {
-          //n2
+
          Man2(m2).buytokens2(x,msg.sender);
        }
        Market[msg.sender].name = _name;
