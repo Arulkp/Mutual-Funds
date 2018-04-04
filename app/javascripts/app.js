@@ -456,7 +456,7 @@ window.App = {
     var meta;
     var adk = document.getElementById("6").value;
   
-    MetaCoins.deployed().then(function(instance) {
+    mtok1.deployed().then(function(instance) {
       meta = instance;
       return meta.DisplayBalanceMarkTK1(adk,{from:account});
     }).then(function(value) {

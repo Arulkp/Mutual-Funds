@@ -14,7 +14,7 @@ module.exports= function(deployer)
 })
 }
 /*
-module.exports = function(deployer) {
+module.exports = function(deployer) {vbn
   deployer.deploy(FundToken).then(function(){
     return FundToken.deployed();
   }).then(function(i) {
