@@ -8,13 +8,13 @@ contract DMF {
         FundToken public Token; //obj for Fundtoken3
     
      //Constructor For initialize the contract Owner Address and Contract Deployed Address
-            function DMF(address na,address _mark1,address _mark2)public payable{
+            function DMF(address na,address _mark1)public payable{
                 owner=msg.sender;
                 newadd=address(this);
                 Token=new FundToken();
                  contractAddress=na;
                  MarketToken1 = _mark1;
-                 MarketToken2 = _mark2;         
+                      
     
                 
             }
@@ -111,7 +111,7 @@ contract DMF {
 
         //Function For Getting the Contract Ether Balance 
       function GetBal()public view returns(uint256){
-          return this.balance;
+          return this.balance/ 1 ether;
          // 1 ether; //converting wei value to ether
       }
       
@@ -247,36 +247,7 @@ contract DMF {
        return MarketToken(MarketToken1).DisplayTheAddress();
    }
 
-    //Market Token-2
-
     
-   function DisplayTotalsupMarkTK2() public view returns(uint256)
-   {
-       return MarketToken(MarketToken2).DisplayTotalsupply();
-   }
-
-   function DisplayDecimalMarkTK2() public view returns(uint256)
-   {
-       return MarketToken(MarketToken2).DisplayDecimal();
-   }
-
-   function DisplayRateMarkTK2() public view returns(uint256)
-   {
-       return MarketToken(MarketToken2).DisplaytheRate();
-   }
-
-   function DisplayBalanceMarkTK2(address _add) public view returns(uint256)
-   {
-       return MarketToken(MarketToken2).DisplayBalance(_add);
-   }
-
-   function DisplayAddressMarkTK2() public view returns(address)
-   {
-       return MarketToken(MarketToken2).DisplayTheAddress();
-   }
-
-
-
 
    //Phase-8
    

@@ -9,12 +9,15 @@ import { default as contract } from 'truffle-contract'
 import FundToken from '../../build/contracts/FundToken.json'
 import DMF from '../../build/contracts/DMF.json'
 
+
 //import dead from '../../migrations/3_deploy_migrations'
 
 
 // MetaCoin is our usable abstraction, which we'll use through the code below.
 var MetaCoin = contract(FundToken);
 var MetaCoins = contract(DMF);
+
+
 
 // The following code is simple to show off interacting with your contracts.
 // As your needs grow you will likely need to change its form and structure.
@@ -29,6 +32,7 @@ window.App = {
     // Bootstrap the MetaCoin abstraction for Use.
     MetaCoin.setProvider(web3.currentProvider);
     MetaCoins.setProvider(web3.currentProvider);
+   
 
     // Get the initial account balance so it can be displayed.
     web3.eth.getAccounts(function(err, accs) {
@@ -52,6 +56,13 @@ window.App = {
       self.tdec();
       self.ethb();
       self.pbal();
+      self.tnam1();
+      self.tdec1();
+      self.trat();
+      self.tadm();
+      
+      
+   
      // self.pads();
       
      // self.bal();
@@ -60,21 +71,67 @@ window.App = {
     });
     
   },
-  /*pads:function() {
+  tnam1:function(){
     var self = this;
 
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.listOfPortfolioManager({from: account});
+      return meta.DisplayTotalsupMarkTK1();
     }).then(function(value) {
-      var balance_element = document.getElementById("ads");
+      var balance_element = document.getElementById("tos");
       balance_element.value = value;
     }).catch(function(e) {
       console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
-  }, */
+  },
+  tdec1:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayDecimalMarkTK1();
+    }).then(function(value) {
+      var balance_element = document.getElementById("dec");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  trat:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayRateMarkTK1();
+    }).then(function(value) {
+      var balance_element = document.getElementById("tor");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  tadm:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayAddressMarkTK1();
+    }).then(function(value) {
+      var balance_element = document.getElementById("tad");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  
   pbal: function() {
     var self = this;
 
@@ -172,7 +229,7 @@ window.App = {
       return meta.symbol();
     }).then(function(value) {
       var balance_element = document.getElementById("tsy");
-      balance_element.value = value;
+      balance_element.value= value;
     }).catch(function(e) {
       console.log(e);
       //self.setStatus("Error getting balance; see log.");
@@ -193,6 +250,37 @@ window.App = {
       //self.setStatus("Error getting balance; see log.");
     });
   },
+  ad:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayBalanceMarkTK1();
+    }).then(function(value) {
+      var balance_element = document.getElementById("5");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  ads:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayAddressMarkTK1();
+    }).then(function(value) {
+      var balance_element = document.getElementById("1");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  
   ethb:function(){
     var self = this;
 
@@ -232,11 +320,6 @@ window.App = {
       self.setStatus("Error sending coin; see log.");
     });
   },
-
- 
-
-  
- 
   Ibal: function() {
     var self = this;
 
@@ -258,10 +341,52 @@ window.App = {
       //self.setStatus("Error sending coin; see log.");
     });
   },
+  purchase : function (){
+    var b=parseInt(document.getElementById("id03").value);
+    var x=document.getElementById("tad").value;
+    var y=document.getElementById("name").value;
+    var z=document.getElementById("sym").value;
+    var a=parseInt(document.getElementById("id02").value);
+    
+    var self = this;
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.Purchasingtoken(x,y,z,a, {from: account,value:web3.toWei(b,'ether')});
+    }).then(function(result) {
+      console.log(result);
+      // self.setStatus("Transaction complete!");
+      // self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      // self.setStatus("Error sending coin; see log.");
+    });
+  },
+  pdetail:function(){
+    var self = this;
 
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayPurchasedTokendetails();
+    }).then(function(value) {
+      var balance_element1 = document.getElementById("4");
+      var balance_element2= document.getElementById("1");
+      var balance_element3= document.getElementById("3");
+      var balance_element4= document.getElementById("5");
+      
+      balance_element1.value = value[0];
+      balance_element2.value = value[1];
+      balance_element3.value = value[2];
+      balance_element4.value = value[3];
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
 
   invest : function (){
-    var reg_e = $("#id03").val();
+    var reg_e = parseInt($("#id03").val());
     var self = this;
     var meta;
     MetaCoins.deployed().then(function(instance) {
@@ -277,7 +402,7 @@ window.App = {
     });
   },
   SEL: function (){
-    var reg_s = $("#id05").val();
+    var reg_s = $("#id04").val();
     var self = this;
     var meta;
     MetaCoins.deployed().then(function(instance) {

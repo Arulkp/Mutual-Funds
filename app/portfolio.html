@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html lang="en-US">
 <head>
   <meta charset="utf-8">
@@ -24,6 +24,9 @@
           <li><a href="#about">REGISTER</a></li>
           <li><a href="#photos">PROFILE</a></li>
           <li><a href="#DIVS">DIVIDENDS</a></li>
+          <li><a href="#purchase">PURCHASE</a></li>
+          
+
          
         </ul>
       </nav>
@@ -38,6 +41,7 @@
         Decimal Value<input type="text" id="td"  readonly>
         TotalSupply <input type="text"id="ts"  readonly>
         Ether value<input type="text" id="eb"  readonly>
+      
         
         <br><br><br><br><br><br><br>
     
@@ -63,12 +67,27 @@
       <div class="container" style="background-color:white">
       Protfolio Address: <input type="text" id="ads" readonly>
      Available Tokens<input type="text" id="at" readonly>
+    
       </section>
       <section id="DIVS" class="section" >
-          <h2>PORTFOLIO PROFILE</h2>
+          <h2>DIVIDENDS</h2>
       <li><button id="div" onclick="App.div();">Dividends</button></li>
       </div>
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <div>
+        <a id="purchase" class="section"></a>
+      
+        <h2>PURCHASE TOKEN</h2>
+        Contract Address<input type="text" id="1" readonly>
+        
+        Available Token<input type="text" id="5" readonly>
+        <div class="container" style="background-color:white">
+       <div class="container">
+          <center><input type="button" value="PURCHASETOKEN" onclick="location.href='../app/purchasetoken.html';"/></center><br> 
+        <center><input type="button" value="VIEWDETAILS" onclick="App.ad();App.ads();"/></center> 
+        </div>
+        </div>
+      </section>
     </div><!-- @end #content -->
   </div><!-- @end #w -->
 <script type="text/javascript">

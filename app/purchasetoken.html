@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head><title>My Design</title>
+        
+    <link rel="stylesheet" type="text/css" href="../app/stylesheets/purchase.css">
+    <script src="../app.js"></script>
+    </head>
+    <body onload="ref()"><header>
+            <center><h1>Sample Token Market</h1></center>
+        </header>
+        
+   <div class="ico">
+    <center>
+    <div class="col-xs-12 col-ms-6 col-sm-6 col-md-3">
+	<div class="ico-content"> <br>
+    <p>Token Name: </p><input type="text" id="name" readonly/>
+    <p>Token Symbol: </p><input type="text" id="sym" readonly/>
+    <p>Token Decimals: </p><input type="text" id="dec" readonly/>
+    <p>Total Supply:</p> <input type="text" id="tos" readonly/>
+    <p>Rate:in wei(value)</p> <input type="text" id="tor" readonly/>
+    <p>Token Address:</p> <input type="text" id="tad" readonly/>
+    <p>Token Value:</p>
+    <input type="text" id="id02" onkeyup="convert('c')" value="" name="Token_value" required><br>
+       <p>Ether value:</p>
+    <input type="text" id="id03"  value=""  name="Ether_value" required><br><br>
+        
+        </div>
+        <button onclick="App.purchase();">Purchase Tokens</a></button>
+    </div>
+</center>
+</div>
+
+<script>
+var x;
+function convert(math)
+{
+  x = document.getElementById('id02').value * 0.1;
+  document.getElementById('id03').value = x;
+}
+var X1;
+function converts(math)
+{
+  X1 = document.getElementById('id2').value * 0.2;
+  document.getElementById('id3').value = X1;
+}
+function ref(){
+    var x="AppleToken"
+    var y="DTX"
+    document.getElementById("name").value=x;
+    document.getElementById("sym").value=y;
+}
+</script>
+
+</body>
+    </html>
