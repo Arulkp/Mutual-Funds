@@ -12,16 +12,17 @@ body {
     font-size: 20px;
     line-height: 1.42857;
     color: #262629;
+    overflow: hidden; 
     background-color: #4599c4; }
     
 
 .ico {
     background: wight;
-    height: 100%;/*here to chage */
+    height: 80%;/*here to chage */
     width: 350px;
-    float: left;
     margin: 10px;
     margin-left:700px;
+    margin-bottom:60px;
 }
 
 .container {

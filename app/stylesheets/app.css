@@ -24,6 +24,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
       padding: 20px;
       background-color: #f1f1f1;
   }
+  .containers {
+    padding: 20px;
+    background-color: #f1f1f1;
+    width:50%;
+    margin-left:500px;
+    margin-top:150px;
+}
   
   input[type=text], input[type=submit] {
       width: 100%;
@@ -256,7 +263,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   #content {
     display: block;
     width: 100%;
-    background: #fff;
     padding: 25px 20px;
     padding-bottom: 35px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
@@ -270,3 +276,45 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
    
   html[xmlns] .clearfix { display: block; }
   * html .clearfix { height: 1%; }
+  /*nav bar style*/
+  * {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Open Sans, sans-serif;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #000;
+}
+nav ul li {
+    list-style: none;
+    display: inline-block;
+}
+nav ul li a {
+    display: block;
+    padding: 20px 40px;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.4s ease;
+}
+nav ul li a.active {
+    background-color: #666;
+}
+
+section {
+    padding: 30% 0;
+    text-align: center;
+}
+
+section.about { background-color: #888; }
+section.team { background-color: #999; }
+section.gallery { background-color: #aaa; }
+section.testimonials { background-color: #bbb; }
+section.contact { background-color: #ccc; }

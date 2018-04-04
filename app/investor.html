@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 <html lang="en-US">
 <head>
@@ -16,6 +15,19 @@
 </head>
 
 <body>
+    <style type="text/css">
+      body {
+        background: linear-gradient(132deg, #ec5218, #1665c1);
+        background-size: 400% 400%;
+        animation: BackgroundGradient 30s ease infinite;
+    }
+    
+    @keyframes BackgroundGradient {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+    </style>
   <div id="topbar">
   
   </div>
@@ -24,28 +36,33 @@
     <div id="content">
       <nav id="stickynav">
         <ul id="nav" class="clearfix">
+            <li><a href="../app/index.html">HOME</a></li>
           <li><a href="#topbar">INVEST</a></li>
           <li><a href="#tokes">ACCOUNT</a></li>
           <li><a href="#SEL">SELL TOKEN</a></li>
-        
         </ul>
       </nav>
-     
-      <h2>INVEST THE ETHER</h2>
-      <label for="Tokens"><b>Amount of Tokens:</b></label>
-      <input type="text" id="id02" onkeyup="convert('c')" value=""  name="tokens" required><br>
-      <label for="value"><b>Ether:</b></label>
-      <input type="text" id="id03"   value="" name="value" required><br>
-      <button onclick="App.invest();">Invest</button> 
-      </div>
+      
+   
+        <section  class="section">
+        <h2>CHECK AVAILABLE TOKENS</h2>
+        <div class="container">
+        <p><center><b>Amount of Tokens:</b></p>
+          <input type="text" id="id02" onkeyup="convert('c')" value=""  name="tokens" required><br>
+          <p><center><b>Ether Value:</b></p>
+          <input type="text" id="id03"   value="" name="value" required><br>
+          <button onclick="App.invest();">Invest</button> 
+         
+        
+  </section>
     
     
     
-      <br><br><br><br> <br><br><br><br> <br><br><br><br> <br><br><br><br>
+      <br><br><br><br> <br><br><br><br> <br><br><br><br> <br><br><br><br><br><br> <br><br><br><br>
       <div>
       <section id="tokes" class="section">
       <h2>CHECK AVAILABLE TOKENS</h2>
-      <div class="container" style="background-color:white">
+      <div class="container">
       <p><center><b>Address:</b></p>
         <input type=text1 id="ads" value=""/><br><br>
         <button id="tok" value="tokens" onclick="App.bal();">Tokens</button>
@@ -56,7 +73,7 @@
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <section id="SEL" class="section">
 <h2>SELL TOKEN</h2>
-<div class="container" style="background-color:white">
+<div class="container">
 <label for="Tokens"><b>Amount of Tokens:</b></label>
 <input type="text" id="id04" onkeyup="converts('c')" value=""  name="tokens" required><br>
 <button onclick="App.SEL();">SELL</button> 

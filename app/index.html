@@ -1,52 +1,107 @@
-<!doctype html>
-<html>
-<head>
-    <title>WELCOME TO DECENTRALIZED MUTUAL FUNDS</title>
-    <script src="../app.js"></script>
-</head>
-<style>
-body{
-    margin:0;
-    padding:0;
-    background:url(../app/images/1.jpg);
-    background-size:cover;
-    font-family: sans-serif;
-}
 
-h1{
-    margin:0;
-    padding:0;
-    text-align:center;
-    font-size:40px;
-}
-
-.button {
-    position:relative;
-    font-size: 50px;
-    float: left;
-    left: 820px;
-    right: 120px;
-    bottom: -200px;
-    height:120px;
-    width:none;
-    }
-    .btn{
-        background-color:rgb(161, 216, 230);
-        font-size: 25px;
-    }
-    </style>
-<body>
-
-   <center> <h1 style=color:bisque> WELCOME TO DECENTRALIZED MUTUAL FUNDS</h1>
-   </center>
-      <div class="button">
-<form>
-   <center>
-      <center><br><button  class="btn"><a href="../app/portfolio.html">PORTFOLIO MANAGER</button></center><br>
-    <center><button class="btn" ><a href="../app/investor.html">INVESTOR</button></center>
-   </form>
-</body>
-    </html>
-
-    </body>
-</html>
+<html lang="en-US">
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="Content-Type" content="text/html">
+          <title>decentralize mutual funds</title>
+          <meta name="author" content="Jake Rocheleau">
+          
+        
+          <link rel="stylesheet" type="text/css" media="all" href="../app/stylesheets/app.css">
+        
+          <script src="../app.js"></script>
+          <style type="text/css">
+            
+          body {
+            background: linear-gradient(132deg, #ec5218, #1665c1);
+            background-size: 400% 400%;
+            animation: BackgroundGradient 30s ease infinite;
+        }
+        
+        @keyframes BackgroundGradient {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        h1 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            font-family: Open Sans, sans-serif;
+            color: #fff;
+            font-weight: 400;
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 2em;
+            background-color: #000;
+            padding: 5px;
+        }
+        .button {
+            display: block;
+            width: 180px;
+            height: 60px;
+            position: relative;
+            border: 2px solid #04a;
+            border-radius: 5px;
+            margin: 200px auto;
+            background-color: #06c;
+        }
+        .button .content {
+            display: block;
+            position: absolute;
+            bottom: 6px;
+            width: 100%;
+            height: 100%;
+            line-height: 60px;
+            text-align: center;
+            background-color: #09f;
+            color: #fff;
+            text-transform: uppercase;
+            box-shadow: 0 6px 0 #06c;
+            border-radius: 5px;
+            transition: all 0.1s linear;
+        }
+        
+       .button:active .content {
+            bottom: 0;
+            box-shadow: 0 0 0 #06c;
+        }
+       
+        </style>
+        </head>
+        <body>
+         
+            <nav>
+                <ul>
+                   <h1 style="float:left">DECENTRALIZE MUTUAL FUNDS</h1>
+                    <div style="float:right"> <li><a href="../app/portfolio.html" class="about-marker active">PROTFOLIO</a></li></div>
+                    <div style="float:right"><li><a href="../app/investor.html" class="team-marker active">INVESTER</a></li></div>
+                   
+                </ul>
+            </nav>
+           
+           
+    
+               
+             
+              <div class="containers">
+         
+               Contract Address: <input type="text" id="cad"  readonly>
+                Token Name<input type="text" id="tn"  readonly>
+                Token Symbol <input type="text"  id="tsy" readonly>
+                Decimal Value<input type="text" id="td"  readonly>
+                TotalSupply <input type="text"id="ts"  readonly>
+                Ether value<input type="text" id="eb"  readonly>
+              
+                
+                <br><br><br><br><br><br><br>
+            
+            
+              
+            
+         
+       
+        </script>
+        </body>
+        </html>
