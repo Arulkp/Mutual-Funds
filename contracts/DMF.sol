@@ -33,13 +33,14 @@ contract DMF {
         address public newadd; //For getting the Contract Address
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
         uint256 cost = 0.1 ether; //rate of Fundtokens For Investor 
-       uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
+        uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
         uint256 profitToken = 10; //profit tokens for the Portfolio manager 
         uint256 public PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
         address contractAddress; //Fundtoken
         address MarketToken1; //Address for MarketToken1
         address MarketToken2; //Address For MarketToken2
         uint256 public InvestersTotalToken=0; //invester total token count
+    
         
         address public Pendingreturnaddress;
     //ArrayList
@@ -198,18 +199,11 @@ contract DMF {
     function ReturnTokenToPortfolioManager(uint256 value)public payable{
      
         FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
-        Pendingreturnaddress = msg.sender;
+        uint256 TR = value / cost;
+        msg.sender.transfer(TR);
+        
      }
      
-     //Function Give the Ether for Investor return Tokens 
-     function SendEther(address _add)  public  payable
-     {
-         if(_add == ToatlportfolioMAddress[0])
-         {
-         Pendingreturnaddress.transfer(msg.value);
-         Pendingreturnaddress = 0;
-         }
-     }
     
    
 
@@ -254,7 +248,8 @@ contract DMF {
    //Function for Purchase the market tokens by the PortfolioManager
    function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public payable
    {
-       MarketToken(_contractadd).buytokens(msg.value);
+       uint256 x = msg.value;
+       MarketToken(_contractadd).buytokens(x,msg.sender);
        Market[msg.sender].name = _name;
        Market[msg.sender].symbol = _symbol;
        Market[msg.sender].decimal = 0;
@@ -264,9 +259,6 @@ contract DMF {
        
    }
 
-function DisplayPurchasedTokendetails() public view returns(string,address,string,uint256)
-{
-    return (Market[msg.sender].name,Market[msg.sender].contractAdd,Market[msg.sender].symbol,Market[msg.sender].totalbuycount);
-}
+
    
 }                                                                                     

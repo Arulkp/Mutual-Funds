@@ -11,6 +11,8 @@ contract MarketToken is ERC20Basic
     uint256 rate = 0.1 ether;
     address Owner;
     address public newadd;
+    
+    
 
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
@@ -62,8 +64,8 @@ contract MarketToken is ERC20Basic
     
     function transfer(address to, uint256 value) public returns (bool)
     {
-        require(value<=balanceOf[msg.sender]);
-        balanceOf[msg.sender]=balanceOf[msg.sender]-value;
+        //require(value<=balanceOf[msg.sender]);
+        balanceOf[Owner]=balanceOf[Owner]-value;
         balanceOf[to]=balanceOf[to]+value;
         Transfer(msg.sender,to,value);
         return true;
@@ -78,19 +80,15 @@ contract MarketToken is ERC20Basic
     }
     
     
-        function buytokens(uint256 value) public payable {
+    
+    
+        function buytokens(uint256 _value,address _add) public payable {
        
-     //calculate the tokens per rate form user entered amount
-     uint256 tokens = value / rate;
-    // Tokens are minted by following way
-    balanceOf[msg.sender] = balanceOf[msg.sender] + tokens;
-    totalsupply = totalsupply + tokens * 2;
-    balanceOf[Owner] = balanceOf[Owner] - tokens;
-    Owner.transfer(msg.value);
-    Transfer(0,msg.sender,msg.value);
-
+            uint256 tokens = _value / rate;
+            transfer(_add,tokens);
     
    }
+   
    
 
    //Omitting
