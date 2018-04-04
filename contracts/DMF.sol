@@ -210,8 +210,9 @@ contract DMF {
     function ReturnTokenToPortfolioManager(uint256 value)public payable{
      
         FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
-        uint256 TR = value / cost;
-        msg.sender.transfer(TR);
+        uint256 TR = value * cost;
+         address x = msg.sender;
+         x.transfer(TR);
         
      }
      

@@ -38,7 +38,8 @@
             <li><a href="#topbar">REGISTER</a></li>
             <li><a href="#tokes">ACCOUNT</a></li>
             <li><a href="#DIVS">DIVIDENDS</a></li>
-            <li><a href="#PTO">PURCHASE TOKEN</a></li>
+            <li><a href="../app/purchasetoken.html">PURCHASE TOKEN</a></li>
+            <li><a href="#PTO">VIEW PURCHASE TOKEN</a></li>
           </ul>
         </nav>
         
@@ -83,22 +84,23 @@
           Contract Address<input type="text" id="1" readonly>
           
           Available Token<input type="text" id="5" readonly>
-          <center><input type="button" value="PURCHASETOKEN" onclick="location.href='../app/purchasetoken.html';"/></center><br> 
+         
           <center><input type="button" value="VIEWDETAILS" onclick="App.ad();App.ads();"/></center> 
       
 </section>
+<div class="container">
+       
+        Contract Address<input type="text" id="6" readonly>
+        
+        Available Token<input type="text" id="7" readonly>
+       
+        <center><input type="button" value="VIEWDETAILS" onclick="App.AR();App.ARS();"/></center> 
+    </section>
       </div><!-- @end #content -->
     </div><!-- @end #w -->
-<script type="text/javascript">
 
-  $('.section').on('click',function(){
-    $.sectionScroll({
-    scrollElement: $('body'),
-    scrollTarget: '#' +this.id
-  });
- return false;
+
  
-});
 </script>
 </body>
 </html>

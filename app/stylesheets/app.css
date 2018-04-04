@@ -290,7 +290,7 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    text-align: center;
+    text-align:center;
     background-color: #000;
 }
 nav ul li {
@@ -301,6 +301,7 @@ nav ul li a {
     display: block;
     padding: 20px 40px;
     text-decoration: none;
+    margin-left:40px;
     color: #fff;
     transition: background-color 0.4s ease;
 }
