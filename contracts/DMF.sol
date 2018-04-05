@@ -8,9 +8,11 @@ contract DMF {
 //rketToken1 public a;
             address public m1;
             address public m2;
-            
+            address[] public contractADDD;
            Mam1 ab;
            Man2 bb;
+           uint256 public xy;
+           uint256 public y;
            
         FundToken public Token; //obj for Fundtoken3
        
@@ -25,6 +27,8 @@ contract DMF {
                  m2=Mark2;
                 bb=new Man2();
                  ab=new Mam1();
+                 contractADDD.push(Mark1);
+                 contractADDD.push(Mark2);
             
                 
             }
@@ -96,10 +100,7 @@ contract DMF {
     mapping(address => MarketTokenPurchase) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
      
       //Fallback Function For Holding the Ether in Contract
-      function () public payable{
-          
-      }
-      
+     
 
                                 //Function Area
         //Function For PortfolioManager Resgistration
@@ -233,37 +234,50 @@ contract DMF {
    //Phase-8
    
    //Function for Purchase the market tokens by the PortfolioManager
-   function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public payable
+ 
+
+function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
    {
-       uint256 x = msg.value;
+       
+  
+    
+
        if( m1 == _contractadd)
+       
        {
-           Mam1(m1).buytokens1(x,msg.sender);
+          // uint256  m1rate= 0.1 ether;
+          xy = _totacount * cost;
+          address a1 = contractADDD[0];
+      
+           a1.transfer(xy);
            
        }
        else if(m2 == _contractadd)
        {
-
-         Man2(m2).buytokens2(x,msg.sender);
+          // uint256  m2rate= 0.2 ether;
+            y = _totacount * cost;
+          m2.transfer(y);
+          
        }
-       Market[msg.sender].name = _name;
+        Market[msg.sender].name = _name;
        Market[msg.sender].symbol = _symbol;
        Market[msg.sender].decimal = 0;
        Market[msg.sender].totalbuycount = _totacount;
        Market[msg.sender].contractAdd = _contractadd;
+         
+       
        
        
    }
-
     function DisplayBalanceMarkTK1(address _contractadd) public view returns(uint256)
    {
        if( m1 == _contractadd)
        {
-           return Mam1(m1).DisplayBalance(msg.sender);
+           return Mam1(m1).DisplayBalance(newadd);
        }
        else if(m2 == _contractadd)
        {
-           return Man2(m2).DisplayBalance(msg.sender);
+           return Man2(m2).DisplayBalance(newadd);
        }
        
    }
