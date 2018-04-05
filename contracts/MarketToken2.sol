@@ -114,6 +114,11 @@ contract Man2 is ERC20Basic
    {
        return newadd;
    }
+   
+     function GetBal()public view returns(uint256){
+          return this.balance/ 1 ether;
+         // 1 ether; //converting wei value to ether
+      }
   
    
 }
