@@ -1,77 +1,65 @@
 <!doctype html>
 <html>
-    <head><title>My Design</title>
+    <head><title>Welcome to Token Market</title>
         
     <link rel="stylesheet" type="text/css" href="../app/stylesheets/purchase.css">
+ 
     <script src="../app.js"></script>
     </head>
     <body onload="rate(),rate2();"><header>
-            <style type="text/css">
-                body {
-                  background: linear-gradient(132deg, #ec5218, #1665c1);
-                  background-size: 400% 400%;
-                  animation: BackgroundGradient 2s ease infinite;
-              }
-              
-              @keyframes BackgroundGradient {
-                  0% {background-position: 0% 50%;}
-                  50% {background-position: 100% 50%;}
-                  100% {background-position: 0% 50%;}
-              }
-              </style>
             <nav>
-                    <ul>
-                       
-                        <div style="float:right"> <li><a href="../app/portfolio.html" class="about-marker active">PROTFOLIO</a></li></div>
-                      
-                       
-                    </ul>
-                </nav>
-               
+                <ul>
+              <div style="float:right"> <li><a href="../app/portfolio.html" class="about-marker active">PROTFOLIO</a></li></div>
+                 </ul></nav>  
+        </header>   <br><br></body>
+        <body class="bo">
            
-        </header>
-        
-   <div class="ico">
+            <center>
+   
+
+<div class="ico">
     <center>
     <div class="col-xs-12 col-ms-6 col-sm-6 col-md-3">
 	<div class="ico-content"> <br>
-    <p>Token Name: </p><input type="text" id="name" readonly/>
-    <p>Token Symbol: </p><input type="text" id="sym" readonly/>
-    <p>Token Decimals: </p><input type="text" id="dec" readonly/>
-    <p>Total Supply:</p> <input type="text" id="tos" readonly/>
-    <p>Rate:in wei(value)</p> <input type="text" id="tor" readonly/>
-    <p>Token Address:</p> <input type="text" id="tad" readonly/>
-    <p>Token Value:</p>
-    <input type="text" id="id02" onkeyup="convert('c')" value="" name="Token_value" required><br>
-       <p>Ether value:</p>
-    <input type="text" id="id03"  value=""  name="Ether_value" required><br><br>
+    <p>Token Name: <input type="text1" id="name1"/></p>
+    <p>Token Symbol: <input type="text1" id="sym1"/></p>
+    <p>Token Decimals: <input type="text1" id="dec1"/></p>
+    <p>Total Supply: <input type="text1" id="tos1"/></p>
+    <p>Rate in wei(value) <input type="text1" id="tor1" readonly/></p>
+    <p>Token Address: <input type="text1" id="tad1" readonly/></p>
+    <p>Token Value:
+    <input type="text1" id="id2" onkeyup="converts('c')" value="" name="Token_value" required><br></p>
+       <p>Ether value:
+    <input type="text1" id="idx1"  value=""  name="Ether_value" required><br></p>
         
         </div>
-        <button onclick="App.purchase();">Purchase Tokens</a></button>
+        <button class="btn btn-small btn-yellow btn-buy"  onclick="App.purchase();">Purchase Tokens</button>
+
     </div>
 </center>
 </div>
+
 <div class="ico">
         <center>
-        <div class="col-xs-12 col-ms-6 col-sm-6 col-md-3"></div>
+        <div class="col-xs-12 col-ms-6 col-sm-6 col-md-3">
         <div class="ico-content"> <br>
-        <p>Token Name: </p><input type="text" id="name1" readonly/>
-        <p>Token Symbol: </p><input type="text" id="sym1" readonly/>
-        <p>Token Decimals: </p><input type="text" id="dec1" readonly/>
-        <p>Total Supply:</p> <input type="text" id="tos1" readonly/>
-        <p>Rate:in wei(value)</p> <input type="text" id="tor1" readonly/>
-        <p>Token Address:</p> <input type="text" id="tad1" readonly/>
-        <p>Token Value:</p>
-        <input type="text" id="id2" onkeyup="converts('c')" value="" name="Token_value" required><br>
-           <p>Ether value:</p>
-        <input type="text" id="idx1"  value=""  name="Ether_value" required><br><br>
+        <p>Token Name: <input type="text1" id="name" readonly/>
+        <p>Token Symbol: <input type="text1" id="sym" readonly/>
+        <p>Token Decimals: <input type="text1" id="dec" readonly/></p>
+        <p>Total Supply: <input type="text1" id="tos" readonly/></p>
+        <p>Rate in wei(value) <input type="text1" id="tor" readonly/></p>
+        <p>Token Address: <input type="text1" id="tad" readonly/></p>
+        <p>Token Value:
+        <input type="text1" id="id02" onkeyup="convert('c')" value="" name="Token_value" required><br></p>
+           <p>Ether value:
+        <input type="text1" id="id03"  value=""  name="Ether_value" required><br></p>
             
             </div>
-            <button onclick="App.purchases();">Purchase Tokens</a></button>
-        </div>
+        </center>
+            <button class="btn btn-small btn-yellow btn-buy"  onclick="App.purchase();">Purchase Tokens</button>
+     </div>
     </center>
     </div>
-
 
 <script>
 var x;
@@ -98,3 +86,5 @@ var a=document.getElementById("tor1").value=s;
 
 </body>
     </html>
+
+

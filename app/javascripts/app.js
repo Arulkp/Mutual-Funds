@@ -365,7 +365,7 @@ window.App = {
     meta = instance;
     return meta.Dividends({from:account});
   }).then(function(value) {
-    var res = document.getElementById("div");
+    var res = document.getElementById("divs");
     //balance_element.value = value;
     res.value=result;
     self.refreshBalance();

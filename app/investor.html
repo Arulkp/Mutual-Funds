@@ -16,6 +16,9 @@
 
 <body>
     <style type="text/css">
+    h2{
+      
+    }
       body {
         background: linear-gradient(132deg, #ec5218, #1665c1);
         background-size: 400% 400%;
@@ -27,33 +30,35 @@
         50% {background-position: 100% 50%;}
         100% {background-position: 0% 50%;}
     }
+    nav ul li a {
+      font-size:15px;
+    }
     </style>
-  <div id="topbar">
-  
-  </div>
-  <h1>INVESTOR PAGE</h1>
-  <div id="w">
-    <div id="content">
-      <nav id="stickynav">
-        <ul id="nav" class="clearfix">
-            <li><a href="../app/index.html">HOME</a></li>
-          <li><a href="#topbar">INVEST</a></li>
-          <li><a href="#tokes">ACCOUNT</a></li>
-          <li><a href="#SEL">SELL TOKEN</a></li>
-        </ul>
+      <nav>
+          <ul>
+             <h2 style="float:left">INVESTOR PAGE</h2>
+             <div style="float:right"><li><a href="#SEL" class="team-marker active">SELLTOKEN</a></li></div>
+             <div style="float:right"> <li><a href="#tokes" class="about-marker active">ACCOUNT</a></li></div>
+             <div style="float:right"><li><a href="#inv" class="team-marker active">INVEST</a></li></div>
+              <div style="float:right"> <li><a href="../app/index.html" class="about-marker active">HOME</a></li></div>
+              
+          </ul>
       </nav>
+     
       
    
-        <section  class="section">
-        <h2>CHECK AVAILABLE TOKENS</h2>
+        <section id="inv" class="section">
+        <h2>INVEST SOME ETHER</h2>
         <div class="container">
+            <div class="button button2">
         <p><center><b>Amount of Tokens:</b></p>
           <input type="text" id="id02" onkeyup="convert('c')" value=""  name="tokens" required><br>
           <p><center><b>Ether Value:</b></p>
           <input type="text" id="id03"   value="" name="value" required><br>
-          <button onclick="App.invest();">Invest</button> 
+          
+          <button class="buttons button1" onclick="App.invest();">Invest</button>
          
-        
+        </div>
   </section>
     
     
@@ -63,20 +68,24 @@
       <section id="tokes" class="section">
       <h2>CHECK AVAILABLE TOKENS</h2>
       <div class="container">
+          <div class="button button2">
       <p><center><b>Address:</b></p>
-        <input type=text1 id="ads" value=""/><br><br>
+       
+        <input type="text" id="ads" value=""  name="tokens" readonly><br>
        
         <p><center><b>Available Token:</b></p>
-        <input type=text1 id="at" value=""/><br><br>
+        <input type="text" id="at" value="" name="tokens" readonly><br><br>
       
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <section id="SEL" class="section">
 <h2>SELL TOKEN</h2>
 <div class="container">
+    <div class="button button2">
 <label for="Tokens"><b>Amount of Tokens:</b></label>
 <input type="text" id="id04" onkeyup="converts('c')" value=""  name="tokens" required><br>
-<button onclick="App.SEL();">SELL</button> 
+<button class="buttons button1" onclick="App.SEL();">SELL</button>
+</div>
 </div>
 </section>
 
