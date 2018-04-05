@@ -584,7 +584,11 @@ window.App = {
     });
   },
   purchase : function (){
+<<<<<<< HEAD
    
+=======
+    
+>>>>>>> 8521471a65897294abcbbbfd3d98305b3b9bbb0e
     var x=document.getElementById("tad").value;
     var y=document.getElementById("name").value;
     var z=document.getElementById("sym").value;
@@ -594,7 +598,11 @@ window.App = {
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
+<<<<<<< HEAD
       return meta.Purchasingtoken(x,y,z,a, {from: account,gas:3000000});
+=======
+      return meta.Purchasingtoken(x,y,z,a, {from: account});
+>>>>>>> 8521471a65897294abcbbbfd3d98305b3b9bbb0e
     }).then(function(result) {
       console.log(result);
       // self.setStatus("Transaction complete!");
