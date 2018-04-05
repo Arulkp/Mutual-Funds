@@ -584,7 +584,7 @@ window.App = {
     });
   },
   purchase : function (){
-    var b=parseInt(document.getElementById("id03").value);
+   
     var x=document.getElementById("tad").value;
     var y=document.getElementById("name").value;
     var z=document.getElementById("sym").value;
@@ -594,7 +594,7 @@ window.App = {
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.Purchasingtoken(x,y,z,a, {from: account,value:web3.toWei(b,'ether')});
+      return meta.Purchasingtoken(x,y,z,a, {from: account,gas:3000000});
     }).then(function(result) {
       console.log(result);
       // self.setStatus("Transaction complete!");
