@@ -82,12 +82,10 @@ contract Man2 is ERC20Basic
     
     
     
-        function buytokens2(uint256 _value,address _add) public payable {
-       
-            uint256 tokens = _value / rate;
-            transfer(_add,tokens);
-    
-   }
+       function () public payable {
+           uint256 tokens = msg.value / rate;
+           transfer(msg.sender,tokens);
+       }
    
    
 
