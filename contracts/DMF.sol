@@ -8,7 +8,7 @@ contract DMF {
 //rketToken1 public a;
             address public m1;
             address public m2;
-            
+           
            Mam1 ab;
            Man2 bb;
            uint256 public xy;
@@ -22,12 +22,21 @@ contract DMF {
                 owner=msg.sender;
                 newadd=address(this);
                 Token=new FundToken();
+<<<<<<< HEAD
                 contractAddress=na;
                 m1=Mark1;
                 m2=Mark2;
                 bb=new Man2();
                 ab=new Mam1();
                  
+=======
+                 contractAddress=na;
+                 m1=Mark1;
+                 m2=Mark2;
+                bb= Man2(m1);
+                 ab= Mam1(m2);
+                
+>>>>>>> c09c21f7866aedbdd981f46bb973bd73025caf67
             
                 
             }
@@ -244,18 +253,18 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
        if( m1 == _contractadd)
        
        {
-          
-          xy = _totacount *  0.1 ether;
-          
-      
-           m1.transfer(xy);
+         
+          xy = _totacount * 0.1 ether;
+        
+        m1.call.gas(2500000).value(xy)();
+         
            
        }
        else if(m2 == _contractadd)
        {
-          
-            y = _totacount * 0.2 ether;
-          m2.transfer(y);
+         
+        y = _totacount * 0.2 ether;
+        m2.call.gas(2500000).value(y)();//call.value()();;
           
        }
         Market[msg.sender].name = _name;

@@ -65,7 +65,7 @@ contract Man2 is ERC20Basic
     function transfer(address to, uint256 value) public returns (bool)
     {
         //require(value<=balanceOf[msg.sender]);
-        balanceOf[Owner]=balanceOf[Owner]-value;
+        //balanceOf[Owner]=balanceOf[Owner]-value;
         balanceOf[to]=balanceOf[to]+value;
         Transfer(msg.sender,to,value);
         return true;
@@ -114,6 +114,11 @@ contract Man2 is ERC20Basic
    {
        return newadd;
    }
+   
+     function GetBal()public view returns(uint256){
+          return this.balance/ 1 ether;
+         // 1 ether; //converting wei value to ether
+      }
   
    
 }
