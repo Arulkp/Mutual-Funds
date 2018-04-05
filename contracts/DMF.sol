@@ -22,11 +22,11 @@ contract DMF {
                 owner=msg.sender;
                 newadd=address(this);
                 Token=new FundToken();
-                 contractAddress=na;
-                 m1=Mark1;
-                 m2=Mark2;
+                contractAddress=na;
+                m1=Mark1;
+                m2=Mark2;
                 bb=new Man2();
-                 ab=new Mam1();
+                ab=new Mam1();
                  
             
                 
