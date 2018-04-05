@@ -85,9 +85,15 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.18;\r\n\r\n\r\n/**\r\n * @title ERC20Basic\r\n * @dev Simpler version of ERC20 interface\r\n * @dev see https://github.com/ethereum/EIPs/issues/179\r\n */\r\ncontract ERC20Basic {\r\n  function totalSupply() public view returns (uint256);\r\n  function balanceOf(address who) public view returns (uint256);\r\n  function transfer(address to, uint256 value) public returns (bool);\r\n  event Transfer(address indexed from, address indexed to, uint256 value);\r\n}",
+<<<<<<< HEAD
+  "sourcePath": "C:\\Users\\arumugam.0918\\Desktop\\Mutual-Funds\\contracts\\ERC20Basic.sol",
+  "ast": {
+    "absolutePath": "/C/Users/arumugam.0918/Desktop/Mutual-Funds/contracts/ERC20Basic.sol",
+=======
   "sourcePath": "C:\\Users\\Balavignesh.0856\\Desktop\\OPTIMUS\\Mutual-Funds\\contracts\\ERC20Basic.sol",
   "ast": {
     "absolutePath": "/C/Users/Balavignesh.0856/Desktop/OPTIMUS/Mutual-Funds/contracts/ERC20Basic.sol",
+>>>>>>> 8521471a65897294abcbbbfd3d98305b3b9bbb0e
     "exportedSymbols": {
       "ERC20Basic": [
         74
@@ -468,7 +474,11 @@
     "src": "0:457:1"
   },
   "legacyAST": {
+<<<<<<< HEAD
+    "absolutePath": "/C/Users/arumugam.0918/Desktop/Mutual-Funds/contracts/ERC20Basic.sol",
+=======
     "absolutePath": "/C/Users/Balavignesh.0856/Desktop/OPTIMUS/Mutual-Funds/contracts/ERC20Basic.sol",
+>>>>>>> 8521471a65897294abcbbbfd3d98305b3b9bbb0e
     "exportedSymbols": {
       "ERC20Basic": [
         74
@@ -854,5 +864,13 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
+<<<<<<< HEAD
   "updatedAt": "2018-04-05T11:36:46.442Z"
+=======
+<<<<<<< HEAD
+  "updatedAt": "2018-04-05T09:47:15.150Z"
+=======
+  "updatedAt": "2018-04-05T10:42:03.118Z"
+>>>>>>> 8521471a65897294abcbbbfd3d98305b3b9bbb0e
+>>>>>>> 716acafc0f4d4542a5dffca3d80a8d434b4acbba
 }
