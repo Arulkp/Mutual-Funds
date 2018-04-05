@@ -8,7 +8,7 @@ contract DMF {
 //rketToken1 public a;
             address public m1;
             address public m2;
-            address[] public contractADDD;
+            
            Mam1 ab;
            Man2 bb;
            uint256 public xy;
@@ -27,8 +27,7 @@ contract DMF {
                  m2=Mark2;
                 bb=new Man2();
                  ab=new Mam1();
-                 contractADDD.push(Mark1);
-                 contractADDD.push(Mark2);
+                 
             
                 
             }
@@ -245,17 +244,17 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
        if( m1 == _contractadd)
        
        {
-          // uint256  m1rate= 0.1 ether;
-          xy = _totacount * cost;
-          address a1 = contractADDD[0];
+          
+          xy = _totacount *  0.1 ether;
+          
       
-           a1.transfer(xy);
+           m1.transfer(xy);
            
        }
        else if(m2 == _contractadd)
        {
-          // uint256  m2rate= 0.2 ether;
-            y = _totacount * cost;
+          
+            y = _totacount * 0.2 ether;
           m2.transfer(y);
           
        }
