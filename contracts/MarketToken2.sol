@@ -65,7 +65,7 @@ contract Man2 is ERC20Basic
     function transfer(address to, uint256 value) public returns (bool)
     {
         //require(value<=balanceOf[msg.sender]);
-        balanceOf[Owner]=balanceOf[Owner]-value;
+        //balanceOf[Owner]=balanceOf[Owner]-value;
         balanceOf[to]=balanceOf[to]+value;
         Transfer(msg.sender,to,value);
         return true;
