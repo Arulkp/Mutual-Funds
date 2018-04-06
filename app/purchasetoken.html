@@ -6,7 +6,7 @@
  
     <script src="../app.js"></script>
     </head>
-    <body onload="rate(),rate2();"><header>
+    <body><header>
             <nav>
                 <ul>
               <div style="float:right"> <li><a href="../app/portfolio.html" class="about-marker active">BACK TO PORTFOLIO</a></li></div>
@@ -56,7 +56,7 @@
             
             </div>
         </center>
-            <button class="btn btn-small btn-yellow btn-buy"  onclick="App.purchase();">Purchase Tokens</button>
+            <button class="btn btn-small btn-yellow btn-buy"  onclick="App.purchases();">Purchase Tokens</button>
      </div>
     </center>
     </div>
@@ -74,14 +74,7 @@ function converts(math)
   X1 = document.getElementById('id2').value * 0.2;
   document.getElementById('idx1').value = X1;
 }
-function rate(){
-var r=0.1
-var a=document.getElementById("tor").value=r;
-}
-function rate2(){
-var s=0.2
-var a=document.getElementById("tor1").value=s;
-}
+
 </script>
 
 </body>
