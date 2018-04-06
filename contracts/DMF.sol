@@ -8,7 +8,6 @@ contract DMF {
 //rketToken1 public a;
             address public m1;
             address public m2;
-           
            Mam1 ab;
            Man2 bb;
            uint256 public xy;

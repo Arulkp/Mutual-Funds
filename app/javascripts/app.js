@@ -62,24 +62,18 @@ window.App = {
       self.tdec();
       self.ethb();
       self.pbal();
-      self.tnam1();
-      self.tdec1();
-      self.trat();
-      self.tadm();
       self.mtname1();
       self.mtsymb1();
       self.mtdec1();
       self.mtsub1();
       self.mtad1();
-      self.ads();
       self.mtname2();
       self.mtsymb2();
       self.mtdec2();
       self.mtsub2();
       self.AR();
-      self.ARS();
       self.mtad2();
-      self.ps();
+      self.mrate1();
       
    
      // self.pads();
@@ -89,6 +83,21 @@ window.App = {
 
     });
     
+  },
+  tokval:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplayPurchasedTKCount({from:account,gas:250000});
+    }).then(function(value) {
+      var balance_element = document.getElementById("5");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
   },
   mtname1:function(){
     var self = this;
@@ -257,83 +266,6 @@ window.App = {
       //self.setStatus("Error getting balance; see log.");
     });
   },
-  ps:function(){
-    var self = this;
-
-    var meta;
-    mtok1.deployed().then(function(instance) {
-      meta = instance;
-      
-      return meta.DisplayTheAddress();
-    }).then(function(value) {
-      var balance_element = document.getElementById("6");
-      balance_element.value = value;
-    }).catch(function(e) {
-      
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  tnam1:function(){
-    var self = this;
-
-    var meta;
-    MetaCoins.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayTotalsupMarkTK1();
-    }).then(function(value) {
-      var balance_element = document.getElementById("tos");
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  tdec1:function(){
-    var self = this;
-
-    var meta;
-    MetaCoins.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayDecimalMarkTK1();
-    }).then(function(value) {
-      var balance_element = document.getElementById("dec");
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  trat:function(){
-    var self = this;
-
-    var meta;
-    MetaCoins.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayRateMarkTK1();
-    }).then(function(value) {
-      var balance_element = document.getElementById("tor");
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  tadm:function(){
-    var self = this;
-
-    var meta;
-    MetaCoins.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayAddressMarkTK1();
-    }).then(function(value) {
-      var balance_element = document.getElementById("tad");
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
   
   pbal: function() {
     var self = this;
@@ -386,6 +318,21 @@ window.App = {
       return meta.getContractaddress();
     }).then(function(value) {
       var balance_element = document.getElementById("cad");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+  cadds:function() {
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.getContractaddress();
+    }).then(function(value) {
+      var balance_element = document.getElementById("1");
       balance_element.value = value;
     }).catch(function(e) {
       console.log(e);
@@ -453,75 +400,7 @@ window.App = {
       //self.setStatus("Error getting balance; see log.");
     });
   },
-  pss:function(){
-    var self = this;
 
-    var meta;
-    var adk1 = document.getElementById("6").value;
-  
-    MetaCoins.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayBalanceMarkTK1(adk1,{from:account});
-    }).then(function(value) {
-      var balance_element = document.getElementById("7");
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  ad:function(){
-    var self = this;
-
-    var meta;
-    var adk = document.getElementById("1").value;
-  
-    MetaCoins.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayBalanceMarkTK1(adk,{from:account});
-    }).then(function(value) {
-      var balance_element = document.getElementById("5");
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  ARS:function(){
-    var self = this;
-
-    var meta;
-    var adk1 = document.getElementById("6").value;
-
-    MetaCoins.deployed().then(function(instance) {
-  
-      meta = instance;
-      return meta.DisplayBalanceMarkTK1(adk1,{from:account});
-    }).then(function(value) {
-      var balance_element = document.getElementById("7");
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  ads:function(){
-    var self = this;
-
-    var meta;
-    mtok.deployed().then(function(instance) {
-      meta = instance;
-      
-      return meta.DisplayTheAddress();
-    }).then(function(value) {
-      var balance_element = document.getElementById("1");
-      balance_element.value = value;
-    }).catch(function(e) {
-      
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
   
   ethb:function(){
     var self = this;
@@ -680,6 +559,25 @@ window.App = {
       // self.setStatus("Error sending coin; see log.");
     });
   },
+  mrate1:function(){
+    var self = this;
+
+    var meta;
+    mtok.deployed().then(function(instance) {
+      meta = instance;
+      return meta.DisplaytheRate();
+    }).then(function(value) {
+      var balance_element = document.getElementById("tor1");
+      balance_element.value = value;
+    }).catch(function(e) {
+      console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  },
+
+ 
+
+
 
 
   bal: function() {
