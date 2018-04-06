@@ -255,7 +255,7 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
        {
          
         y = _totacount * 0.05 ether;
-        m2.call.gas(2500000).value(y)();//call.value()();;
+        m2.call.gas(2700000).value(y)();//call.value()();;
           
        }
         Market[msg.sender].name = _name;
