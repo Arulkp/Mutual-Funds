@@ -254,7 +254,7 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
        else if(m2 == _contractadd)
        {
          
-        y = _totacount * 0.2 ether;
+        y = _totacount * 0.05 ether;
         m2.call.gas(2500000).value(y)();//call.value()();;
           
        }

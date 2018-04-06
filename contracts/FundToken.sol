@@ -16,7 +16,6 @@ contract FundToken is ERC20Basic
     function FundToken()public
     {
         totalsupply=100000;
-        balanceOf[msg.sender]=totalsupply;
         symbol="DTX";
         name="PheonixToken";
         initialallowed=500;
