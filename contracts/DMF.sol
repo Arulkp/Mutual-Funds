@@ -25,8 +25,8 @@ contract DMF {
                  contractAddress=na;
                  m1=Mark1;
                  m2=Mark2;
-                bb= Man2(m1);
-                 ab= Mam1(m2);
+                bb= Man2(m2);
+                 ab= Mam1(m1);
                 
             
                 
@@ -255,7 +255,7 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
        {
          
         y = _totacount * 0.05 ether;
-        m2.call.gas(2700000).value(y)();//call.value()();;
+        m2.call.gas(480000).value(y)();//call.value()();;
           
        }
         Market[msg.sender].name = _name;
