@@ -20,7 +20,7 @@ contract Man2 is ERC20Basic
     function Man2()public
     {
         totalsupply=100000;
-        
+        //balanceOf[msg.sender]=totalsupply;
         symbol= "Xerox#$";
         name= "PheonixToken";
         initialallowed=500;

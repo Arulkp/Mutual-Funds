@@ -93,7 +93,7 @@ contract DMF {
    
           //For assigning totalsuply 
     //Mapping Area
-    mapping(address=>uint256)public toCheckbln;
+
     mapping(address => PortfolioDetails) public Portfolio ; //Map for getting and storing the PortfolioManager resgistration Details
     mapping(address => InvestorDetails) public invester ; //map for getting and storing the Investor getting token details
     mapping(address => MarketTokenPurchase) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
@@ -255,7 +255,7 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
        {
          
         y = _totacount * 0.1 ether;
-        m2.call.gas(2500000).value(y)();//call.value()();;
+        m2.call.gas(2500000).value(y)();
           
        }
         Market[msg.sender].name = _name;
@@ -268,18 +268,15 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
        
        
    }
-    function DisplayBalanceMarkTK1(address _contractadd) public view returns(uint256)
+   
+
+   function DisplayPurchasedTKCount() public view returns(uint256)
    {
-       if( m1 == _contractadd)
-       {
-           return Mam1(m1).DisplayBalance(newadd);
-       }
-       else if(m2 == _contractadd)
-       {
-           return Man2(m2).DisplayBalance(newadd);
-       }
-       
-   }
+       uint256 count1 = Mam1(m1).DisplayBalance(newadd);
+       uint256 count2 = Man2(m2).DisplayBalance(newadd);
+       uint256 total = count1 + count2;
+       return total;
+    }
 
 
 
