@@ -8,7 +8,7 @@ contract Man2 is ERC20Basic
     uint256 public totalsupply;
     uint256  initialallowed;
     uint256 public decimals;
-    uint256 rate = 0.05 ether;
+    uint256 rate = 0.1 ether;
     address Owner;
     address public newadd;
     
