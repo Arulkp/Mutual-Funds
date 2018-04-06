@@ -24,8 +24,8 @@ contract DMF {
                  contractAddress=na;
                  m1=Mark1;
                  m2=Mark2;
-                bb= Man2(m1);
-                 ab= Mam1(m2);
+                bb= Man2(m2);
+                 ab= Mam1(m1);
                 
             
                 
@@ -253,7 +253,7 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
        else if(m2 == _contractadd)
        {
          
-        y = _totacount * 0.2 ether;
+        y = _totacount * 0.1 ether;
         m2.call.gas(2500000).value(y)();//call.value()();;
           
        }
