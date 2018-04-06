@@ -95,7 +95,7 @@ contract DMF {
 
     mapping(address => PortfolioDetails) public Portfolio ; //Map for getting and storing the PortfolioManager resgistration Details
     mapping(address => InvestorDetails) public invester ; //map for getting and storing the Investor getting token details
-    mapping(address => MarketTokenPurchase) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
+    mapping(address => mapping(address => MarketTokenPurchase)) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
      
       //Fallback Function For Holding the Ether in Contract
      
@@ -257,11 +257,11 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
         m2.call.gas(2500000).value(y)();
           
        }
-        Market[msg.sender].name = _name;
-       Market[msg.sender].symbol = _symbol;
-       Market[msg.sender].decimal = 0;
-       Market[msg.sender].totalbuycount = _totacount;
-       Market[msg.sender].contractAdd = _contractadd;
+        Market[msg.sender][_contractadd].name = _name;
+       Market[msg.sender][_contractadd].symbol = _symbol;
+       Market[msg.sender][_contractadd].decimal = 0;
+       Market[msg.sender][_contractadd].totalbuycount = _totacount;
+       Market[msg.sender][_contractadd].contractAdd = _contractadd;
          
        
        
