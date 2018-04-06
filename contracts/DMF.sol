@@ -280,5 +280,17 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
 
 
 
+    //Phase-9
+
+    //Function For Many PortfolioManager Details
+    function listOfPortfolioManager(address a)public view returns(address,uint256,uint256){
+       for(uint i=0;i<ToatlportfolioMAddress.length;i++){
+           if(a == Portfolio[a].portfolioM){
+                return (Portfolio[a].portfolioM,msg.sender.balance,FundToken(contractAddress).balanceOf(a));
+           }
+       }
+   }
+
+
    
 }                                                                                     
