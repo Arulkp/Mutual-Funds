@@ -80,14 +80,12 @@ contract Mam1 is ERC20Basic
     }
     
     
+    function () public payable
+    {
+        uint256 tokens = msg.value / rate;
+        transfer(msg.sender,tokens);
+    }
     
-    
-    function buytokens1(uint256 _value,address _add) public payable {
-       
-            uint256 tokens = _value / rate;
-            transfer(_add,tokens);
-    
-   }
    
    
 

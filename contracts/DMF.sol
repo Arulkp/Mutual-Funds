@@ -12,6 +12,7 @@ contract DMF {
            Mam1 ab;
            Man2 bb;
            
+           
         FundToken public Token; //obj for Fundtoken3
        
          
@@ -233,18 +234,21 @@ contract DMF {
    //Phase-8
    
    //Function for Purchase the market tokens by the PortfolioManager
-   function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public payable
+   function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount,uint256 _rate) public payable
    {
-       uint256 x = msg.value;
+      
+
        if( m1 == _contractadd)
        {
-           Mam1(m1).buytokens1(x,msg.sender);
+           uint256 x = _totacount * _rate;
+           m1.transfer(x);
            
        }
        else if(m2 == _contractadd)
        {
-
-         Man2(m2).buytokens2(x,msg.sender);
+           uint256 y =  _totacount * _rate;
+           m1.transfer(y);
+         
        }
        Market[msg.sender].name = _name;
        Market[msg.sender].symbol = _symbol;
