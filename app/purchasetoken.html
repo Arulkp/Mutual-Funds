@@ -12,7 +12,7 @@
               <div style="float:right"> <li><a href="../app/portfolio.html" class="about-marker active">BACK TO PORTFOLIO</a></li></div>
                  </ul></nav>  
         </header>   <br><br></body>
-        <body class="bo">
+        <body class="bo" onload="ref()">
            
             <center>
    
@@ -47,7 +47,7 @@
         <p>Token Symbol: <input type="text1" id="sym" readonly/>
         <p>Token Decimals: <input type="text1" id="dec" readonly/></p>
         <p>Total Supply: <input type="text1" id="tos" readonly/></p>
-        <p>Rate in wei(value) <input type="text1" id="tor" readonly/></p>
+        <p>Rate in wei(value) <input type="text1" id="tors" readonly/></p>
         <p>Token Address: <input type="text1" id="tad" readonly/></p>
         <p>Token Value:
         <input type="text1" id="id02" onkeyup="convert('c')" value="" name="Token_value" required><br></p>
@@ -73,6 +73,10 @@ function converts(math)
 {
   X1 = document.getElementById('id2').value * 0.1;
   document.getElementById('idx1').value = X1;
+}
+function ref(){
+    document.getElementById("tors").value=0.1;
+    document.getElementById("tor1").value=0.1;
 }
 
 </script>

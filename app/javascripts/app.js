@@ -73,7 +73,6 @@ window.App = {
       self.mtsub2();
       self.AR();
       self.mtad2();
-      self.mrate1();
       
    
      // self.pads();
@@ -559,22 +558,7 @@ window.App = {
       // self.setStatus("Error sending coin; see log.");
     });
   },
-  mrate1:function(){
-    var self = this;
-
-    var meta;
-    mtok.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplaytheRate();
-    }).then(function(value) {
-      var balance_element = document.getElementById("tor1");
-      balance_element.value = value;
-    }).catch(function(e) {
-      console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-
+ 
  
 
 
