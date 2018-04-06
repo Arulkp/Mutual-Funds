@@ -20,7 +20,7 @@ contract Mam1 is ERC20Basic
     function Mam1()public
     {
         totalsupply=100000;
-        
+       // balanceOf[msg.sender]=totalsupply;
         symbol= "FETX";
         name= "DostrixToken";
         initialallowed=500;
