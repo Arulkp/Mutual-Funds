@@ -94,9 +94,9 @@ contract DMF {
     //Mapping Area
 
     mapping(address => PortfolioDetails) public Portfolio ; //Map for getting and storing the PortfolioManager resgistration Details
-    mapping(address => InvestorDetails) public invester ; //map for getting and storing the Investor getting token details
+    mapping(address => mapping( address =>  InvestorDetails)) public invester ; //map for getting and storing the Investor getting token details
     mapping(address => mapping(address => MarketTokenPurchase)) public Market; //Map for getting the MarketToken Purchase details by the Portfoliomanager
-     
+    mapping(address => uint256) public PM_soldTK_Ether; //Portfoliomanager Sold Tokens Ether 
       //Fallback Function For Holding the Ether in Contract
      
 
@@ -104,7 +104,8 @@ contract DMF {
         //Function For PortfolioManager Resgistration
         function PortfolioReg() public payable{
         Portfolio[msg.sender].portfolioM= msg.sender;
-        Portfolio[msg.sender].Eth=Portfolio[msg.sender].Eth + msg.value;
+        uint256 add = msg.value / 1 ether;
+        Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth + add;
         GetFundToken(msg.value);
         }
         
@@ -137,15 +138,17 @@ contract DMF {
       //Phase-3
 
       //Function For Buying the FundTokens by the Investor From the PortfolioManager
-      function InvesterGetToken() public payable
+      function InvesterGetToken(address _portfolioadd_) public payable
       {
           uint256 tokens = msg.value / cost;
           InvestersTotalToken += tokens;
           FundToken(contractAddress).transferFrom(ToatlportfolioMAddress[0],msg.sender,tokens);
           TotalInvestorAddress.push(msg.sender);
-          invester[msg.sender].buyer = msg.sender;
-          invester[msg.sender].Eth = msg.value;
-          invester[msg.sender].TokenCount = tokens;
+          invester[msg.sender][_portfolioadd_].buyer = msg.sender;
+          uint256 test = msg.value / 1 ether;
+          invester[msg.sender][_portfolioadd_].Eth = test;
+          invester[msg.sender][_portfolioadd_].TokenCount = tokens;
+          PM_soldTK_Ether[_portfolioadd_] = PM_soldTK_Ether[_portfolioadd_] + test;
           
       }
     
@@ -187,7 +190,7 @@ contract DMF {
     {
         for(uint256 i=0;i<TotalInvestorAddress.length;i++)
         {
-            uint256 b = invester[TotalInvestorAddress[i]].TokenCount * (dividendToken - PortfolioManagerprofit);
+            uint256 b = invester[TotalInvestorAddress[i]][msg.sender].TokenCount * (dividendToken - PortfolioManagerprofit);
              uint256 a =  b  / InvestersTotalToken;
            FundToken(contractAddress).mintToken(TotalInvestorAddress[i],a);
            FundToken(contractAddress).tokenDecrease(msg.sender,a);
@@ -206,9 +209,9 @@ contract DMF {
       //Phase-6 
       
       //Function for Sell The Tokens to the PortfolioManager
-    function ReturnTokenToPortfolioManager(uint256 value)public payable{
+    function ReturnTokenToPortfolioManager(address _portfolioadd_,uint256 value)public payable{
      
-        FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
+        FundToken(contractAddress).transferFrom(msg.sender,_portfolioadd_,value);
         uint256 TR = value * cost;
          address x = msg.sender;
          x.transfer(TR);
@@ -219,7 +222,10 @@ contract DMF {
    
 
    function listOfPortfolioManager()public view returns(address){
-       return ToatlportfolioMAddress[0];
+       for(uint256 i=0;i<ToatlportfolioMAddress.length;i++)
+       {
+           return ToatlportfolioMAddress[i];
+       }
    }
 
 
@@ -237,36 +243,18 @@ contract DMF {
 function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
    {
        
-  
-    
-
-       if( m1 == _contractadd)
-       
-       {
-         
-          xy = _totacount * 0.1 ether;
-        
+        uint256 howmuchEther = Portfolio[msg.sender].Eth + PM_soldTK_Ether[msg.sender];
+        uint256 PurchaseTkTotalRate = _totacount * 0.01 ether;
+        uint256 calculations = PurchaseTkTotalRate / 1 ether;
+        require(howmuchEther > calculations);
+        xy = _totacount * 0.1 ether;
         m1.call.gas(2500000).value(xy)();
-         
-           
-       }
-       else if(m2 == _contractadd)
-       {
-         
-        y = _totacount * 0.1 ether;
-        m2.call.gas(2500000).value(y)();
-          
-       }
         Market[msg.sender][_contractadd].name = _name;
-       Market[msg.sender][_contractadd].symbol = _symbol;
-       Market[msg.sender][_contractadd].decimal = 0;
-       Market[msg.sender][_contractadd].totalbuycount = _totacount;
-       Market[msg.sender][_contractadd].contractAdd = _contractadd;
-         
-       
-       
-       
-   }
+        Market[msg.sender][_contractadd].symbol = _symbol;
+        Market[msg.sender][_contractadd].decimal = 0;
+        Market[msg.sender][_contractadd].totalbuycount = _totacount;
+        Market[msg.sender][_contractadd].contractAdd = _contractadd;
+    }
    
 
    function DisplayPurchasedTKCount() public view returns(uint256)
@@ -291,5 +279,29 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
    }
 
 
-   
+  /**
+  
+       if( m1 == _contractadd)
+       
+       {
+         
+          xy = _totacount * 0.1 ether;
+        
+        m1.call.gas(2500000).value(xy)();
+         
+           
+       }
+       else if(m2 == _contractadd)
+       {
+         
+        y = _totacount * 0.1 ether;
+        m2.call.gas(2500000).value(y)();
+          
+       }
+        Market[msg.sender][_contractadd].name = _name;
+       Market[msg.sender][_contractadd].symbol = _symbol;
+       Market[msg.sender][_contractadd].decimal = 0;
+       Market[msg.sender][_contractadd].totalbuycount = _totacount;
+       Market[msg.sender][_contractadd].contractAdd = _contractadd;
+       */ 
 }                                                                                     
