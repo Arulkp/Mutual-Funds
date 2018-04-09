@@ -68,33 +68,23 @@
           <p><center><b>Enter Ether Value:</b></p>
             <input type="text" id="reg">  
         
-            <button class="buttons button1" onclick="App.register();App.pmdetail();">Stake</button>
+            <button class="buttons button1" onclick="App.register();">Stake</button>
         </div>
     </section>
       
       
       
         <br><br><br><br> <br><br><br><br> <br><br><br><br> <br><br><br><br><br><br> <br><br><br><br>
-        <div class>
-                <section id="tokes" class="section">
-                    <h2>PORTFOLIO ACCOUNT</h2>
-                                <form method="post" action="Process">
-         
-           
-                                        <table id="pTable">
-                                            
-                                            <tr>
-                                                <th><h2>Portfolio Address</h2></th>
-                                                <th><h2>Ether Value</h2></th>
-                                                <th>FundToken</th>
-                                             
-                                            </tr>
-                                           
-                                        </table>
-                                        <br/>
-                                    </form>
-                </div>     
-          </section>
+     
+        <div>
+        <section id="tokes" class="section">
+            <h2>PORTFOLIO ACCOUNT</h2>
+        <div class="container">
+                <div class="button button2">
+            Portfolio Address: <input type="text" id="ads" readonly>
+            Available Tokens<input type="text" id="at" readonly>
+        </div>     
+  </section>
   <br><br><br><br><br><br><br><br><br><br><br><br><br>
   <section id="DIVS" class="section" >
       <h2>DIVIDENDS</h2>
@@ -121,29 +111,6 @@
          
           <button   class="buttons button1" onclick="App.cadds();App.tokval()">VIEWDETAILS</button>
      </div> 
-     <script>
-        function arrangeSno()
-            {
-                   var i=0;
-                    $('#pTable tr').each(function() {
-                        $(this).find(".sNo").html(i);
-                        i++;
-                     });
-            }
-        $(document).ready(function(){
-        $('#addButId').click(function(){
-                           var sno=$('#pTable tr').length;
-                           trow=  "<tr><td class='sNo'>"+sno+"</td>"+
-                                   "<td><input name='Portfolio Address' type='text'size=70></td>"+
-                                   "<td><input name='Ether Value' type='text' size=25></td>"+
-                                   "<td><input name='FundTokens' type='text' size=25></td></tr>";
-                               
-                              $('#pTable').append(trow);
-                            });
-                             });
-         
-        
-</script>
 
 
     
