@@ -106,6 +106,7 @@ contract DMF {
         Portfolio[msg.sender].portfolioM= msg.sender;
         uint256 add = msg.value / 1 ether;
         Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth + add;
+        PM_soldTK_Ether[msg.sender] = PM_soldTK_Ether[msg.sender] + add;
         GetFundToken(msg.value);
         }
         
@@ -240,10 +241,10 @@ contract DMF {
    //Function for Purchase the market tokens by the PortfolioManager
  
 
-function Purchasingtoken(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
+function PurchasingMarket1token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
    {
        
-        uint256 howmuchEther = Portfolio[msg.sender].Eth + PM_soldTK_Ether[msg.sender];
+        uint256 howmuchEther = PM_soldTK_Ether[msg.sender];
         uint256 PurchaseTkTotalRate = _totacount * 0.01 ether;
         uint256 calculations = PurchaseTkTotalRate / 1 ether;
         require(howmuchEther > calculations);
@@ -255,7 +256,20 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
         Market[msg.sender][_contractadd].totalbuycount = _totacount;
         Market[msg.sender][_contractadd].contractAdd = _contractadd;
     }
-   
+   function PurchasingMarket2token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
+   {
+        uint256 howmuchEther =  PM_soldTK_Ether[msg.sender];
+        uint256 PurchaseTkTotalRate = _totacount * 0.01 ether;
+        uint256 calculations = PurchaseTkTotalRate / 1 ether;
+        require(howmuchEther > calculations);
+        y = _totacount * 0.1 ether;
+        m2.call.gas(2500000).value(y)();
+        Market[msg.sender][_contractadd].name = _name;
+        Market[msg.sender][_contractadd].symbol = _symbol;
+        Market[msg.sender][_contractadd].decimal = 0;
+        Market[msg.sender][_contractadd].totalbuycount = _totacount;
+        Market[msg.sender][_contractadd].contractAdd = _contractadd;
+   }
 
    function DisplayPurchasedTKCount() public view returns(uint256)
    {
@@ -279,29 +293,5 @@ function Purchasingtoken(address _contractadd,string _name,string _symbol,uint25
    }
 
 
-  /**
   
-       if( m1 == _contractadd)
-       
-       {
-         
-          xy = _totacount * 0.1 ether;
-        
-        m1.call.gas(2500000).value(xy)();
-         
-           
-       }
-       else if(m2 == _contractadd)
-       {
-         
-        y = _totacount * 0.1 ether;
-        m2.call.gas(2500000).value(y)();
-          
-       }
-        Market[msg.sender][_contractadd].name = _name;
-       Market[msg.sender][_contractadd].symbol = _symbol;
-       Market[msg.sender][_contractadd].decimal = 0;
-       Market[msg.sender][_contractadd].totalbuycount = _totacount;
-       Market[msg.sender][_contractadd].contractAdd = _contractadd;
-       */ 
 }                                                                                     
