@@ -222,7 +222,7 @@ contract DMF {
     
    
 
-   function listOfPortfolioManager()public view returns(address){
+   function PortfolioManagerList()public view returns(address){
        for(uint256 i=0;i<ToatlportfolioMAddress.length;i++)
        {
            return ToatlportfolioMAddress[i];
@@ -267,7 +267,7 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         Market[msg.sender][_contractadd].name = _name;
         Market[msg.sender][_contractadd].symbol = _symbol;
         Market[msg.sender][_contractadd].decimal = 0;
-        Market[msg.sender][_contractadd].totalbuycount = _totacount;
+        Market[msg.sender][_contractadd].totalbuycount = _totacount; 
         Market[msg.sender][_contractadd].contractAdd = _contractadd;
    }
 
@@ -287,7 +287,7 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
     function listOfPortfolioManager(address a)public view returns(address,uint256,uint256){
        for(uint i=0;i<ToatlportfolioMAddress.length;i++){
            if(a == Portfolio[a].portfolioM){
-                return (Portfolio[a].portfolioM,msg.sender.balance,FundToken(contractAddress).balanceOf(a));
+                return (Portfolio[a].portfolioM,PM_soldTK_Ether[msg.sender],FundToken(contractAddress).balanceOf(a));
            }
        }
    }
