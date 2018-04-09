@@ -210,9 +210,9 @@ contract DMF {
       //Phase-6 
       
       //Function for Sell The Tokens to the PortfolioManager
-    function ReturnTokenToPortfolioManager(address _portfolioadd_,uint256 value)public payable{
+     function ReturnTokenToPortfolioManager(uint256 value)public payable{
      
-        FundToken(contractAddress).transferFrom(msg.sender,_portfolioadd_,value);
+        FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
         uint256 TR = value * cost;
          address x = msg.sender;
          x.transfer(TR);
