@@ -33,41 +33,16 @@
     <input type="text1" id="idx1"  value=""  name="Ether_value" required><br></p>
         
         </div>
-        <button class="btn btn-small btn-yellow btn-buy"  onclick="App.purchase();">Purchase Tokens</button>
+        <button class="btn btn-small btn-yellow btn-buy"  onclick="App.purchases();">Purchase Tokens</button>
 
     </div>
 </center>
 </div>
 
-<div class="ico">
-        <center>
-        <div class="col-xs-12 col-ms-6 col-sm-6 col-md-3">
-        <div class="ico-content"> <br>
-        <p>Token Name: <input type="text1" id="name" readonly/>
-        <p>Token Symbol: <input type="text1" id="sym" readonly/>
-        <p>Token Decimals: <input type="text1" id="dec" readonly/></p>
-        <p>Total Supply: <input type="text1" id="tos" readonly/></p>
-        <p>Rate in wei(value) <input type="text1" id="tors" readonly/></p>
-        <p>Token Address: <input type="text1" id="tad" readonly/></p>
-        <p>Token Value:
-        <input type="text1" id="id02" onkeyup="convert('c')" value="" name="Token_value" required><br></p>
-           <p>Ether value:
-        <input type="text1" id="id03"  value=""  name="Ether_value" required><br></p>
-            
-            </div>
-        </center>
-            <button class="btn btn-small btn-yellow btn-buy"  onclick="App.purchases();">Purchase Tokens</button>
-     </div>
-    </center>
-    </div>
 
 <script>
-var x;
-function convert(math)
-{
-  x = document.getElementById('id02').value * 0.1;
-  document.getElementById('id03').value = x;
-}
+
+
 var X1;
 function converts(math)
 {
@@ -75,8 +50,8 @@ function converts(math)
   document.getElementById('idx1').value = X1;
 }
 function ref(){
-    document.getElementById("tors").value=0.1;
-    document.getElementById("tor1").value=0.1;
+    var y=0.1;
+    document.getElementById("tor1").value=y;
 }
 
 </script>
