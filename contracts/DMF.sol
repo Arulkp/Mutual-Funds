@@ -139,17 +139,17 @@ contract DMF {
       //Phase-3
 
       //Function For Buying the FundTokens by the Investor From the PortfolioManager
-      function InvesterGetToken(address _portfolioadd_) public payable
+      function InvesterGetToken() public payable
       {
           uint256 tokens = msg.value / cost;
           InvestersTotalToken += tokens;
           FundToken(contractAddress).transferFrom(ToatlportfolioMAddress[0],msg.sender,tokens);
           TotalInvestorAddress.push(msg.sender);
-          invester[msg.sender][_portfolioadd_].buyer = msg.sender;
+          invester[msg.sender][ToatlportfolioMAddress[0]].buyer = msg.sender;
           uint256 test = msg.value / 1 ether;
-          invester[msg.sender][_portfolioadd_].Eth = test;
-          invester[msg.sender][_portfolioadd_].TokenCount = tokens;
-          PM_soldTK_Ether[_portfolioadd_] = PM_soldTK_Ether[_portfolioadd_] + test;
+          invester[msg.sender][ToatlportfolioMAddress[0]].Eth = test;
+          invester[msg.sender][ToatlportfolioMAddress[0]].TokenCount = tokens;
+          PM_soldTK_Ether[ToatlportfolioMAddress[0]] = PM_soldTK_Ether[ToatlportfolioMAddress[0]] + test;
           
       }
     
@@ -248,8 +248,8 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         uint256 PurchaseTkTotalRate = _totacount * 0.01 ether;
         uint256 calculations = PurchaseTkTotalRate / 1 ether;
         require(howmuchEther > calculations);
-        xy = _totacount * 0.1 ether;
-        m1.call.gas(2500000).value(xy)();
+        //xy = _totacount * 0.1 ether;
+        m1.call.gas(2500000).value(PurchaseTkTotalRate)();
         Market[msg.sender][_contractadd].name = _name;
         Market[msg.sender][_contractadd].symbol = _symbol;
         Market[msg.sender][_contractadd].decimal = 0;
@@ -262,8 +262,8 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         uint256 PurchaseTkTotalRate = _totacount * 0.01 ether;
         uint256 calculations = PurchaseTkTotalRate / 1 ether;
         require(howmuchEther > calculations);
-        y = _totacount * 0.1 ether;
-        m2.call.gas(2500000).value(y)();
+       // y = _totacount * 0.1 ether;
+        m2.call.gas(2500000).value(PurchaseTkTotalRate)();
         Market[msg.sender][_contractadd].name = _name;
         Market[msg.sender][_contractadd].symbol = _symbol;
         Market[msg.sender][_contractadd].decimal = 0;
