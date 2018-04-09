@@ -74,7 +74,6 @@ window.App = {
       self.AR();
       self.mtad2();
       
-      
    
      // self.pads();
       
@@ -84,27 +83,6 @@ window.App = {
     });
     
   },
-  pmdetail: function() {
-    var res_obj = {};
-  var self = this;
-  var meta;
-  MetaCoins.deployed().then(function(instance) {
-    meta = instance;
-    meta.Pcount().then(function(res,err){
-      for (var i=0;i<res.toNumber();i++){
-        meta.getPortfolioAddress(i).then(function(re,er){
-          //meta.game_number(re).then(function(ress,errr){
-              meta.listOfPortfolioManager(re).then(function(fi,ers){
-                $("#pmdet").append('<tr><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+fi[2]+'</td></tr>')
-              });
-          
-        });
-      }
-    });
-  });
-  
-  },
- 
   tokval:function(){
     var self = this;
 
@@ -564,13 +542,13 @@ window.App = {
       // self.setStatus("Error sending coin; see log.");
     });
   },
-  SEL:function (){
-    var reg_s = $("id04").val();
+  SEL: function (){
+    var reg_s = $("#id04").val();
     var self = this;
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.ReturnTokenToPortfolioManager(reg_s,{from:account});
+      return meta.ReturnTokenToPortfolioManager(reg_s, {from: account});
     }).then(function(result) {
       console.log(result);
       // self.setStatus("Transaction complete!");
