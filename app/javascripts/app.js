@@ -525,7 +525,54 @@ window.App = {
       //self.setStatus("Error getting balance; see log.");
     });
   },
+ mtdetail:function(){
+  var self = this;
 
+  var meta;
+  MetaCoins.deployed().then(function(instance) {
+    meta = instance;
+    return meta.DisplayPurchasedTK1();
+  }).then(function(value) {
+    var balance_element1 = document.getElementById("tads");
+    var balance_element2= document.getElementById("tns");
+    var balance_element3= document.getElementById("tnsy");
+    var balance_element4= document.getElementById("tnde");
+    var balance_element5= document.getElementById("tat");
+    
+    
+    balance_element1.value = value[0];
+    balance_element2.value = value[1];
+    balance_element3.value = value[2];
+  
+  }).catch(function(e) {
+    console.log(e);
+    //self.setStatus("Error getting balance; see log.");
+  });
+},
+mtdetail1:function(){
+  var self = this;
+
+  var meta;
+  MetaCoins.deployed().then(function(instance) {
+    meta = instance;
+    return meta.DisplayPurchasedTK2();
+  }).then(function(value) {
+    var balance_element1 = document.getElementById("tads1");
+    var balance_element2= document.getElementById("tns1");
+    var balance_element3= document.getElementById("tnsy1");
+    var balance_element4= document.getElementById("tnde1");
+    var balance_element5= document.getElementById("tat1");
+    
+    
+    balance_element1.value = value[0];
+    balance_element2.value = value[1];
+    balance_element3.value = value[2];
+  
+  }).catch(function(e) {
+    console.log(e);
+    //self.setStatus("Error getting balance; see log.");
+  });
+},
   invest : function (){
     var reg_e = parseInt($("#id03").val());
     var self = this;
