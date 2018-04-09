@@ -280,6 +280,27 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
     }
 
 
+    function DisplayPurchasedTK1() public view returns(address,string,string,uint256,uint256)
+    {
+     string _nn = Market[msg.sender][m1].name;
+     string _sm = Market[msg.sender][m1].symbol;
+     uint256 _dd =  Market[msg.sender][m1].decimal;
+     uint256 _pp = Market[msg.sender][m1].totalbuycount;
+
+     return(m1,_nn,_sm,_dd,_pp);
+    }
+
+ function DisplayPurchasedTK2() public view returns(address,string,string,uint256,uint256)
+    {
+     string _nn = Market[msg.sender][m2].name;
+     string _sm = Market[msg.sender][m2].symbol;
+     uint256 _dd =  Market[msg.sender][m2].decimal;
+     uint256 _pp = Market[msg.sender][m2].totalbuycount;
+
+     return(m1,_nn,_sm,_dd,_pp);
+    }
+
+
 
     //Phase-9
 
