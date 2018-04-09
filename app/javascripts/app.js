@@ -531,7 +531,7 @@ window.App = {
   var meta;
   MetaCoins.deployed().then(function(instance) {
     meta = instance;
-    return meta.DisplayPurchasedTK1();
+    return meta.DisplayPurchasedTK1({from:account});
   }).then(function(value) {
     var balance_element1 = document.getElementById("tads");
     var balance_element2= document.getElementById("tns");
@@ -543,6 +543,8 @@ window.App = {
     balance_element1.value = value[0];
     balance_element2.value = value[1];
     balance_element3.value = value[2];
+    balance_element4.value = value[3];
+    balance_element5.value = value[4];
   
   }).catch(function(e) {
     console.log(e);
@@ -555,7 +557,7 @@ mtdetail1:function(){
   var meta;
   MetaCoins.deployed().then(function(instance) {
     meta = instance;
-    return meta.DisplayPurchasedTK2();
+    return meta.DisplayPurchasedTK2({from:account});
   }).then(function(value) {
     var balance_element1 = document.getElementById("tads1");
     var balance_element2= document.getElementById("tns1");
@@ -567,6 +569,8 @@ mtdetail1:function(){
     balance_element1.value = value[0];
     balance_element2.value = value[1];
     balance_element3.value = value[2];
+    balance_element4.value = value[3];
+    balance_element5.value = value[4];
   
   }).catch(function(e) {
     console.log(e);
