@@ -73,7 +73,7 @@ window.App = {
       self.mtsub2();
       self.AR();
       self.mtad2();
-       self.pmdetail();
+      
       
    
      // self.pads();
@@ -494,7 +494,7 @@ window.App = {
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.Purchasingtoken(x,y,z,a, {from: account});
+      return meta.PurchasingMarket1token(x,y,z,a, {from: account});
     }).then(function(result) {
       console.log(result);
       // self.setStatus("Transaction complete!");
@@ -515,7 +515,7 @@ window.App = {
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.Purchasingtoken(x,y,z,a, {from: account});
+      return meta.PurchasingMarket2token(x,y,z,a, {from: account});
     }).then(function(result) {
       console.log(result);
       // self.setStatus("Transaction complete!");
@@ -564,13 +564,13 @@ window.App = {
       // self.setStatus("Error sending coin; see log.");
     });
   },
-  SEL: function (){
-    var reg_s = $("#id04").val();
+  SEL:function (){
+    var reg_s = $("id04").val();
     var self = this;
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.ReturnTokenToPortfolioManager(reg_s, {from: account});
+      return meta.ReturnTokenToPortfolioManager(reg_s,{from:account});
     }).then(function(result) {
       console.log(result);
       // self.setStatus("Transaction complete!");
