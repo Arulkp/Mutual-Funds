@@ -297,7 +297,7 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
      uint256 _dd =  Market[msg.sender][m2].decimal;
      uint256 _pp = Market[msg.sender][m2].totalbuycount;
 
-     return(m1,_nn,_sm,_dd,_pp);
+     return(m2,_nn,_sm,_dd,_pp);
     }
 
 
