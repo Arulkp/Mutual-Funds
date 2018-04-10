@@ -73,8 +73,8 @@ window.App = {
       self.mtsub2();
       self.AR();
       self.mtad2();
-      
-   
+      self.pmdetail();
+      self.Imdetail();
      // self.pads();
       
      // self.bal();
@@ -94,7 +94,7 @@ window.App = {
       var balance_element = document.getElementById("5");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -109,7 +109,7 @@ window.App = {
       var balance_element = document.getElementById("name");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -124,7 +124,7 @@ window.App = {
       var balance_element = document.getElementById("sym");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -139,7 +139,7 @@ window.App = {
       var balance_element = document.getElementById("dec");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -154,7 +154,7 @@ window.App = {
       var balance_element = document.getElementById("tos");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -169,7 +169,7 @@ window.App = {
       var balance_element = document.getElementById("tad");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -184,7 +184,7 @@ window.App = {
       var balance_element = document.getElementById("tad1");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -199,7 +199,7 @@ window.App = {
       var balance_element = document.getElementById("name1");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -214,7 +214,7 @@ window.App = {
       var balance_element = document.getElementById("sym1");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -229,7 +229,7 @@ window.App = {
       var balance_element = document.getElementById("dec1");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -244,7 +244,7 @@ window.App = {
       var balance_element = document.getElementById("tos1");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -261,11 +261,54 @@ window.App = {
       balance_element.value = value;
     }).catch(function(e) {
       
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
+  pmdetail: function() {
+    var j=1;
+    var myarray=[];
+  var self = this;
+  var meta;
+  MetaCoins.deployed().then(function(instance) {
+    meta = instance;
+    meta.Pcount().then(function(res,err){
+      for (var i=0;i<res.toNumber();i++){
+        meta.getPortfolioAddress(i).then(function(re,er){
+          myarray=re;
+
+              meta.listOfPortfolioManager(re).then(function(fi,ers){
+                $("#Ptable").append('<tr><td>'+j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+fi[2]+'</td><td>'+fi[3]+'</td><td>'+fi[4]+'</td><td><button><a href="../app/investor.html" class="about-marker active" onclick="myfunction()">Invest</a></button><script>function myfunction(){document.getElementById("id003").value='+re+';}</script></td></tr>')
+              });
+          
+        });
+      }
+    });
+  });
   
+  },
+
+  Imdetail: function() {
+    var j=1;
+    var myarray=[];
+  var self = this;
+  var meta;
+  MetaCoins.deployed().then(function(instance) {
+    meta = instance;
+    meta.Icount().then(function(res,err){
+      for (var i=0;i<res.toNumber();i++){
+        meta.getInvesterAddress(i,i).then(function(re,er){
+              meta.invester(re[0],re[1]).then(function(fi,ers){
+                $("#Itable").append('<tr><td>'+j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td></tr>')
+              
+              });
+          
+        });
+      }
+    });
+  });
+  
+  },
   pbal: function() {
     var self = this;
 
@@ -284,7 +327,7 @@ window.App = {
      res.value=result;
       //self.refreshBalance();
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       //self.setStatus("Error sending coin; see log.");
     });
   },
@@ -301,7 +344,7 @@ window.App = {
     res.value=result;
     self.refreshBalance();
   }).catch(function(e) {
-    console.log(e);
+   // console.log(e);
 
     //self.setStatus("Error getting balance; see log.");
   });
@@ -319,7 +362,7 @@ window.App = {
       var balance_element = document.getElementById("cad");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -334,7 +377,7 @@ window.App = {
       var balance_element = document.getElementById("1");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -350,7 +393,7 @@ window.App = {
       var balance_element = document.getElementById("ts");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -365,7 +408,7 @@ window.App = {
       var balance_element = document.getElementById("tn");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -380,7 +423,7 @@ window.App = {
       var balance_element = document.getElementById("tsy");
       balance_element.value= value;
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -395,7 +438,7 @@ window.App = {
       var balance_element = document.getElementById("td");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -412,7 +455,7 @@ window.App = {
       var balance_element = document.getElementById("eb");
       balance_element.value = value;
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -436,7 +479,7 @@ window.App = {
       self.setStatus("Transaction complete!");
       self.refreshBalance();
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       self.setStatus("Error sending coin; see log.");
     });
   },
@@ -457,7 +500,7 @@ window.App = {
      res.value=result;
       self.refreshBalance();
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       //self.setStatus("Error sending coin; see log.");
     });
   },
@@ -478,7 +521,7 @@ window.App = {
       // self.setStatus("Transaction complete!");
       // self.refreshBalance();
     }).catch(function(e) {
-      console.log(e);
+    //  console.log(e);
       // self.setStatus("Error sending coin; see log.");
     });
   },
@@ -499,7 +542,7 @@ window.App = {
       // self.setStatus("Transaction complete!");
       // self.refreshBalance();
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       // self.setStatus("Error sending coin; see log.");
     });
   },
@@ -521,7 +564,7 @@ window.App = {
       balance_element3.value = value[2];
       balance_element4.value = value[3];
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
   },
@@ -547,7 +590,7 @@ window.App = {
     balance_element5.value = value[4];
   
   }).catch(function(e) {
-    console.log(e);
+    //console.log(e);
     //self.setStatus("Error getting balance; see log.");
   });
 },
@@ -573,7 +616,7 @@ mtdetail1:function(){
     balance_element5.value = value[4];
   
   }).catch(function(e) {
-    console.log(e);
+    //console.log(e);
     //self.setStatus("Error getting balance; see log.");
   });
 },
@@ -589,7 +632,7 @@ mtdetail1:function(){
       // self.setStatus("Transaction complete!");
       // self.refreshBalance();
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       // self.setStatus("Error sending coin; see log.");
     });
   },
@@ -605,7 +648,7 @@ mtdetail1:function(){
       // self.setStatus("Transaction complete!");
       // self.refreshBalance();
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       // self.setStatus("Error sending coin; see log.");
     });
   },
@@ -632,7 +675,7 @@ mtdetail1:function(){
      res.value=result;
       self.refreshBalance();
     }).catch(function(e) {
-      console.log(e);
+      //console.log(e);
       //self.setStatus("Error sending coin; see log.");
     });
   },
@@ -649,7 +692,7 @@ mtdetail1:function(){
       // self.setStatus("Transaction complete!");
       // self.refreshBalance();
     }).catch(function(e) {
-      console.log(e);
+     // console.log(e);
       // self.setStatus("Error sending coin; see log.");
     });
   }

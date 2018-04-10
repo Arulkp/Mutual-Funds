@@ -70,6 +70,9 @@ contract DMF {
                 address portfolioM;
                 //address contractAdd;
                 uint256 Eth;
+                string tokenName;
+                uint256 count1;
+                uint256 count2;
             }
     //Structure For Investor Details  
             struct InvestorDetails
@@ -146,6 +149,7 @@ contract DMF {
           FundToken(contractAddress).transferFrom(ToatlportfolioMAddress[0],msg.sender,tokens);
           TotalInvestorAddress.push(msg.sender);
           invester[msg.sender][ToatlportfolioMAddress[0]].buyer = msg.sender;
+          invester[msg.sender][ToatlportfolioMAddress[0]].Eth = invester[msg.sender][ToatlportfolioMAddress[0]].Eth + msg.value;
           uint256 test = msg.value / 1 ether;
           invester[msg.sender][ToatlportfolioMAddress[0]].Eth = test;
           invester[msg.sender][ToatlportfolioMAddress[0]].TokenCount = tokens;
@@ -216,7 +220,7 @@ contract DMF {
         uint256 TR = value * cost;
          address x = msg.sender;
          x.transfer(TR);
-        
+         invester[msg.sender][ToatlportfolioMAddress[0]].Eth= invester[msg.sender][ToatlportfolioMAddress[0]].Eth - TR;
      }
      
     
@@ -255,6 +259,8 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         Market[msg.sender][_contractadd].decimal = 0;
         Market[msg.sender][_contractadd].totalbuycount = _totacount;
         Market[msg.sender][_contractadd].contractAdd = _contractadd;
+        Portfolio[msg.sender].tokenName=_name;
+        Portfolio[msg.sender].count1=_totacount;
     }
    function PurchasingMarket2token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
    {
@@ -269,6 +275,8 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         Market[msg.sender][_contractadd].decimal = 0;
         Market[msg.sender][_contractadd].totalbuycount = _totacount; 
         Market[msg.sender][_contractadd].contractAdd = _contractadd;
+        Portfolio[msg.sender].tokenName=_name;
+        Portfolio[msg.sender].count2=_totacount;
    }
 
    function DisplayPurchasedTKCount() public view returns(uint256)
@@ -305,14 +313,24 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
     //Phase-9
 
     //Function For Many PortfolioManager Details
-    function listOfPortfolioManager(address a)public view returns(address,uint256,uint256){
+    function listOfPortfolioManager(address a)public view returns(address,uint256,uint256,uint256,uint256){
        for(uint i=0;i<ToatlportfolioMAddress.length;i++){
            if(a == Portfolio[a].portfolioM){
-                return (Portfolio[a].portfolioM,PM_soldTK_Ether[msg.sender],FundToken(contractAddress).balanceOf(a));
+                return (Portfolio[a].portfolioM,a.balance/ 1 ether,FundToken(contractAddress).balanceOf(a),Portfolio[a].count1,Portfolio[a].count2);
            }
        }
    }
-
-
+   function Pcount() public view returns(uint256){
+       return ToatlportfolioMAddress.length;
+   }
+   function getPortfolioAddress(uint a) public view returns(address){
+       return ToatlportfolioMAddress[a];
+   }
+    function getInvesterAddress(uint a,uint a1) public view returns(address,address){
+       return (ToatlportfolioMAddress[a],TotalInvestorAddress[a1]);
+   }
+    function Icount() public view returns(uint256){
+       return TotalInvestorAddress.length;
+   }
   
 }                                                                                     
