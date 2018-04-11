@@ -57,9 +57,10 @@ contract DMF {
      address[] ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
      address[] public TotalInvestorAddress; //Array for storing the each register Investors
      uint256 public etherCalculation;
-
-
-     
+     uint256 public takecommission;
+     uint256 public commissionForDmf;
+     uint public commissionForPortfolio;
+     uint public TR;
     //Phase -2                                                                                                                                                                                                                                                                
                             //Structure Area
      
@@ -108,6 +109,8 @@ contract DMF {
         function PortfolioReg() public payable{
         Portfolio[msg.sender].portfolioM= msg.sender;
         uint256 add = msg.value / 1 ether;
+        uint256 a= add * 10;
+        takecommission += a /100;
         Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth + add;
         PM_soldTK_Ether[msg.sender] = PM_soldTK_Ether[msg.sender] + add;
         GetFundToken(msg.value);
@@ -127,7 +130,7 @@ contract DMF {
 
         //Function For Getting the Contract Ether Balance 
       function GetBal()public view returns(uint256){
-          return this.balance/ 1 ether;
+          return this.balance/ 1 ether - takecommission;
          // 1 ether; //converting wei value to ether
       }
       
@@ -217,9 +220,15 @@ contract DMF {
      function ReturnTokenToPortfolioManager(uint256 value)public payable{
      
         FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
-        uint256 TR = value * cost;
+        TR = value * cost;
+        commissionForDmf += TR * 10 / 100;
+        commissionForPortfolio += TR * 10 /100;
+        uint256 a= commissionForDmf + commissionForPortfolio;
+        uint256 b= TR - a + commissionForDmf;
+        ToatlportfolioMAddress[0].transfer(commissionForPortfolio);
          address x = msg.sender;
-         x.transfer(TR);
+         
+         x.transfer(b);
          invester[msg.sender][ToatlportfolioMAddress[0]].Eth= invester[msg.sender][ToatlportfolioMAddress[0]].Eth - TR;
      }
      
@@ -316,7 +325,7 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
     function listOfPortfolioManager(address a)public view returns(address,uint256,uint256,uint256,uint256){
        for(uint i=0;i<ToatlportfolioMAddress.length;i++){
            if(a == Portfolio[a].portfolioM){
-                return (Portfolio[a].portfolioM,a.balance/ 1 ether,FundToken(contractAddress).balanceOf(a),Portfolio[a].count1,Portfolio[a].count2);
+                return (Portfolio[a].portfolioM,Portfolio[a].Eth,FundToken(contractAddress).balanceOf(a),Portfolio[a].count1,Portfolio[a].count2);
            }
        }
    }

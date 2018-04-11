@@ -54,6 +54,7 @@ window.App = {
 
       accounts = accs;
       account = accounts[0];
+      
       //
       self.cadd();
       self.tot();
@@ -75,6 +76,10 @@ window.App = {
       self.mtad2();
       self.pmdetail();
       self.Imdetail();
+      self.mtdetail();
+      self.mtdetail1();
+      self.ethbb();
+      self.ethbbb();
      // self.pads();
       
      // self.bal();
@@ -278,7 +283,7 @@ window.App = {
           myarray=re;
 
               meta.listOfPortfolioManager(re).then(function(fi,ers){
-                $("#Ptable").append('<tr><td>'+j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+fi[2]+'</td><td>'+fi[3]+'</td><td>'+fi[4]+'</td><td><button><a href="../app/investor.html" class="about-marker active" onclick="myfunction()">Invest</a></button><script>function myfunction(){document.getElementById("id003").value='+re+';}</script></td></tr>')
+                $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+fi[2]+'</td><td>'+fi[3]+'</td><td>'+fi[4]+'</td><td><button><a href="../app/investor.html" class="about-marker active" onclick="myfunction()">Invest</a></button><script>function myfunction(){document.getElementById("id003").value='+re+';}</script></td></tr>')
               });
           
         });
@@ -444,7 +449,7 @@ window.App = {
   },
 
   
-  ethb:function(){
+ ethb:function(){
     var self = this;
 
     var meta;
@@ -458,9 +463,40 @@ window.App = {
      // console.log(e);
       //self.setStatus("Error getting balance; see log.");
     });
-  },
+  }, 
   
 
+  ethbb:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.takecommission();
+    }).then(function(value) {
+      var balance_element = document.getElementById("ebb");
+      balance_element.value = value;
+    }).catch(function(e) {
+     // console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  }, 
+
+  ethbbb:function(){
+    var self = this;
+
+    var meta;
+    MetaCoins.deployed().then(function(instance) {
+      meta = instance;
+      return meta.commissionForPortfolio();
+    }).then(function(value) {
+      var balance_element = document.getElementById("adss");
+      balance_element.value = value;
+    }).catch(function(e) {
+     // console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  }, 
  
 
 
@@ -679,7 +715,7 @@ mtdetail1:function(){
       //self.setStatus("Error sending coin; see log.");
     });
   },
-
+ 
   register : function (){
     var reg_e = parseInt($("#reg").val());
     var self = this;
@@ -688,8 +724,10 @@ mtdetail1:function(){
       meta = instance;
       return meta.PortfolioReg({from: account,value:web3.toWei(reg_e,'ether')});
     }).then(function(result) {
-      console.log(result);
+      //console.log(result);
       // self.setStatus("Transaction complete!");
+      var balance_element = document.getElementById("eb");
+      balance_element.value = div;
       // self.refreshBalance();
     }).catch(function(e) {
      // console.log(e);
