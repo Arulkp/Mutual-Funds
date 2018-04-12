@@ -59,7 +59,7 @@ contract DMF {
      uint256 public etherCalculation;
      uint256 public takecommission;
      uint256 public commissionForDmf;
-     uint public commissionForPortfolio;
+    // uint public commissionForPortfolio;
      uint public TR;
     //Phase -2                                                                                                                                                                                                                                                                
                             //Structure Area
@@ -74,6 +74,7 @@ contract DMF {
                 string tokenName;
                 uint256 count1;
                 uint256 count2;
+                uint commissionForPortfolio;
             }
     //Structure For Investor Details  
             struct InvestorDetails
@@ -222,10 +223,10 @@ contract DMF {
         FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
         TR = value * cost;
         commissionForDmf += TR * 10 / 100;
-        commissionForPortfolio += TR * 10 /100;
-        uint256 a= commissionForDmf + commissionForPortfolio;
+        Portfolio[ToatlportfolioMAddress[0]].commissionForPortfolio += TR * 10 /100; 
+        uint256 a= commissionForDmf + Portfolio[ToatlportfolioMAddress[0]].commissionForPortfolio;
         uint256 b= TR - a + commissionForDmf;
-        ToatlportfolioMAddress[0].transfer(commissionForPortfolio);
+        ToatlportfolioMAddress[0].transfer(Portfolio[ToatlportfolioMAddress[0]].commissionForPortfolio);
          address x = msg.sender;
          
          x.transfer(b);

@@ -285,7 +285,6 @@ window.App = {
               meta.listOfPortfolioManager(re).then(function(fi,ers){
                 $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+fi[2]+'</td><td>'+fi[3]+'</td><td>'+fi[4]+'</td><td><button><a href="../app/investor.html" class="about-marker active" onclick="myfunction()">Invest</a></button><script>function myfunction(){document.getElementById("id003").value='+re+';}</script></td></tr>')
               });
-          
         });
       }
     });
@@ -488,10 +487,10 @@ window.App = {
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.commissionForPortfolio();
+      return meta.Portfolio(web3.eth.accounts);
     }).then(function(value) {
       var balance_element = document.getElementById("adss");
-      balance_element.value = value;
+      balance_element.value = value[5]/100000000000000000;
     }).catch(function(e) {
      // console.log(e);
       //self.setStatus("Error getting balance; see log.");
