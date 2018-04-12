@@ -474,7 +474,7 @@ window.App = {
       return meta.takecommission();
     }).then(function(value) {
       var balance_element = document.getElementById("ebb");
-      balance_element.value = value;
+      balance_element.value = value/10;
     }).catch(function(e) {
      // console.log(e);
       //self.setStatus("Error getting balance; see log.");
@@ -490,7 +490,7 @@ window.App = {
       return meta.Portfolio(web3.eth.accounts);
     }).then(function(value) {
       var balance_element = document.getElementById("adss");
-      balance_element.value = value[5]/100000000000000000;
+      balance_element.value = value[5]/1000000000000000000;
     }).catch(function(e) {
      // console.log(e);
       //self.setStatus("Error getting balance; see log.");
