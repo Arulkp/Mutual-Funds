@@ -151,8 +151,8 @@ contract DMF
             invester[msg.sender][_add_].buyer = msg.sender;
             invester[msg.sender][_add_].Eth = invester[msg.sender][_add_].Eth + msg.value;
             uint256 test = msg.value / 1 ether;
-            invester[msg.sender][ToatlportfolioMAddress[0]].Eth = test;
-            invester[msg.sender][ToatlportfolioMAddress[0]].TokenCount = tokens;
+            invester[msg.sender][_add_].Eth = test;
+            invester[msg.sender][_add_].TokenCount = tokens;
             PM_soldTK_Ether[_add_] = PM_soldTK_Ether[_add_] + test;
             Portfolio[_add_].Eth = Portfolio[_add_].Eth + test;
         }
