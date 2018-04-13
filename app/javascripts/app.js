@@ -490,7 +490,7 @@ window.App = {
       return meta.Portfolio(web3.eth.accounts);
     }).then(function(value) {
       var balance_element = document.getElementById("adss");
-      balance_element.value = value[5]/100000000000000000;
+      balance_element.value = value[5];
     }).catch(function(e) {
      // console.log(e);
       //self.setStatus("Error getting balance; see log.");
@@ -657,11 +657,12 @@ mtdetail1:function(){
 },
   invest : function (){
     var reg_e = parseInt($("#id03").val());
+    var show = $("#id003").val();
     var self = this;
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.InvesterGetToken({from: account,value:web3.toWei(reg_e,'ether')});
+      return meta.InvesterGetToken(show,{from: account,value:web3.toWei(reg_e,'ether')});
     }).then(function(result) {
       console.log(result);
       // self.setStatus("Transaction complete!");
@@ -673,11 +674,12 @@ mtdetail1:function(){
   },
   SEL: function (){
     var reg_s = $("#id04").val();
+    var reg = $("#id045").val();
     var self = this;
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.ReturnTokenToPortfolioManager(reg_s, {from: account});
+      return meta.ReturnTokenToPortfolioManager(reg,reg_s, {from: account});
     }).then(function(result) {
       console.log(result);
       // self.setStatus("Transaction complete!");
