@@ -219,7 +219,7 @@ contract DMF {
       
       //Function for Sell The Tokens to the PortfolioManager
      function ReturnTokenToPortfolioManager(uint256 value)public payable{
-     
+    
         FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
         TR = value * cost;
         commissionForDmf += TR * 10 / 100;
