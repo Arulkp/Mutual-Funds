@@ -279,7 +279,8 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         Market[msg.sender][_contractadd].contractAdd = _contractadd;
         Portfolio[msg.sender].tokenName=_name;
         Portfolio[msg.sender].count1=_totacount;
-        Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth - calculations;
+       uint256 fg = Portfolio[msg.sender].Eth - calculations;
+       Portfolio[msg.sender].Eth= fg;
         
     }
    function PurchasingMarket2token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
