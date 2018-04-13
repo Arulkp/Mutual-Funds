@@ -106,17 +106,19 @@ contract DMF {
      
 
                                 //Function Area
-        //Function For PortfolioManager Resgistration
+         //Function For PortfolioManager Resgistration
         function PortfolioReg() public payable{
         Portfolio[msg.sender].portfolioM= msg.sender;
         uint256 add = msg.value / 1 ether;
         uint256 a= add * 10;
-        takecommission += a /100;
-        uint256 show = add - takecommission;
+        uint256 trim = a /100;
+        takecommission += trim;
+        uint256 show = add - trim;
         Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth + show;
         PM_soldTK_Ether[msg.sender] = PM_soldTK_Ether[msg.sender] + show;
         GetFundToken(msg.value);
         }
+        
         
        
 
@@ -276,7 +278,7 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         Market[msg.sender][_contractadd].contractAdd = _contractadd;
         Portfolio[msg.sender].tokenName=_name;
         Portfolio[msg.sender].count1=_totacount;
-        Portfolio[msg.sender].Eth = Portfolio[msg.sender].Eth - calculations;
+        
     }
    function PurchasingMarket2token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
    {
@@ -293,7 +295,6 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         Market[msg.sender][_contractadd].contractAdd = _contractadd;
         Portfolio[msg.sender].tokenName=_name;
         Portfolio[msg.sender].count2=_totacount;
-        Portfolio[msg.sender].Eth = Portfolio[msg.sender].Eth - calculations;
    }
 
    function DisplayPurchasedTKCount() public view returns(uint256)
