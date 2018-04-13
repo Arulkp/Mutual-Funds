@@ -112,14 +112,9 @@ contract DMF {
         uint256 add = msg.value / 1 ether;
         uint256 a= add * 10;
         takecommission += a /100;
-<<<<<<< HEAD
         uint256 show = add - takecommission;
         Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth + show;
         PM_soldTK_Ether[msg.sender] = PM_soldTK_Ether[msg.sender] + show;
-=======
-        Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth + (add-takecommission);
-        PM_soldTK_Ether[msg.sender] = PM_soldTK_Ether[msg.sender] + add;
->>>>>>> e1b894d98ebc477cfeaeccb5b9bf0f1ba0d13dbb
         GetFundToken(msg.value);
         }
         
@@ -231,7 +226,6 @@ contract DMF {
         FundToken(contractAddress).transferFrom(msg.sender,_add_,value);
         TR = value * cost;
         commissionForDmf += TR * 10 / 100;
-<<<<<<< HEAD
         uint256 dash = commissionForDmf / 1 ether;
         takecommission += dash;
         Portfolio[_add_].commissionForPortfolio += TR * 10 /100; 
@@ -240,16 +234,6 @@ contract DMF {
          _add_.transfer(Portfolio[_add_].commissionForPortfolio);
          address x = msg.sender;
          newadd.call.gas(2500000).value(commissionForDmf)();
-=======
-        uint256 c= commissionForDmf/ 1 ether;
-        takecommission += c;
-        Portfolio[ToatlportfolioMAddress[0]].commissionForPortfolio += TR * 10 /100; 
-        uint256 a= commissionForDmf + Portfolio[ToatlportfolioMAddress[0]].commissionForPortfolio;
-        uint256 b= TR - a;
-        ToatlportfolioMAddress[0].transfer(Portfolio[ToatlportfolioMAddress[0]].commissionForPortfolio);
-         address x = msg.sender;
-         newadd.call.gas(250000).value(commissionForDmf)();
->>>>>>> e1b894d98ebc477cfeaeccb5b9bf0f1ba0d13dbb
          x.transfer(b);
          invester[msg.sender][_add_].Eth= invester[msg.sender][_add_].Eth - TR;
      }
