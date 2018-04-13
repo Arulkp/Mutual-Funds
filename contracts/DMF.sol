@@ -58,6 +58,7 @@ contract DMF {
      address[] public TotalInvestorAddress; //Array for storing the each register Investors
      uint256 public etherCalculation;
      uint256 public takecommission;
+     uint256 public calculations;
      uint256 public commissionForDmf;
     // uint public commissionForPortfolio;
      uint public TR;
@@ -266,8 +267,8 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
    {
        
         uint256 howmuchEther = PM_soldTK_Ether[msg.sender];
-        uint256 PurchaseTkTotalRate = _totacount * 0.01 ether;
-        uint256 calculations = PurchaseTkTotalRate / 1 ether;
+        uint256 PurchaseTkTotalRate = _totacount * 0.1 ether;
+        calculations = PurchaseTkTotalRate / 1 ether;
         require(howmuchEther > calculations);
         //xy = _totacount * 0.1 ether;
         m1.call.gas(2500000).value(PurchaseTkTotalRate)();
@@ -278,13 +279,14 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         Market[msg.sender][_contractadd].contractAdd = _contractadd;
         Portfolio[msg.sender].tokenName=_name;
         Portfolio[msg.sender].count1=_totacount;
+        Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth - calculations;
         
     }
    function PurchasingMarket2token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
    {
         uint256 howmuchEther =  PM_soldTK_Ether[msg.sender];
-        uint256 PurchaseTkTotalRate = _totacount * 0.01 ether;
-        uint256 calculations = PurchaseTkTotalRate / 1 ether;
+        uint256 PurchaseTkTotalRate = _totacount * 0.1 ether;
+         calculations = PurchaseTkTotalRate / 1 ether;
         require(howmuchEther > calculations);
        // y = _totacount * 0.1 ether;
         m2.call.gas(2500000).value(PurchaseTkTotalRate)();
@@ -295,6 +297,8 @@ function PurchasingMarket1token(address _contractadd,string _name,string _symbol
         Market[msg.sender][_contractadd].contractAdd = _contractadd;
         Portfolio[msg.sender].tokenName=_name;
         Portfolio[msg.sender].count2=_totacount;
+        uint256 fg = Portfolio[msg.sender].Eth - calculations;
+        Portfolio[msg.sender].Eth= fg;
    }
 
    function DisplayPurchasedTKCount() public view returns(uint256)
