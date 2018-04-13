@@ -85,19 +85,7 @@ contract DMF
 
 //Portfoliomanager Sold Tokens Ether 
         mapping(address => uint256) public PM_soldTK_Ether; 
-
-//modifier only access the functions by Portfolio manager 
-
-        modifier OnlyPortfolio()
-        {
-            if(msg.sender == ToatlportfolioMAddress[0])
-            {
-                _;
-            }
-        }
-           
-        
-         
+            
 //Constructor For initialize the contract Owner Address and Contract Deployed Address
 
         function DMF(address na,address Mark1,address Mark2)public payable
@@ -182,7 +170,7 @@ contract DMF
 
 //Function For issue the Dividends yo the User
 
-        function Dividends() public OnlyPortfolio   
+        function Dividends() public  
         {
             FundToken(contractAddress).mintToken(msg.sender,dividendToken); //minting the token 
             PortfolioManagerprofit = (dividendToken* 10) / 100; //taking the portfolio share
