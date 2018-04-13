@@ -4,7 +4,8 @@ import "./MarketToken1.sol";
 import "./FundToken.sol";
 import "./MarketToken2.sol";
 
-contract DMF {
+contract DMF 
+{
 
 // Object Creation 
 
@@ -308,7 +309,7 @@ contract DMF {
 
 //Function For Many PortfolioManager Details
 
-        function listOfPortfolioManager(address a)public view returns(address,uint256,uint256,uint256,uint256
+        function listOfPortfolioManager(address a)public view returns(address,uint256,uint256,uint256,uint256)
         {
             for(uint i=0;i<ToatlportfolioMAddress.length;i++)
             {
