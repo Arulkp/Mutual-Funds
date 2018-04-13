@@ -490,7 +490,7 @@ window.App = {
       return meta.Portfolio(web3.eth.accounts);
     }).then(function(value) {
       var balance_element = document.getElementById("adss");
-      balance_element.value = value[5]/100000000000000000;
+      balance_element.value = value[5];
     }).catch(function(e) {
      // console.log(e);
       //self.setStatus("Error getting balance; see log.");

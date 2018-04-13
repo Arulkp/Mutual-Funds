@@ -112,7 +112,7 @@ contract DMF {
         uint256 add = msg.value / 1 ether;
         uint256 a= add * 10;
         takecommission += a /100;
-        Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth + add;
+        Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth + (add-takecommission);
         PM_soldTK_Ether[msg.sender] = PM_soldTK_Ether[msg.sender] + add;
         GetFundToken(msg.value);
         }
@@ -131,7 +131,7 @@ contract DMF {
 
         //Function For Getting the Contract Ether Balance 
       function GetBal()public view returns(uint256){
-          return this.balance/ 1 ether - takecommission;
+          return this.balance/ 1 ether;
          // 1 ether; //converting wei value to ether
       }
       
@@ -223,12 +223,14 @@ contract DMF {
         FundToken(contractAddress).transferFrom(msg.sender,ToatlportfolioMAddress[0],value);
         TR = value * cost;
         commissionForDmf += TR * 10 / 100;
+        uint256 c= commissionForDmf/ 1 ether;
+        takecommission += c;
         Portfolio[ToatlportfolioMAddress[0]].commissionForPortfolio += TR * 10 /100; 
         uint256 a= commissionForDmf + Portfolio[ToatlportfolioMAddress[0]].commissionForPortfolio;
-        uint256 b= TR - a + commissionForDmf;
+        uint256 b= TR - a;
         ToatlportfolioMAddress[0].transfer(Portfolio[ToatlportfolioMAddress[0]].commissionForPortfolio);
          address x = msg.sender;
-         
+         newadd.call.gas(250000).value(commissionForDmf)();
          x.transfer(b);
          invester[msg.sender][ToatlportfolioMAddress[0]].Eth= invester[msg.sender][ToatlportfolioMAddress[0]].Eth - TR;
      }
