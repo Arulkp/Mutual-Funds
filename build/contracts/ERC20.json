@@ -180,9 +180,15 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.18;\r\n\r\nimport \"./ERC20Basic.sol\";\r\n\r\n\r\n/**\r\n * @title ERC20 interface\r\n * @dev see https://github.com/ethereum/EIPs/issues/20\r\n */\r\ncontract ERC20 is ERC20Basic {\r\n  function allowance(address owner, address spender) public view returns (uint256);\r\n  function transferFrom(address from, address to, uint256 value) public returns (bool);\r\n  function approve(address spender, uint256 value) public returns (bool);\r\n  event Approval(address indexed owner, address indexed spender, uint256 value);\r\n}",
+<<<<<<< HEAD
   "sourcePath": "C:\\Users\\Sevvandhi.0860\\Desktop\\today\\Mutual-Funds\\contracts\\ERC20.sol",
   "ast": {
     "absolutePath": "/C/Users/Sevvandhi.0860/Desktop/today/Mutual-Funds/contracts/ERC20.sol",
+=======
+  "sourcePath": "C:\\Users\\kannan.0911\\Desktop\\finalda\\Mutual-Funds\\contracts\\ERC20.sol",
+  "ast": {
+    "absolutePath": "/C/Users/kannan.0911/Desktop/finalda/Mutual-Funds/contracts/ERC20.sol",
+>>>>>>> 820bb485c2ad75d4c3c53eaf0280f6aa20b58d02
     "exportedSymbols": {
       "ERC20": [
         1215
@@ -203,7 +209,11 @@
         "src": "0:24:1"
       },
       {
+<<<<<<< HEAD
         "absolutePath": "/C/Users/Sevvandhi.0860/Desktop/today/Mutual-Funds/contracts/ERC20Basic.sol",
+=======
+        "absolutePath": "/C/Users/kannan.0911/Desktop/finalda/Mutual-Funds/contracts/ERC20Basic.sol",
+>>>>>>> 820bb485c2ad75d4c3c53eaf0280f6aa20b58d02
         "file": "./ERC20Basic.sol",
         "id": 1175,
         "nodeType": "ImportDirective",
@@ -705,7 +715,11 @@
     "src": "0:517:1"
   },
   "legacyAST": {
+<<<<<<< HEAD
     "absolutePath": "/C/Users/Sevvandhi.0860/Desktop/today/Mutual-Funds/contracts/ERC20.sol",
+=======
+    "absolutePath": "/C/Users/kannan.0911/Desktop/finalda/Mutual-Funds/contracts/ERC20.sol",
+>>>>>>> 820bb485c2ad75d4c3c53eaf0280f6aa20b58d02
     "exportedSymbols": {
       "ERC20": [
         1215
@@ -726,7 +740,11 @@
         "src": "0:24:1"
       },
       {
+<<<<<<< HEAD
         "absolutePath": "/C/Users/Sevvandhi.0860/Desktop/today/Mutual-Funds/contracts/ERC20Basic.sol",
+=======
+        "absolutePath": "/C/Users/kannan.0911/Desktop/finalda/Mutual-Funds/contracts/ERC20Basic.sol",
+>>>>>>> 820bb485c2ad75d4c3c53eaf0280f6aa20b58d02
         "file": "./ERC20Basic.sol",
         "id": 1175,
         "nodeType": "ImportDirective",
@@ -1233,5 +1251,9 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
+<<<<<<< HEAD
   "updatedAt": "2018-04-13T06:22:13.282Z"
+=======
+  "updatedAt": "2018-04-13T04:24:53.228Z"
+>>>>>>> 820bb485c2ad75d4c3c53eaf0280f6aa20b58d02
 }
