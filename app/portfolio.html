@@ -19,6 +19,8 @@
     </head>
     <body>
         <style type="text/css">
+        html { overflow-y: hidden; overflow-x:hidden; }
+        body { position: absolute; }
       
         h2{
              color:plum;
@@ -52,7 +54,7 @@
                <div style="float:right"><li><a href="#DIVS" class="team-marker active">DIVIDENDS</a></li></div>
                <div style="float:right"> <li><a href="#tokes" class="about-marker active">ACCOUNT</a></li></div>
                 <div style="float:right"> <li><a href="../app/index.html" class="about-marker active">HOME</a></li></div>
-                
+                <div style="float:right"> <li><a href="#reg_pro" class="about-marker active" onclick="App.register()">REGISTER</a></li></div> 
             </ul>
         </nav>
         
@@ -72,8 +74,8 @@
                 <li><a href="#PTO">VIEW PURCHASE TOKEN</a></li>
               </ul>
             </nav>-->
-            
          
+         <div id="reg_pro">
               <section  class="section">
                   <h2>REGISTER</h2>
               <div class="container6">
@@ -84,8 +86,10 @@
                 <button class="buttons button1" onclick="App.register();">Stake</button>
             </div>
         </section>
+        </div>
+    </div> 
         
-            <div>
+            <div id="acc_pro">
                 <section id="tokes" class="section">
                     <h2>PORTFOLIO ACCOUNT</h2>
                 <div class="container6">
@@ -96,7 +100,7 @@
                 
                
                   
-                    <div class="container6">
+                    <div class="container6" id="com_pro">
                             <h2 style="color:#161515">COMMISSION EARNED</h2>  
                             <div class="button button2">
                         Value in Ether<input type="text" id="adss" readonly>

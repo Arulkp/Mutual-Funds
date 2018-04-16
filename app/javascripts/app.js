@@ -88,6 +88,7 @@ window.App = {
     });
     
   },
+  
   tokval:function(){
     var self = this;
 
@@ -725,9 +726,17 @@ mtdetail1:function(){
       meta = instance;
       return meta.PortfolioReg({from: account,value:web3.toWei(reg_e,'ether')});
     }).then(function(result) {
+      if(result==false){
+        $('#reg_pro').show();
+        $('#acc_pro').hide();
+        $('#com_pro').hide();
+        $('#DIVS').hide();
+        $('#ar').hide();
+            }
       //console.log(result);
       // self.setStatus("Transaction complete!");
-      var balance_element = document.getElementById("eb");
+      $("#reg_pros").html("");
+     var balance_element = document.getElementById("eb");
       balance_element.value = div;
       // self.refreshBalance();
     }).catch(function(e) {
