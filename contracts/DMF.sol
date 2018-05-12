@@ -45,6 +45,8 @@ contract DMF
         struct InvestorDetails
         {
             address buyer;
+            address[] PortfolioHolders; 
+            uint256[] PortfolioHoldersEther;
             uint256 Eth;
             uint256 TokenCount;
         }
@@ -63,6 +65,7 @@ contract DMF
         mapping(address => PortfolioDetails) public Portfolio ;
 //map for getting and storing the Investor getting token details
         mapping(address => mapping( address =>  InvestorDetails)) public invester ; 
+        mapping(address=> InvestorDetails) public Investment;
 //Map for getting the MarketToken Purchase details by the Portfoliomanager
         mapping(address => mapping(address => MarketTokenPurchase)) public Market; 
 //Portfoliomanager Sold Tokens Ether 
@@ -115,6 +118,8 @@ contract DMF
             InvestersTotalToken=InvestersTotalToken.add(tokens);
             FundToken(contractAddress).transferFrom(_add_,msg.sender,tokens);
             TotalInvestorAddress.push(msg.sender);
+            Investment[msg.sender].PortfolioHolders.push(_add_);
+            Investment[msg.sender].PortfolioHoldersEther.push(msg.value);
             invester[msg.sender][_add_].buyer = msg.sender;
             invester[msg.sender][_add_].Eth = invester[msg.sender][_add_].Eth.add(msg.value);
             uint256 test = msg.value.div(1 ether);

@@ -1,112 +1,259 @@
-
-<!doctype html>
-<html lang="en-US">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html">
-  <title>decentralize mutual funds</title>
-  <meta name="author" content="Jake Rocheleau">
-  <link rel="shortcut icon" href="http://designshack.net/favicon.ico">
-  <link rel="icon" href="http://designshack.net/favicon.ico">
-  <link rel="stylesheet" type="text/css" media="all" href="../app/stylesheets/app.css">
-  <script type="text/javascript" src="../app/javascripts/jquery-1.10.2.min.js"></script>
- <!-- <script type="text/javascript" src="../app/javascripts/jquery.scrollTo.js"></script>-->
-  <script src="../app.js"></script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>App Starter HTML CSS Website Template</title>
+
+<link rel="stylesheet" href="../app/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="../app/stylesheets/animate.css">
+<link rel="stylesheet" href="../app/stylesheets/font-awesome.min.css">
+
+<link rel="stylesheet" href="../app/stylesheets/magnific-popup.css">
+
+<link rel="stylesheet" href="../app/stylesheets/owl.theme.css">
+<link rel="stylesheet" href="../app/stylesheets/owl.carousel.css">
+<script src="../app.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../app/stylesheets/bootstrap.css">
+
+<link rel="stylesheet" type="text/css" href="../app/stylesheets/dark-style.css">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet"> 
+<link href='https://fonts.googleapis.com/css?family=Unica+One' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="../app/javascripts/jquery-1.10.2.min.js"></script>
+<!-- Main css -->
+<link rel="stylesheet" href="../app/stylesheets/style.css">
+<link rel="stylesheet" href="../app/stylesheets/investor.css">
+
 </head>
-
-<body>
-    <style type="text/css">
-    h2{
-        color:plum;
-    }
-      body {
-        background: linear-gradient(132deg, #ec5218, #1665c1);
-        background-size: 400% 400%;
-        animation: BackgroundGradient 30s ease infinite;
-    }
-    
-    @keyframes BackgroundGradient {
-        0% {background-position: 0% 50%;}
-        50% {background-position: 100% 50%;}
-        100% {background-position: 0% 50%;}
-    }
-    nav ul li a {
-      font-size:15px;
-    }
-
-
-    </style>
-      <nav>
-          <ul>
-             <h2 style="float:left">INVESTOR PAGE</h2>
-             
-              <div style="float:right"> <li><a href="../app/index.html" class="about-marker active">HOME</a></li></div>
-              
-          </ul>
-      </nav>
-     
-     
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+    <style>
+        html { overflow-y: hidden; overflow-x:hidden; }
+        
       
-       <br> <br> <br> <br> <br>
-        <div class="container"><br>
-                <h2>INVEST SOME ETHER</h2><center>
-            <div class="button button2">
-                    <p><center><b>Portfolio Address:</b></p>
-                        <input type="text" id="id003"   name="value" required><br>
-        <p><center><b>Amount of Tokens:</b></p>
-          <input type="text" id="id02" onkeyup="convert('c')" value=""  name="tokens" required><br>
-          <p><center><b>Ether Value:</b></p>
-          <input type="text" id="id03"   value="" name="value" required><br>
-          
-          <button class="buttons button1" onclick="App.invest();" >Invest</button>
+        </style>
 
-        </div>
-    </center><br>
-        </div>
-   
-      <div class="container1"><br>
-            <h2>CHECK AVAILABLE TOKENS</h2><center>
-                   <div class="button button2">
-      <p><center><b>Address:</b></p>
-       
-        <input type="text" id="ads" value=""  name="tokens" readonly><br>
-       
-        <p><center><b>Available Token:</b></p>
-        <input type="text" id="at" value="" name="tokens" readonly><br><br>
-      </div>
-      </center><br>
-      </div>
-      
+<!-- PRE LOADER -->
 
-     
-<div class="container2">
-    
-<h2>SELL TOKEN</h2><center>
-    <div class="button button2">
-            <label for="Tokens"><b>Portfolio Manager Address:</b></label>
-            <input type="text" id="id045"  value=""  name="tokens" required><br>  
-
-<label for="Tokens"><b>Amount of Tokens:</b></label>
-<input type="text" id="id04" onkeyup="converts('c')" value=""  name="tokens" required><br>
-<button class="buttons button1" onclick="App.SEL();">SELL</button>
-</div></center><br>
+<div class="preloader">
+     <div class="sk-spinner sk-spinner-pulse"></div>
 </div>
 
 
-<script>
-function convert(math)
-{  
-   X = document.getElementById('id02').value ;
-document.getElementById('id03').value = X * 0.1;
-   
-}
 
-function converts(math)
-{  
-   X1 = document.getElementById('id04').value ;
-document.getElementById('id05').value = X1 * 0.1;
-   
-}
-</script>
+<!-- Navigation Section -->
+<div class="main-wrapper">
+  <header class="main-header">
+    <!-- NAVBAR WITH RESPONSIVE TOGGLE -->
+    <div class="top_menu">
+      <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+	<div class="container">
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto" id="nav">
+                  <li class="nav-item">
+                      <a class="nav-link js-scroll-trigger" href="./index.html" class="smoothScroll"><font face = "Comic sans MS" size =" 4" font color="gray">Home</font></a>
+                  </li>
+                </ul>
+			
+		</div>
+  </div>
+</nav>
+</div>
+</header>
+	<!--	<div class="collapse navbar-collapse">
+			<ul class="navbar-nav ml-auto">
+                <li class="nav-item"> <a href="./index.html" class="smoothScroll">Home</a></li>
+                <li class="nav-item"><a href="#screenshot" class="smoothScroll">Investor</a></li>
+                <li class="nav-item"><a href="#newsletter" class="smoothScroll">List of Portfolio</a></li>
+        		
+			</ul>
+		</div>
+
+	</div>
+</div> -->
+
+
+<!-- Home Section -->
+
+
+
+<!-- Screenshot Section -->
+
+<section class="pricing_plane_area" id="screenshot">
+        <link rel="stylesheet" href="../app/stylesheets/home.css">
+        <div class="overlay"></div>
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <!-- Heading Text  -->
+              <div class="section-heading text-center">
+                  <h2>Investor Profile
+                  </h2>
+                  <div class="line-title"></div>
+              </div>
+          </div>
+      </div>
+
+      <div >
+          <div class="col-20 col-md-15 col-lg-5">
+              <!-- Package Price  -->
+              <div class="plan-item text-center">
+                  <!-- Package Text  -->
+                  <div class="package-price">
+                      <div class="my-price d-flex justify-content-center" >
+                          <h4>Know Your Tokens</h4>
+                      </div>
+                  </div>
+                  <div class="package-description" >
+                 <h3> Address</h3><br><h4><input type="text" id="name111" placeholder="Address" size="40" readonly ><br></h4>
+                <h3>Tokens</h3><h4><input type="text" id="name112" placeholder="Tokens" size="60" readonly><br></h4>
+                <br><br><br> 
+                  </div>
+                  <!-- Plan Button  -->
+                  <div class="plan-button">
+                      <a href="#">Check</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-20 col-md-15 col-lg-5">
+                <!-- Package Price  -->
+                <div class="plan-item text-center">
+                    <!-- Package Text  -->
+                    <div class="package-price">
+                        <div class="my-price d-flex justify-content-center" >
+                            <h4>Sell Token</h4>
+                        </div>
+                    </div>
+                    <div class="package-description" >
+                   <h3> Portfolio Manager Address</h3><br><h4><input type="text" id="name2" placeholder="Address" size="40"  required ><br></h4>
+                  <h3>Amount of Tokens</h3><h4><input type="number" id="name3" placeholder="Tokens" size="60" required><br></h4>
+                  <br><br><br> <br>
+                    </div>
+                    <!-- Plan Button  -->
+                    <div class="plan-button">
+                        <a href="#" onclick="App.SEL();">Return</a>
+                    </div>
+                </div>
+            </div>
+        
+  </div>
+</div>
+
+</section>
+               
+
+</section>
+<section id="divider">
+        <div class="row">
+        </div>
+   </div>
+</section>
+
+
+
+<!-- Pricing Section -->
+
+
+
+<!-- Newsletter Section -->
+
+<section id="newsletter">
+        
+     <div class="overlay"></div>
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-offset-2 col-md-8 col-sm-12">
+                    <div class="wow bounceIn section-title">
+                         <center><h2>LIST OF INVESTORS</h2></center>
+                         <div class="container">
+                                <table class="table table-dark table-striped" id="Ptable">
+                                  <thead>
+                                    <tr>
+                                    <th>S.No</th>
+                                      <th>Investor Address</th>
+                                      <th>Stake value</th>
+                                      <th>Available Fund Token</th>
+                                      <th>DostrixToken</th>
+                                      <th>PheonixToken</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    
+                                  </tbody>
+                                </table>
+                              </div>
+                            
+                         </form>
+                    </div>
+               </div>
+
+          </div>
+     </div>
+</section>
+<section id="divider">
+        <div class="row">
+        </div>
+   </div>
+</section>
+
+
+
+<!-- Footer Section -->
+
+<footer>
+	<div class="container">
+		<div class="row">
+
+               <div class="col-md-8 col-sm-6">
+                    <div class="wow fadeInUp footer-copyright" data-wow-delay="0.4s">
+                         <p>Copyright &copy; 2018 MNW:MUTUAL-FUND-APP
+                         <span>||</span> 
+                        
+                    </div>
+               </div>
+
+			<div class="col-md-4 col-sm-6">
+				<ul class="wow fadeInUp social-icon" data-wow-delay="0.8s">
+                         <li><a href="#" class="fa fa-facebook"></a></li>
+                         <li><a href="#" class="fa fa-twitter"></a></li>
+                         <li><a href="#" class="fa fa-google-plus"></a></li>
+                         <li><a href="#" class="fa fa-dribbble"></a></li>
+                         <li><a href="#" class="fa fa-linkedin"></a></li>
+                    </ul>
+               </div>
+			
+		</div>
+	</div>
+</footer>
+
+
+<!-- Modal Contact -->
+
+
+<!-- Back top -->
+
+<a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+
+<!-- SCRIPTS -->
+
+<script src="../app/javascripts/jquery.js"></script>
+<script src="../app/javascripts/bootstrap.min.js"></script>
+<script src="../app/javascripts/jquery.magnific-popup.min.js"></script>
+<script src="../app/javascripts/magnific-popup-options.js"></script>
+<script src="../app/javascripts/owl.carousel.min.js"></script>
+<script src="../app/javascripts/smoothscroll.js"></script>
+<script src="../app/javascripts/wow.min.js"></script>
+<script src="../app/javascripts/custom.js"></script>
+  
 </body>
 </html>

@@ -1,0 +1,1216 @@
+/* --------------------------
+:: Template Name: MaxCoin - CryptoCurrencty - Landing Page 
+:: Template Author: CodeGlamour
+:: Template Author URI: https://www.codeglamour.com/
+:: Description: MaxCoin is a One Page CryptoCurrency Landing Template. It's very clean, creative & beautiful. It's super responsive & ultra light.
+:: Version: v1.0
+:: Created: 03/05/2018  MM/DD/YYYY
+-------------------------- */
+
+/*------------------------------------------------------------------------------------
+
+[Table of contents]
+
+1.Default CSS
+2.Main Header CSS
+3.Main Banner CSS
+4.Why Us CSS
+5.Get Started CSS
+6.Features  CSS
+7.Currency Prices CSS
+8.Fact CSS
+9.Pricing Plane CSS
+10.Video Section CSS
+11.Our Blog CSS
+12.Clients Testimonial CSS
+13.Our Team CSS
+14.Contact CSS
+15.Footer Newsletter CSS
+16.Responsive CSS
+17. Proloader CSS
+
+--------------------------------------------------------------------------------------*/
+
+/* -----------------------------------
+:: 1. Base CSS Start
+------------------------------------ */
+
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-family: 'Roboto Slab', serif;
+    background-color: #fff;
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+{
+	font-family: 'Roboto Slab', serif;
+    font-weight: 400
+}
+
+p {
+    color: #726a84;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 0;
+}
+a{
+	color: #726a84;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+a:hover, a:active, a:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+ul > li{
+	color: #726a84;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mt-100 {
+    margin-top: 100px;
+}
+
+.mt-150 {
+    margin-top: 150px;
+}
+
+.mr-15 {
+    margin-right: 15px;
+}
+
+.mr-30 {
+    margin-right: 30px;
+}
+
+.mr-50 {
+    margin-right: 50px;
+}
+
+.mr-100 {
+    margin-right: 100px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.mb-100 {
+    margin-bottom: 100px;
+}
+
+.ml-15 {
+    margin-left: 15px;
+}
+
+.ml-30 {
+    margin-left: 30px;
+}
+
+.ml-50 {
+    margin-left: 50px;
+}
+
+.ml-100 {
+    margin-left: 100px;
+}
+
+
+
+
+.pt-15 {
+    padding-top: 15px;
+}
+
+.pt-30 {
+    padding-top: 30px;
+}
+
+.pt-50 {
+    padding-top: 50px;
+}
+
+.pt-100 {
+    padding-top: 100px;
+}
+
+.pt-150 {
+    padding-top: 150px;
+}
+
+.pr-15 {
+    padding-right: 15px;
+}
+
+.pr-30 {
+    padding-right: 30px;
+}
+
+.pr-50 {
+    padding-right: 50px;
+}
+
+.pr-100 {
+    padding-right: 100px;
+}
+
+.pb-10 {
+    padding-bottom: 10px;
+}
+
+.pb-15 {
+    padding-bottom: 15px;
+}
+
+.pb-20 {
+    padding-bottom: 20px;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
+}
+
+.pb-50 {
+    padding-bottom: 50px;
+}
+
+.pb-100 {
+    padding-bottom: 100px;
+}
+
+.pl-15 {
+    padding-left: 15px;
+}
+
+.pl-30 {
+    padding-left: 30px;
+}
+
+.pl-50 {
+    padding-left: 50px;
+}
+
+.pl-100 {
+    padding-left: 100px;
+}
+
+.no-margin{
+    margin:0 !important;
+}
+
+.no-padding{
+    padding:0 !important;
+}
+
+
+section{
+	padding: 70px 0;
+}
+
+.section-heading{
+    margin-top: 30px;
+	margin-bottom: 60px;
+}
+
+.section-heading > h2 {
+    font-weight: 300;
+    color: #ffffff;
+    font-size: 40px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.line-title-white,
+.line-title {
+    width: 80px;
+    height: 2px;
+    background-color: #fb397d;
+    margin-top: 15px;
+}
+
+.line-title {
+    margin-left: calc(50% - 40px);
+}
+
+.btn{
+	height: 50px;
+    min-width: 167px;
+    text-align: center;
+    border-radius: 25px 25px 25px 25px;
+}
+
+
+
+/* --------------------------
+:: 2. Header Area CSS
+-------------------------- */
+
+.main-header {
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 99;
+    top: 0;
+    padding: 0 4%;
+}
+.navbar{
+	padding: 1.5rem 1rem;
+}
+
+.navbar .collapse.show ul{
+	
+}
+
+.top_menu .navbar-brand {
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1;
+    padding: 0;
+}
+
+.top_menu .navbar-brand:hover,
+.top_menu .navbar-brand:focus {
+    color: #fff;
+}
+
+.top_menu{
+    position: relative;
+    z-index: 2;
+}
+
+.top_menu #nav .nav-link {
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 30px;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+    padding: 10px 15px;
+}
+
+
+.top_menu nav ul li > a:hover {
+    color: #fb397d;
+}
+
+/* stcicky css */
+.main-header.sticky {
+    background-color: #8c61b6;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    height: 93px;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+
+
+
+/* --------------------------
+:: 3. Main Banner Area CSS
+-------------------------- */
+.main_banner_area{
+    background-image: url(../images/bg-img/main-banner-bg.jpg);
+    height: 630px;
+    position: relative;
+    z-index: 1;
+    background-position: bottom center;
+    background-size: cover;
+}
+.main_banner_area:after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-image: -moz-linear-gradient(90deg, #2c90e4 0%, #a754e2 100%);
+    background-image: -webkit-linear-gradient(90deg, #2c90e4 0%, #a754e2 100%);
+    background-image: -ms-linear-gradient(90deg, #2c90e4 0%, #a754e2 100%);
+    background-image: linear-gradient(90deg, #2c90e4 0%, #a754e2 100%);
+    opacity: .4;
+}
+
+.home-content{
+	position: absolute;
+	display: block;
+	z-index: 100;
+	width: 94%;
+}
+
+.home-content .submit {
+    background-color: #fb397d;
+    color: #fff;
+    font-weight: 500;
+    display: inline-block;
+    border: none;
+    height: 50px;
+    min-width: 167px;
+    text-align: center;
+    border-radius: 25px 25px 25px 25px;
+}
+
+.home-content .submit:hover {
+    background: #6f52e5;
+    color: #fff;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+
+/* --------------------------
+:: 4. Why Us Area CSS
+-------------------------- */
+
+.why_us_area{
+    background-color: #100f0f;
+}
+
+.single-icon > i {
+    font-size: 36px;
+    color: #fb397d;
+}
+
+.why-us-single > h4 {
+    font-size: 22px;
+    color: #845cda;
+    margin-bottom: 15px;
+}
+
+.single-icon {
+    margin-bottom: 25px;
+}
+
+.why-us-single {
+    border: 1px solid #1d1d1d;
+    padding: 40px;
+    border-radius: 40px 40px 0px 0px;
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+}
+
+.why-us-description-img{
+    margin-bottom: 30px;
+}
+
+.why-us-description-content > h2 {
+    color: #845cda;
+    font-size: 46px;
+    margin-bottom: 30px;
+}
+
+.why-us-single:hover {
+    -webkit-box-shadow: 0 10px 90px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 90px rgba(0, 0, 0, 0.08);
+}
+
+.why-us-single p {
+    margin-bottom: 0;
+}
+
+
+.app-download-area {
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-preferred-size: 1;
+    flex-basis: 1;
+    margin-top: 50px;
+}
+
+.app-download-btn a {
+    border: 1px solid #ddd;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 30px 30px 30px 0;
+    -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.app-download-btn.active a,
+.app-download-btn a:hover {
+    border-color: transparent;
+    background-color: #fb397d;
+}
+
+.app-download-btn a i {
+    color: #47425d;
+    font-size: 24px;
+    margin-right: 15px;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+.app-download-btn a p {
+    font-size: 16px;
+    line-height: 1;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+.app-download-btn a p span {
+    font-size: 12px;
+    display: block;
+}
+
+.app-download-btn:first-child {
+    margin-right: 20px;
+}
+
+.app-download-btn a:hover i,
+.app-download-btn.active a i,
+.app-download-btn.active a p,
+.app-download-btn a:hover p {
+    color: #fff;
+}
+
+
+
+/* --------------------------
+:: 5. Get Started Area CSS
+-------------------------- */
+.get_stated_area{
+	background: #000000;
+}
+
+.single-start {
+    margin-bottom: 30px;
+}
+
+.single-start .digit{
+	font-weight: 900;
+    font-size: 50px;
+}
+
+
+.single-start > p {
+    margin-bottom: 0;
+}
+
+.single-start > i {
+    color: #fb397d;
+    font-size: 30px;
+    display: block;
+    margin-right: 10px;
+}
+
+.single-start > h5 {
+    font-size: 22px;
+    color: #845cda;
+}
+
+.single-start > p {
+    margin-top: 15px;
+}
+
+
+
+
+/* --------------------------
+:: 5.0 Features Area CSS
+-------------------------- */
+
+.features_area{
+    background-color: #100f0f;
+}
+
+.single-feature-item {
+    margin-bottom: 30px;
+}
+
+.single-feature-item > p {
+    margin-bottom: 0;
+}
+
+.single-feature-item > i {
+    color: #fb397d;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+}
+
+.single-feature-item > h5 {
+    font-size: 22px;
+    color: #845cda;
+}
+
+.single-feature-item > p {
+    margin-top: 15px;
+}
+
+/* --------------------------
+:: 6. Facts Area CSS
+-------------------------- */
+.currency-prices{
+    background: #000000;
+    color: white;
+}
+.currency-prices .table{
+    margin-bottom: 30px;
+}
+.currency-prices .table .thead-dark th {
+    color: #fff;
+    background-color: #fb397d;
+    border-color: transparent;
+}
+.currency-prices td img{
+    margin-right: 5px;
+}
+
+
+/* --------------------------
+:: 7. Facts Area CSS
+-------------------------- */
+
+.facts_area {
+    z-index: auto;
+    background: #8c61b6;
+}
+.single-fact{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.facts-content > i {
+    color: #ffffff;
+    font-size: 36px;
+}
+
+.counter-area {
+    min-width: 100px;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+}
+
+.counter-area > h3 {
+    color: #ffffff;
+    font-size: 60px;
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+.facts-content > p {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+
+
+/* --------------------------
+:: 10. Blog Area CSS
+-------------------------- */
+.our_blog_aera{
+	background: #000000;
+}
+
+.blog-item{
+	background: #fff;
+	border-radius: 25px;
+	margin-bottom: 30px;
+}
+
+.blog-item .figure-caption{
+	padding: 15px 22px;
+}
+.blog-item  h5{
+	font-size: 22px;
+    color: #845cda;
+}
+
+
+/* --------------------------
+:: 8. Pricing Plan Area CSS
+-------------------------- */
+
+.pricing_plane_area {
+    background: #007bff url('../images/inv.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #ffffff;
+    display: -webkit-box;
+    display: -webkit-flex;
+     display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+     align-items: center;
+    height: 80vh;
+    position: relative;
+}
+.pricing_plane_area .overlay {
+    background: #4776E6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #4776E6 , #8E54E9); /* Chrome 10-25, Safari 5.1-6 */ 
+    background: linear-gradient(to left, #4776E6 , #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    opacity: 0.9;
+    position: absolute;
+    width: 100%;
+    height: 80vh;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+.plan-item {
+    background: #ffffff;
+    border: 1px solid #ebebeb;
+    border-radius: 30px 30px 0px 0;
+    margin-bottom: 30px;
+}
+
+.plan-item .package-price {
+    padding: 40px 0;
+    border-radius: 30px 30px 0 0;
+}
+
+.plan-item .package-price > h5 {
+    color: #845cda;
+    font-size: 18px;
+}
+
+
+.plan-item .package-price .my-price h4 {
+    color: #fb397d;
+    font-size: 48px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+.plan-item .package-price .my-price span {
+    font-size: 18px;
+    color: #fb397d;
+}
+
+.plan-item .plan-button > a ,button {
+    background: #726a84;
+    padding: 10px 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+.plan-item .package-description > p {
+    margin-bottom: 0;
+    line-height: 1;
+    padding: 15px 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.plan-item .package-description > p:first-child {
+    border-top: 1px solid #ebebeb;
+}
+
+.plan-item.active .package-price,
+.plan-item.active .plan-button > a,
+.plan-item:hover .plan-button > a {
+    background-color: #8c61b6;
+}
+
+.plan-item.active .package-price .my-price > h4,
+.plan-item.active .package-price .my-price > span,
+.plan-item.active .package-price > h5,
+.plan-item.active .plan-button > a {
+    color: #fff;
+}
+
+
+
+/* --------------------------
+:: 9 Video Area CSS
+-------------------------- */
+
+.video-area {
+    position: relative;
+    z-index: 1;
+    background-position: center center;
+    background-size: cover;
+    height: 450px;
+    -webkit-box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08);
+}
+
+.video-area:after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-image: -moz-linear-gradient(90deg, #3673a5 0%, #030005 100%);
+    background-image: -webkit-linear-gradient(90deg, #3673a5 0%, #030005 100%);
+    background-image: -ms-linear-gradient(90deg, #3673a5 0%, #030005 100%);
+    background-image: linear-gradient(90deg, #3673a5 0%, #030005 100%);
+    opacity: .6;
+}
+
+
+
+.video-area .video-play-btn a {
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+	color: #fb397d;
+    text-align: center;
+    display: block;
+    font-size: 36px;
+    line-height: 80px;
+    padding-left: 5px;
+    border-radius: 50%;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.video-area .video-play-btn a:hover {
+    background-color: #8c61b6;
+    color: #fff;
+}
+
+
+/* --------------------------
+:: 11 Testimonials Area CSS
+-------------------------- */
+
+.clients_testimonial_area{
+    background-color: #100f0f;
+}
+
+.clients_testimonial_area .client-name > h5 {
+    color: #845cda;
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+.clients_testimonial_area .star-icon > i {
+    font-size: 18px;
+    color: #f1b922;
+}
+
+.clients_testimonial_area .client-description > p {
+    max-width: 1010px;
+    margin: auto;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.clients_testimonial_area .client > i {
+    font-size: 48px;
+    color: #897ceb;
+    margin-bottom: 30px;
+}
+
+.clients_testimonial_area .client-name > p {
+    color: #b5aec4;
+}
+
+.clients_testimonial_area ul>li{
+	color: #fff;
+    list-style: none;
+}
+
+.clients_testimonial_area .slick-dots {
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.clients_testimonial_area .slick-dots li button {
+    width: 12px;
+    height: 12px;
+    text-indent: -999999999999999999999999px;
+    border: 3px solid #a49fba;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 5.5px;
+    outline: none;
+}
+
+.clients_testimonial_area .slick-dots li.slick-active button {
+    background-color: #fb397d;
+    border-color: #fb397d;
+}
+
+.clients_testimonial_area .slick-slide.client-thumbnail {
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 129px;
+}
+
+
+.clients_testimonial_area .slick-slide img {
+    display: block;
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    -webkit-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.clients_testimonial_area .slick-slide.slick-current img {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.clients_testimonial_area .slick-arrow {
+    position: absolute;
+    width: 30px;
+    background-color: #100f0f;
+    height: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #b5aec4;
+    display: block;
+    line-height: 550%;
+    left: 0;
+    z-index: 90;
+    cursor: pointer;
+}
+
+.clients_testimonial_area .slick-arrow.fa-angle-right {
+    left: auto;
+    right: 0;
+    top: 0;
+}
+
+
+
+/* --------------------------
+:: 12. Our Team Area CSS
+-------------------------- */
+.our_team_area{
+	background: #000000;
+}
+
+.team-item{
+	
+}
+
+.team-item .figure-caption{
+	padding: 15px 22px;
+}
+.team-item  h5{
+	font-size: 22px;
+    color: #845cda;
+}
+
+
+/* --------------------------
+:: 13. Contact  Area CSS
+-------------------------- */
+
+.contact_form_area{
+    background-color: #100f0f;
+}
+
+ ul.contact-list > li{
+ 	position: relative;
+	list-style: none;
+    margin-bottom: 20px;
+    padding-left: 45px;
+    display: block;
+    font-size: 18px;
+}
+
+ ul.contact-list > li > span{
+	position: absolute;
+    left: 0;
+    top: 15%;
+    font-size: 20px;
+}    
+
+.contact-form .form-control{
+	font-size: 18px;
+    padding: 15px 15px;
+    border-radius: 0px 25px 25px 0;
+}
+
+.contact-form .btn.submit-btn {
+    background: #fb397d;
+    height: 48px;
+    min-width: 185px;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 22px 25px 22px 0;
+}
+
+
+/* --------------------------
+:: 14. Newsletter Area CSS
+-------------------------- */
+
+.newsletter_area{
+    padding: 100px 0;
+	background: #000000;
+}
+.newsletter_area .section-heading > h2{
+	font-weight: 300;
+    color: #fff;
+    font-size: 40px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.newsletter{
+	margin: 0 auto;
+}
+
+.newsletter .form-control{
+	font-size: 18px;
+    padding: 15px 15px;
+    border-radius: 25px !important;
+}
+.newsletter span{
+	position: absolute;
+    right: 4%;
+    top: 33%;
+    z-index: 98;
+}
+    
+.social-icon > a > i {
+    background: #9b69e4;
+    font-size: 14px;
+    color: #ffffff;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    font-weight: 500;
+    border-radius: 10px 10px 10px 10px;
+    margin-right: 10px;
+}
+
+.social-icon > a > i:hover {
+    background: #fb397d;
+    color: #fff;
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+.copyright-text > p, .copyright-text  a{
+	color: #fff;
+}
+
+
+
+/* --------------------------
+:: 15. Responsive CSS
+-------------------------- */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.top_menu .navbar-brand {
+        font-size: 42px;
+    }
+    .top_menu #nav .nav-link {
+        padding-right: 7.5px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 991px) {
+	 .top_menu #nav .nav-link{
+    	background:green;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.top_menu .navbar-brand {
+        font-size: 42px;
+    }
+    .top_menu #nav .nav-link {
+        padding-right: 7.5px;
+    }
+}
+
+
+@media (min-width: 320px) and (max-width: 760px) {
+	.home-content .submit{
+		margin-left: 30px;
+	}
+    .why-us-single{
+        margin-bottom: 30px;
+    }
+
+}
+
+
+
+/* --------------------------
+:: 17. Preloader CSS
+-------------------------- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgb(14, 221, 49);
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgb(241, 12, 12);
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #FF00FF;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+#name,#name1,#name2,#name3,#name11,#name12,#name111,#name112{
+
+    height: 50px !important;
+    
+    
+    width: 350px !important;
+    
+    font-size: 18px !important;
+    color:gray !important;
+    
+    }
