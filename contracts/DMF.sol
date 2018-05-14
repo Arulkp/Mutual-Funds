@@ -6,9 +6,9 @@ import "./SafeMath.sol";
 contract DMF 
 {
     using SafeMath for uint256;
-        FundToken public Token;       // Object Creation 
-        Mam1 ab;
-        Man2 bb;
+    //   FundToken public Token;       // Object Creation 
+    //     Mam1 ab;
+    //     Man2 bb;
 //Global Variable Declaration part
         uint public TR;
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
@@ -24,7 +24,6 @@ contract DMF
         address public m1;
         address public m2;
         address contractAddress; //Fundtoken
-        address public Pendingreturnaddress;
         address owner; //owner variable for assigning contract Owner
         address public newadd; //For getting the Contract Address
 //ArrayList
@@ -75,12 +74,12 @@ contract DMF
         {
             owner=msg.sender;
             newadd=address(this);
-            Token=new FundToken();
+            //Token=new FundToken();
             contractAddress=na;
             m1=Mark1;
             m2=Mark2;
-            bb= Man2(m2);
-            ab= Mam1(m1);
+            //bb= Man2(m2);
+            //ab= Mam1(m1);
         }
 //Function For PortfolioManager Resgistration
         function PortfolioReg() public payable
@@ -138,7 +137,7 @@ contract DMF
         {
             FundToken(contractAddress).mintToken(msg.sender,dividendToken); //minting the token 
             PortfolioManagerprofit = (dividendToken.mul(10)).div(100); //taking the portfolio share
-            //FundToken(contractAddress).mintToken(msg.sender,PortfolioManagerprofit);
+            FundToken(contractAddress).mintToken(msg.sender,PortfolioManagerprofit);
             ShareETK_ToI();
         }
 //function for split the profit to each tokens
@@ -148,7 +147,7 @@ contract DMF
             {
                 uint256 b = (invester[TotalInvestorAddress[i]][msg.sender].TokenCount.mul((dividendToken.sub(PortfolioManagerprofit)))).div(InvestersTotalToken);
                // uint256 a =  b  / InvestersTotalToken;
-                FundToken(contractAddress).mintToken(TotalInvestorAddress[i],b);
+               FundToken(contractAddress).mintToken(TotalInvestorAddress[i],b);
                 FundToken(contractAddress).tokenDecrease(msg.sender,b);
             }
         }
@@ -241,4 +240,4 @@ contract DMF
         {
             return TotalInvestorAddress.length;
         }
-}                                                                                     
+}                                                                                                            
