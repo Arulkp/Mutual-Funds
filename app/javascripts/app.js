@@ -132,7 +132,10 @@ window.App = {
       return meta.symbol();
     }).then(function(value) {
       var balance_element = document.getElementById("sym");
+      var balance_element1 = document.getElementById("tor");
       balance_element.value = value;
+      balance_element1.value = 0.1;
+
     }).catch(function(e) {
      // console.log(e);
       //self.setStatus("Error getting balance; see log.");
@@ -222,7 +225,9 @@ window.App = {
       return meta.symbol();
     }).then(function(value) {
       var balance_element = document.getElementById("sym1");
+      var balance_element1 = document.getElementById("tor1");
       balance_element.value = value;
+      balance_element1.value =0.1;
     }).catch(function(e) {
       //console.log(e);
       //self.setStatus("Error getting balance; see log.");
@@ -284,13 +289,14 @@ window.App = {
     meta = instance;
     meta.Pcount().then(function(res,err){
       for (var i=0;i<res.toNumber();i++){
-        meta.getPortfolioAddress(i).then(function(re,er){
+        meta.ToatlportfolioMAddress(i).then(function(re,er){
           myarray=re;
-
-              meta.listOfPortfolioManager(re).then(function(fi,ers){
-                $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+fi[2]+'</td><td>'+fi[3]+'</td><td>'+fi[4]+'</td><td><button><a href="../app/investor.html" class="btn" onclick="myfunction()">Invest</a></button><script>function myfunction(){document.getElementById("id003").value='+re+';}</script></td></tr>')
+          meta.getBalance(re).then(function(ree,errr){
+              meta.Portfolio(re).then(function(fi,ers){
+                $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+ree+'</td><td>'+fi[3]+'</td><td>'+fi[4]+'</td><td><script>function myfunction(){document.getElementById("id003").value='+re+';}</script></td></tr>')
               });
         });
+      });
       }
     });
   });
@@ -410,7 +416,7 @@ else{
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.getContractaddress();
+      return meta.newadd();
     }).then(function(value) {
       var balance_element = document.getElementById("cad");
       balance_element.value = value;
@@ -673,7 +679,7 @@ else{
       balance_element3.value = value[2];
       balance_element4.value = value[3];
       balance_element5.value = value[4];
-    
+      balance_element5.value = 0.1;
     }).catch(function(e) {
       //console.log(e);
       //self.setStatus("Error getting balance; see log.");

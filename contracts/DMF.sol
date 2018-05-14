@@ -107,10 +107,7 @@ contract DMF
             return this.balance.div(1 ether);
         }
  //Function For Getting the Contract Address
-        function getContractaddress() public view returns(address)
-        {
-            return newadd;
-        }
+    
  //Function For Buying the FundTokens by the Investor From the PortfolioManager
         function InvesterGetToken(address _add_) public payable
         {
@@ -129,9 +126,9 @@ contract DMF
             Portfolio[_add_].Eth = Portfolio[_add_].Eth.add(test);
         }
 //Function For Getting the Investor Balance of Tokens
-        function getBalance() public view returns(uint256)
+        function getBalance(address a) public view returns(uint256)
         {
-            return FundToken(contractAddress).balanceOf(TotalInvestorAddress[0]);
+            return FundToken(contractAddress).balanceOf(a);
         }
  /** The dividends calculations
         Investor1 = (( Investor1_fund TK) / (Inves1_FUndTK + Inves2_FUndTK + ... )) * 90;
@@ -176,13 +173,7 @@ contract DMF
             (msg.sender).transfer(a);
             invester[msg.sender][_add_].Eth= invester[msg.sender][_add_].Eth.sub(TR);
         }
-        function PortfolioManagerList()public view returns(address)
-        {
-            for(uint256 i=0;i<ToatlportfolioMAddress.length;i++)
-            {
-                return ToatlportfolioMAddress[i];
-            }
-        }
+    
 //Function for Purchase the market tokens by the PortfolioManager
        function PurchasingMarket1token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
        {
@@ -227,42 +218,24 @@ contract DMF
         } */
         function DisplayPurchasedTK1() public view returns(address,string,string,uint256,uint256)
         {
-            string _nn = Market[msg.sender][m1].name;
-            string _sm = Market[msg.sender][m1].symbol;
-            uint256 _dd =  Market[msg.sender][m1].decimal;
-            uint256 _pp = Market[msg.sender][m1].totalbuycount;
-            return(m1,_nn,_sm,_dd,_pp);
+            // string _nn = Market[msg.sender][m1].name;
+            // string _sm = Market[msg.sender][m1].symbol;
+            // uint256 _dd =  Market[msg.sender][m1].decimal;
+            //uint256 _pp = Market[msg.sender][m1].totalbuycount;
+            return(m1,Market[msg.sender][m1].name, Market[msg.sender][m1].symbol, Market[msg.sender][m1].decimal, Market[msg.sender][m1].totalbuycount);
         }
         function DisplayPurchasedTK2() public view returns(address,string,string,uint256,uint256)
         {
-            string _nn = Market[msg.sender][m2].name;
-            string _sm = Market[msg.sender][m2].symbol;
-            uint256 _dd =  Market[msg.sender][m2].decimal;
-            uint256 _pp = Market[msg.sender][m2].totalbuycount;
-            return(m2,_nn,_sm,_dd,_pp);
+            //string _nn = Market[msg.sender][m2].name;
+            //string _sm = Market[msg.sender][m2].symbol;
+            //uint256 _dd =  Market[msg.sender][m2].decimal;
+            //uint256 _pp = Market[msg.sender][m2].totalbuycount;
+            return(m2,Market[msg.sender][m2].name, Market[msg.sender][m2].symbol, Market[msg.sender][m2].decimal, Market[msg.sender][m2].totalbuycount);
         }
 //Function For Many PortfolioManager Details
-        function listOfPortfolioManager(address a)public view returns(address,uint256,uint256,uint256,uint256)
-        {
-            for(uint i=0;i<ToatlportfolioMAddress.length;i++)
-            {
-                if(a == Portfolio[a].portfolioM)
-                {
-                    return (Portfolio[a].portfolioM,Portfolio[a].Eth,FundToken(contractAddress).balanceOf(a),Portfolio[a].count1,Portfolio[a].count2);
-                }
-            }
-        }
         function Pcount() public view returns(uint256)
         {
             return ToatlportfolioMAddress.length;
-        }
-        function getPortfolioAddress(uint a) public view returns(address)
-        {
-            return ToatlportfolioMAddress[a];
-        }
-        function getInvesterAddress(uint a,uint a1) public view returns(address,address)
-        {
-            return (ToatlportfolioMAddress[a],TotalInvestorAddress[a1]);
         }
         function Icount() public view returns(uint256)
         {

@@ -878,3 +878,14 @@ th, td {
 }
 
 /* tr:hover {background-color:powderblue;} */
+#name1,#sym1,#dec1,#tos1,#tor1,#tor,#p4,#tor1,#tad1,#id1 ,#idx1,#id2,#name,#sym,#tos,#tors,#tad,#id02,#id03{
+
+  height: 22px !important;
+  
+  
+  width: 350px !important;
+  
+  font-size: 18px !important;
+  color:gray!important;
+  
+  }
