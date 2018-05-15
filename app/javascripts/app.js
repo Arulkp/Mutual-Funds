@@ -8,8 +8,7 @@ import { default as contract } from 'truffle-contract'
 // Import our contract artifacts and turn them into usable abstractions.
 import FundToken from '../../build/contracts/FundToken.json'
 import DMF from '../../build/contracts/DMF.json'
-import toc1 from '../../build/contracts/Mam1.json'
-import toc2 from '../../build/contracts/Man2.json'
+import TokenManipulation from '../../build/contracts/Token.json'
 
 
 //import dead from '../../migrations/3_deploy_migrations'
@@ -18,8 +17,7 @@ import toc2 from '../../build/contracts/Man2.json'
 // MetaCoin is our usable abstraction, which we'll use through the code below.
 var MetaCoin = contract(FundToken);
 var MetaCoins = contract(DMF);
-var mtok = contract(toc1);
-var mtok1 = contract(toc2);
+var token = contract(TokenManipulation);
 
 
 // The following code is simple to show off interacting with your contracts.
@@ -36,8 +34,9 @@ window.App = {
     // Bootstrap the MetaCoin abstraction for Use.
     MetaCoin.setProvider(web3.currentProvider);
     MetaCoins.setProvider(web3.currentProvider);
-    mtok.setProvider(web3.currentProvider);
-    mtok1.setProvider(web3.currentProvider);
+    token.setProvider(web3.currentProvider);
+    // mtok.setProvider(web3.currentProvider);
+    // mtok1.setProvider(web3.currentProvider);
    
 
     // Get the initial account balance so it can be displayed.
@@ -63,21 +62,12 @@ window.App = {
       self.tdec();
       self.ethb();
       self.pbal();
-      self.mtname1();
-      self.mtsymb1();
-      self.mtdec1();
-      self.mtsub1();
-      self.mtad1();
-      self.mtname2();
-      self.mtsymb2();
-      self.mtdec2();
-      self.mtsub2();
-      self.AR();
-      self.mtad2();
+      //self.AR();
+     // self.mtad2();
       self.pmdetail();
       self.Imdetail();
-      self.mtdetail();
-      self.mtdetail1();
+      //self.mtdetail();
+     // self.mtdetail1();
       self.ethbb();
       self.ethbbb();
       self.total();
@@ -93,188 +83,193 @@ window.App = {
     
   },
   
-  tokval:function(){
-    var self = this;
+  // tokval:function(){
+  //   var self = this;
 
-    var meta;
-    MetaCoins.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayPurchasedTKCount({from:account,gas:250000});
-    }).then(function(value) {
-      var balance_element = document.getElementById("5");
-      balance_element.value = value;
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtname1:function(){
-    var self = this;
+  //   var meta;
+  //   MetaCoins.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.DisplayPurchasedTKCount({from:account,gas:250000});
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("5");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtname1:function(){
+  //   var self = this;
 
-    var meta;
-    mtok.deployed().then(function(instance) {
-      meta = instance;
-      return meta.name();
-    }).then(function(value) {
-      var balance_element = document.getElementById("name");
-      balance_element.value = value;
-    }).catch(function(e) {
-     // console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtsymb1:function(){
-    var self = this;
+  //   var meta;
+  //   mtok.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.name();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("name");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
+  //    // console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtsymb1:function(){
+  //   var self = this;
 
-    var meta;
-    mtok.deployed().then(function(instance) {
-      meta = instance;
-      return meta.symbol();
-    }).then(function(value) {
-      var balance_element = document.getElementById("sym");
-      balance_element.value = value;
-    }).catch(function(e) {
-     // console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtdec1:function(){
-    var self = this;
+  //   var meta;
+  //   mtok.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.symbol();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("sym");
+  //     var balance_element1 = document.getElementById("tor");
+  //     balance_element.value = value;
+  //     balance_element1.value = 0.1;
 
-    var meta;
-    mtok.deployed().then(function(instance) {
-      meta = instance;
-      return meta.decimals();
-    }).then(function(value) {
-      var balance_element = document.getElementById("dec");
-      balance_element.value = value;
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtsub1:function(){
-    var self = this;
+  //   }).catch(function(e) {
+  //    // console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtdec1:function(){
+  //   var self = this;
 
-    var meta;
-    mtok.deployed().then(function(instance) {
-      meta = instance;
-      return meta.totalSupply();
-    }).then(function(value) {
-      var balance_element = document.getElementById("tos");
-      balance_element.value = value;
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtad1:function(){
-    var self = this;
+  //   var meta;
+  //   mtok.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.decimals();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("dec");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtsub1:function(){
+  //   var self = this;
 
-    var meta;
-    mtok.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayTheAddress();
-    }).then(function(value) {
-      var balance_element = document.getElementById("tad");
-      balance_element.value = value;
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtad2:function(){
-    var self = this;
+  //   var meta;
+  //   mtok.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.totalSupply();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("tos");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtad1:function(){
+  //   var self = this;
 
-    var meta;
-    mtok1.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayTheAddress();
-    }).then(function(value) {
-      var balance_element = document.getElementById("tad1");
-      balance_element.value = value;
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtname2:function(){
-    var self = this;
+  //   var meta;
+  //   mtok.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.DisplayTheAddress();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("tad");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtad2:function(){
+  //   var self = this;
 
-    var meta;
-    mtok1.deployed().then(function(instance) {
-      meta = instance;
-      return meta.name();
-    }).then(function(value) {
-      var balance_element = document.getElementById("name1");
-      balance_element.value = value;
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtsymb2:function(){
-    var self = this;
+  //   var meta;
+  //   mtok1.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.DisplayTheAddress();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("tad1");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtname2:function(){
+  //   var self = this;
 
-    var meta;
-    mtok1.deployed().then(function(instance) {
-      meta = instance;
-      return meta.symbol();
-    }).then(function(value) {
-      var balance_element = document.getElementById("sym1");
-      balance_element.value = value;
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtdec2:function(){
-    var self = this;
+  //   var meta;
+  //   mtok1.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.name();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("name1");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtsymb2:function(){
+  //   var self = this;
 
-    var meta;
-    mtok1.deployed().then(function(instance) {
-      meta = instance;
-      return meta.decimals();
-    }).then(function(value) {
-      var balance_element = document.getElementById("dec1");
-      balance_element.value = value;
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtsub2:function(){
-    var self = this;
+  //   var meta;
+  //   mtok1.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.symbol();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("sym1");
+  //     var balance_element1 = document.getElementById("tor1");
+  //     balance_element.value = value;
+  //     balance_element1.value =0.1;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtdec2:function(){
+  //   var self = this;
 
-    var meta;
-    mtok1.deployed().then(function(instance) {
-      meta = instance;
-      return meta.totalSupply();
-    }).then(function(value) {
-      var balance_element = document.getElementById("tos1");
-      balance_element.value = value;
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  AR:function(){
-    var self = this;
+  //   var meta;
+  //   mtok1.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.decimals();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("dec1");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtsub2:function(){
+  //   var self = this;
 
-    var meta;
-    mtok1.deployed().then(function(instance) {
-      meta = instance;
+  //   var meta;
+  //   mtok1.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.totalSupply();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("tos1");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // AR:function(){
+  //   var self = this;
+
+  //   var meta;
+  //   mtok1.deployed().then(function(instance) {
+  //     meta = instance;
       
-      return meta.DisplayTheAddress();
-    }).then(function(value) {
-      var balance_element = document.getElementById("tad1");
-      balance_element.value = value;
-    }).catch(function(e) {
+  //     return meta.DisplayTheAddress();
+  //   }).then(function(value) {
+  //     var balance_element = document.getElementById("tad1");
+  //     balance_element.value = value;
+  //   }).catch(function(e) {
       
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
   pmdetail: function() {
     var j=1;
     var myarray=[];
@@ -284,13 +279,14 @@ window.App = {
     meta = instance;
     meta.Pcount().then(function(res,err){
       for (var i=0;i<res.toNumber();i++){
-        meta.getPortfolioAddress(i).then(function(re,er){
+        meta.ToatlportfolioMAddress(i).then(function(re,er){
           myarray=re;
-
-              meta.listOfPortfolioManager(re).then(function(fi,ers){
-                $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+fi[2]+'</td><td>'+fi[3]+'</td><td>'+fi[4]+'</td><td><button><a href="../app/investor.html" class="btn" onclick="myfunction()">Invest</a></button><script>function myfunction(){document.getElementById("id003").value='+re+';}</script></td></tr>')
+          meta.getBalance(re).then(function(ree,errr){
+              meta.Portfolio(re).then(function(fi,ers){
+                $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+ree+'</td><td>'+fi[3]+'</td><td>'+fi[4]+'</td><td><script>function myfunction(){document.getElementById("id003").value='+re+';}</script></td></tr>')
               });
         });
+      });
       }
     });
   });
@@ -410,7 +406,7 @@ else{
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.getContractaddress();
+      return meta.newadd();
     }).then(function(value) {
       var balance_element = document.getElementById("cad");
       balance_element.value = value;
@@ -631,80 +627,80 @@ else{
       // self.setStatus("Error sending coin; see log.");
     });
   },
-  pdetail:function(){
-    var self = this;
+  // pdetail:function(){
+  //   var self = this;
 
-    var meta;
-    MetaCoins.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayPurchasedTokendetails();
-    }).then(function(value) {
-      var balance_element1 = document.getElementById("4");
-      var balance_element2= document.getElementById("1");
-      var balance_element3= document.getElementById("3");
-      var balance_element4= document.getElementById("5");
+  //   var meta;
+  //   MetaCoins.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.DisplayPurchasedTokendetails();
+  //   }).then(function(value) {
+  //     var balance_element1 = document.getElementById("4");
+  //     var balance_element2= document.getElementById("1");
+  //     var balance_element3= document.getElementById("3");
+  //     var balance_element4= document.getElementById("5");
       
-      balance_element1.value = value[0];
-      balance_element2.value = value[1];
-      balance_element3.value = value[2];
-      balance_element4.value = value[3];
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-  mtdetail:function(){
-    var self = this;
+  //     balance_element1.value = value[0];
+  //     balance_element2.value = value[1];
+  //     balance_element3.value = value[2];
+  //     balance_element4.value = value[3];
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+  // mtdetail:function(){
+  //   var self = this;
   
-    var meta;
-    MetaCoins.deployed().then(function(instance) {
-      meta = instance;
-      return meta.DisplayPurchasedTK1({from:account});
-    }).then(function(value) {
-      var balance_element1 = document.getElementById("tads");
-      var balance_element2= document.getElementById("tns");
-      var balance_element3= document.getElementById("tnsy");
-      var balance_element4= document.getElementById("tnde");
-      var balance_element5= document.getElementById("tat");
+  //   var meta;
+  //   MetaCoins.deployed().then(function(instance) {
+  //     meta = instance;
+  //     return meta.DisplayPurchasedTK1({from:account});
+  //   }).then(function(value) {
+  //     var balance_element1 = document.getElementById("tads");
+  //     var balance_element2= document.getElementById("tns");
+  //     var balance_element3= document.getElementById("tnsy");
+  //     var balance_element4= document.getElementById("tnde");
+  //     var balance_element5= document.getElementById("tat");
       
       
-      balance_element1.value = value[0];
-      balance_element2.value = value[1];
-      balance_element3.value = value[2];
-      balance_element4.value = value[3];
-      balance_element5.value = value[4];
-    
-    }).catch(function(e) {
-      //console.log(e);
-      //self.setStatus("Error getting balance; see log.");
-    });
-  },
-mtdetail1:function(){
-  var self = this;
+  //     balance_element1.value = value[0];
+  //     balance_element2.value = value[1];
+  //     balance_element3.value = value[2];
+  //     balance_element4.value = value[3];
+  //     balance_element5.value = value[4];
+  //     balance_element5.value = 0.1;
+  //   }).catch(function(e) {
+  //     //console.log(e);
+  //     //self.setStatus("Error getting balance; see log.");
+  //   });
+  // },
+// mtdetail1:function(){
+//   var self = this;
 
-  var meta;
-  MetaCoins.deployed().then(function(instance) {
-    meta = instance;
-    return meta.DisplayPurchasedTK2({from:account});
-  }).then(function(value) {
-    var balance_element1 = document.getElementById("tads1");
-    var balance_element2= document.getElementById("tns1");
-    var balance_element3= document.getElementById("tnsy1");
-    var balance_element4= document.getElementById("tnde1");
-    var balance_element5= document.getElementById("tat1");
+//   var meta;
+//   MetaCoins.deployed().then(function(instance) {
+//     meta = instance;
+//     return meta.DisplayPurchasedTK2({from:account});
+//   }).then(function(value) {
+//     var balance_element1 = document.getElementById("tads1");
+//     var balance_element2= document.getElementById("tns1");
+//     var balance_element3= document.getElementById("tnsy1");
+//     var balance_element4= document.getElementById("tnde1");
+//     var balance_element5= document.getElementById("tat1");
     
     
-    balance_element1.value = value[0];
-    balance_element2.value = value[1];
-    balance_element3.value = value[2];
-    balance_element4.value = value[3];
-    balance_element5.value = value[4];
+//     balance_element1.value = value[0];
+//     balance_element2.value = value[1];
+//     balance_element3.value = value[2];
+//     balance_element4.value = value[3];
+//     balance_element5.value = value[4];
   
-  }).catch(function(e) {
-    //console.log(e);
-    //self.setStatus("Error getting balance; see log.");
-  });
-},
+//   }).catch(function(e) {
+//     //console.log(e);
+//     //self.setStatus("Error getting balance; see log.");
+//   });
+// },
 
  
 total: function (){

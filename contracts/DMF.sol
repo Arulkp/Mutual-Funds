@@ -1,44 +1,37 @@
 pragma solidity ^0.4.18;
-import "./MarketToken1.sol";
 import "./FundToken.sol";
-import "./MarketToken2.sol";
 import "./SafeMath.sol";
 contract DMF 
 {
     using SafeMath for uint256;
-        FundToken public Token;       // Object Creation 
-        Mam1 ab;
-        Man2 bb;
-//Global Variable Declaration part
-        uint public TR;
+   
+        uint  TR;
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
         uint256 cost = 0.1 ether; //rate of Fundtokens For Investor 
         uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
         uint256 profitToken = 10; //profit tokens for the Portfolio manager 
-        uint256 public PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
-        uint256 public InvestersTotalToken=0; //invester total token count
+        uint256 PortfolioManagerprofit = 0; //For the Portfoliomanager profit tokens 
+        uint256  InvestersTotalToken=0; //invester total token count
         uint256 public takecommission;
-        uint256 public calculations;
+        uint256  calculations;
         //uint256 public commissionForDmf;
-        uint256 public etherCalculation;
-        address public m1;
-        address public m2;
+        uint256 etherCalculation;
+       
         address contractAddress; //Fundtoken
-        address public Pendingreturnaddress;
         address owner; //owner variable for assigning contract Owner
         address public newadd; //For getting the Contract Address
 //ArrayList
         address[] public ToatlportfolioMAddress; //Array for storing the each register PortfolioManager
         address[] public TotalInvestorAddress; //Array for storing the each register Investors
-//Structure Area
+
 //Structure For PortfolioManager Details
         struct PortfolioDetails
         {
             address portfolioM;
             uint256 Eth;
             string tokenName;
-            uint256 count1;
-            uint256 count2;
+          //uint256 count1;
+          //  uint256 count2;
             uint commissionForPortfolio;
         }
 //Structure For Investor Details  
@@ -52,14 +45,7 @@ contract DMF
         }
 
 //Structure For MarketToken Purchase Details
-        struct MarketTokenPurchase
-        {
-            address contractAdd;
-            string name;
-            string symbol;
-            uint256 decimal;
-            uint256 totalbuycount;
-        }
+       
 //Mapping Area
 //Map for getting and storing the PortfolioManager resgistration Details
         mapping(address => PortfolioDetails) public Portfolio ;
@@ -67,20 +53,15 @@ contract DMF
         mapping(address => mapping( address =>  InvestorDetails)) public invester ; 
         mapping(address=> InvestorDetails) public Investment;
 //Map for getting the MarketToken Purchase details by the Portfoliomanager
-        mapping(address => mapping(address => MarketTokenPurchase)) public Market; 
+       mapping(address => address) public Purchase; 
 //Portfoliomanager Sold Tokens Ether 
         mapping(address => uint256) public PM_soldTK_Ether; 
 //Constructor For initialize the contract Owner Address and Contract Deployed Address
-        function DMF(address na,address Mark1,address Mark2)public payable
+        function DMF(address na)public payable
         {
             owner=msg.sender;
             newadd=address(this);
-            Token=new FundToken();
             contractAddress=na;
-            m1=Mark1;
-            m2=Mark2;
-            bb= Man2(m2);
-            ab= Mam1(m1);
         }
 //Function For PortfolioManager Resgistration
         function PortfolioReg() public payable
@@ -107,10 +88,7 @@ contract DMF
             return this.balance.div(1 ether);
         }
  //Function For Getting the Contract Address
-        function getContractaddress() public view returns(address)
-        {
-            return newadd;
-        }
+    
  //Function For Buying the FundTokens by the Investor From the PortfolioManager
         function InvesterGetToken(address _add_) public payable
         {
@@ -129,9 +107,9 @@ contract DMF
             Portfolio[_add_].Eth = Portfolio[_add_].Eth.add(test);
         }
 //Function For Getting the Investor Balance of Tokens
-        function getBalance() public view returns(uint256)
+        function getBalance(address a) public view returns(uint256)
         {
-            return FundToken(contractAddress).balanceOf(TotalInvestorAddress[0]);
+            return FundToken(contractAddress).balanceOf(a);
         }
  /** The dividends calculations
         Investor1 = (( Investor1_fund TK) / (Inves1_FUndTK + Inves2_FUndTK + ... )) * 90;
@@ -141,7 +119,7 @@ contract DMF
         {
             FundToken(contractAddress).mintToken(msg.sender,dividendToken); //minting the token 
             PortfolioManagerprofit = (dividendToken.mul(10)).div(100); //taking the portfolio share
-            //FundToken(contractAddress).mintToken(msg.sender,PortfolioManagerprofit);
+            FundToken(contractAddress).mintToken(msg.sender,PortfolioManagerprofit);
             ShareETK_ToI();
         }
 //function for split the profit to each tokens
@@ -151,15 +129,15 @@ contract DMF
             {
                 uint256 b = (invester[TotalInvestorAddress[i]][msg.sender].TokenCount.mul((dividendToken.sub(PortfolioManagerprofit)))).div(InvestersTotalToken);
                // uint256 a =  b  / InvestersTotalToken;
-                FundToken(contractAddress).mintToken(TotalInvestorAddress[i],b);
+               FundToken(contractAddress).mintToken(TotalInvestorAddress[i],b);
                 FundToken(contractAddress).tokenDecrease(msg.sender,b);
             }
         }
 //getting All the Investor and PortfolioManager balance 
-        function getAllBalance() public view returns(uint256)
-        {
-            return FundToken(contractAddress).balanceOf(msg.sender);
-        }
+       // function getAllBalance() public view returns(uint256)
+       // {
+       //     return FundToken(contractAddress).balanceOf(msg.sender);
+        //}
 //Function for Sell The Tokens to the PortfolioManager
         function ReturnTokenToPortfolioManager(address _add_,uint256 value)public payable
         {
@@ -176,96 +154,22 @@ contract DMF
             (msg.sender).transfer(a);
             invester[msg.sender][_add_].Eth= invester[msg.sender][_add_].Eth.sub(TR);
         }
-        function PortfolioManagerList()public view returns(address)
-        {
-            for(uint256 i=0;i<ToatlportfolioMAddress.length;i++)
-            {
-                return ToatlportfolioMAddress[i];
-            }
+        
+        function purchaseToken(address buyToken,uint256 amountoftoken) public{
+           Purchase[msg.sender]=buyToken;
+            buyToken.call.gas(2500000).value(amountoftoken.mul(0.1 ether))();
         }
-//Function for Purchase the market tokens by the PortfolioManager
-       function PurchasingMarket1token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
-       {
-            uint256 howmuchEther = PM_soldTK_Ether[msg.sender];
-            uint256 PurchaseTkTotalRate = _totacount.mul(0.1 ether);
-            calculations = PurchaseTkTotalRate.div(1 ether);
-            require(howmuchEther > calculations);
-            m1.call.gas(2500000).value(PurchaseTkTotalRate)();
-            Market[msg.sender][_contractadd].name = _name;
-            Market[msg.sender][_contractadd].symbol = _symbol;
-            Market[msg.sender][_contractadd].decimal = 0;
-            Market[msg.sender][_contractadd].totalbuycount = _totacount;
-            Market[msg.sender][_contractadd].contractAdd = _contractadd;
-            Portfolio[msg.sender].tokenName=_name;
-            Portfolio[msg.sender].count1=_totacount;
-            uint256 fg = Portfolio[msg.sender].Eth.sub(calculations);
-            Portfolio[msg.sender].Eth= fg;    
-       }
-        function PurchasingMarket2token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
-        {
-            uint256 howmuchEther =  PM_soldTK_Ether[msg.sender];
-            uint256 PurchaseTkTotalRate = _totacount.mul(0.1 ether);
-            calculations = PurchaseTkTotalRate.div(1 ether);
-            require(howmuchEther > calculations);
-            m2.call.gas(2500000).value(PurchaseTkTotalRate)();
-            Market[msg.sender][_contractadd].name = _name;
-            Market[msg.sender][_contractadd].symbol = _symbol;
-            Market[msg.sender][_contractadd].decimal = 0;
-            Market[msg.sender][_contractadd].totalbuycount = _totacount; 
-            Market[msg.sender][_contractadd].contractAdd = _contractadd;
-            Portfolio[msg.sender].tokenName=_name;
-            Portfolio[msg.sender].count2=_totacount;
-            uint256 fg = Portfolio[msg.sender].Eth.sub(calculations);
-            Portfolio[msg.sender].Eth= fg;
+        function returnPurchasedToken(uint256 amountoftoken) public payable {
+            Purchase[msg.sender].transfer(amountoftoken.mul(0.1 ether));
         }
-       /* function DisplayPurchasedTKCount() public view returns(uint256)
-        {
-            uint256 count1 = Mam1(m1).DisplayBalance(newadd);
-            uint256 count2 = Man2(m2).DisplayBalance(newadd);
-            uint256 total = count1.add(count2);
-            return total;
-        } */
-        function DisplayPurchasedTK1() public view returns(address,string,string,uint256,uint256)
-        {
-            string _nn = Market[msg.sender][m1].name;
-            string _sm = Market[msg.sender][m1].symbol;
-            uint256 _dd =  Market[msg.sender][m1].decimal;
-            uint256 _pp = Market[msg.sender][m1].totalbuycount;
-            return(m1,_nn,_sm,_dd,_pp);
-        }
-        function DisplayPurchasedTK2() public view returns(address,string,string,uint256,uint256)
-        {
-            string _nn = Market[msg.sender][m2].name;
-            string _sm = Market[msg.sender][m2].symbol;
-            uint256 _dd =  Market[msg.sender][m2].decimal;
-            uint256 _pp = Market[msg.sender][m2].totalbuycount;
-            return(m2,_nn,_sm,_dd,_pp);
-        }
+
 //Function For Many PortfolioManager Details
-        function listOfPortfolioManager(address a)public view returns(address,uint256,uint256,uint256,uint256)
-        {
-            for(uint i=0;i<ToatlportfolioMAddress.length;i++)
-            {
-                if(a == Portfolio[a].portfolioM)
-                {
-                    return (Portfolio[a].portfolioM,Portfolio[a].Eth,FundToken(contractAddress).balanceOf(a),Portfolio[a].count1,Portfolio[a].count2);
-                }
-            }
-        }
         function Pcount() public view returns(uint256)
         {
             return ToatlportfolioMAddress.length;
-        }
-        function getPortfolioAddress(uint a) public view returns(address)
-        {
-            return ToatlportfolioMAddress[a];
-        }
-        function getInvesterAddress(uint a,uint a1) public view returns(address,address)
-        {
-            return (ToatlportfolioMAddress[a],TotalInvestorAddress[a1]);
         }
         function Icount() public view returns(uint256)
         {
             return TotalInvestorAddress.length;
         }
-}                                                                                     
+}                                                                                                            

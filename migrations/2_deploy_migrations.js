@@ -1,16 +1,13 @@
 var FundToken = artifacts.require('FundToken')
 var DMF = artifacts.require('DMF')
-var MarketToken1 = artifacts.require("Mam1")
-var MarketToken2 = artifacts.require("Man2")
-
+var TokenManipulation=artifacts.require('Token')
 
 module.exports= function(deployer)
 {
-  deployer.deploy(FundToken);
-  deployer.deploy(MarketToken1)
-  deployer.deploy(MarketToken2).then(function()
+  deployer.deploy(TokenManipulation)
+  deployer.deploy(FundToken).then(function()
 {
-  return deployer.deploy(DMF,FundToken.address,MarketToken1.address,MarketToken2.address);
+  return deployer.deploy(DMF,FundToken.address);
 })
 }
 /*

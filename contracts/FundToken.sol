@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 import "./ERC20.sol";
-contract FundToken is ERC20Basic
+contract FundToken is ERC20
 {
     string standard="Token 1.0";
     string public name;
@@ -72,6 +72,12 @@ contract FundToken is ERC20Basic
     function balanceOf(address _addr) public view returns (uint256)
     {
         return balanceOf[_addr];
+    }
+    function name() public constant returns(string){
+        return name;
+    }
+    function symbol() public constant returns(string){
+        return symbol;
     }
     
 
