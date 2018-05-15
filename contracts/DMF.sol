@@ -4,16 +4,8 @@ import "./SafeMath.sol";
 contract DMF 
 {
     using SafeMath for uint256;
-<<<<<<< HEAD
    
         uint  TR;
-=======
-    //   FundToken public Token;       // Object Creation 
-    //     Mam1 ab;
-    //     Man2 bb;
-//Global Variable Declaration part
-        uint public TR;
->>>>>>> 8b78f4b71ce9414b4bfc331374328f41e235d718
         uint256 rate = 0.001 ether; //rate of Fundtoken For PortfolioManager
         uint256 cost = 0.1 ether; //rate of Fundtokens For Investor 
         uint256 dividendToken = 100; //divident tokens count for give the profit to Investor
@@ -69,16 +61,7 @@ contract DMF
         {
             owner=msg.sender;
             newadd=address(this);
-<<<<<<< HEAD
             contractAddress=na;
-=======
-            //Token=new FundToken();
-            contractAddress=na;
-            m1=Mark1;
-            m2=Mark2;
-            //bb= Man2(m2);
-            //ab= Mam1(m1);
->>>>>>> 8b78f4b71ce9414b4bfc331374328f41e235d718
         }
 //Function For PortfolioManager Resgistration
         function PortfolioReg() public payable
@@ -171,7 +154,6 @@ contract DMF
             (msg.sender).transfer(a);
             invester[msg.sender][_add_].Eth= invester[msg.sender][_add_].Eth.sub(TR);
         }
-<<<<<<< HEAD
         
         function purchaseToken(address buyToken,uint256 amountoftoken) public{
            Purchase[msg.sender]=buyToken;
@@ -179,66 +161,6 @@ contract DMF
         }
         function returnPurchasedToken(uint256 amountoftoken) public payable {
             Purchase[msg.sender].transfer(amountoftoken.mul(0.1 ether));
-=======
-    
-//Function for Purchase the market tokens by the PortfolioManager
-       function PurchasingMarket1token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
-       {
-            uint256 howmuchEther = PM_soldTK_Ether[msg.sender];
-            uint256 PurchaseTkTotalRate = _totacount.mul(0.1 ether);
-            calculations = PurchaseTkTotalRate.div(1 ether);
-            require(howmuchEther > calculations);
-            m1.call.gas(2500000).value(PurchaseTkTotalRate)();
-            Market[msg.sender][_contractadd].name = _name;
-            Market[msg.sender][_contractadd].symbol = _symbol;
-            Market[msg.sender][_contractadd].decimal = 0;
-            Market[msg.sender][_contractadd].totalbuycount = _totacount;
-            Market[msg.sender][_contractadd].contractAdd = _contractadd;
-            Portfolio[msg.sender].tokenName=_name;
-            Portfolio[msg.sender].count1=_totacount;
-            uint256 fg = Portfolio[msg.sender].Eth.sub(calculations);
-            Portfolio[msg.sender].Eth= fg;    
-       }
-        function PurchasingMarket2token(address _contractadd,string _name,string _symbol,uint256 _totacount) public 
-        {
-            uint256 howmuchEther =  PM_soldTK_Ether[msg.sender];
-            uint256 PurchaseTkTotalRate = _totacount.mul(0.1 ether);
-            calculations = PurchaseTkTotalRate.div(1 ether);
-            require(howmuchEther > calculations);
-            m2.call.gas(2500000).value(PurchaseTkTotalRate)();
-            Market[msg.sender][_contractadd].name = _name;
-            Market[msg.sender][_contractadd].symbol = _symbol;
-            Market[msg.sender][_contractadd].decimal = 0;
-            Market[msg.sender][_contractadd].totalbuycount = _totacount; 
-            Market[msg.sender][_contractadd].contractAdd = _contractadd;
-            Portfolio[msg.sender].tokenName=_name;
-            Portfolio[msg.sender].count2=_totacount;
-            uint256 fg = Portfolio[msg.sender].Eth.sub(calculations);
-            Portfolio[msg.sender].Eth= fg;
-        }
-       /* function DisplayPurchasedTKCount() public view returns(uint256)
-        {
-            uint256 count1 = Mam1(m1).DisplayBalance(newadd);
-            uint256 count2 = Man2(m2).DisplayBalance(newadd);
-            uint256 total = count1.add(count2);
-            return total;
-        } */
-        function DisplayPurchasedTK1() public view returns(address,string,string,uint256,uint256)
-        {
-            // string _nn = Market[msg.sender][m1].name;
-            // string _sm = Market[msg.sender][m1].symbol;
-            // uint256 _dd =  Market[msg.sender][m1].decimal;
-            //uint256 _pp = Market[msg.sender][m1].totalbuycount;
-            return(m1,Market[msg.sender][m1].name, Market[msg.sender][m1].symbol, Market[msg.sender][m1].decimal, Market[msg.sender][m1].totalbuycount);
-        }
-        function DisplayPurchasedTK2() public view returns(address,string,string,uint256,uint256)
-        {
-            //string _nn = Market[msg.sender][m2].name;
-            //string _sm = Market[msg.sender][m2].symbol;
-            //uint256 _dd =  Market[msg.sender][m2].decimal;
-            //uint256 _pp = Market[msg.sender][m2].totalbuycount;
-            return(m2,Market[msg.sender][m2].name, Market[msg.sender][m2].symbol, Market[msg.sender][m2].decimal, Market[msg.sender][m2].totalbuycount);
->>>>>>> 8b78f4b71ce9414b4bfc331374328f41e235d718
         }
 
 //Function For Many PortfolioManager Details
