@@ -1,9 +1,7 @@
-pragma solidity ^0.4.13;
+pragma solidity ^0.4.23;
 
 contract ERC20 {
     function totalSupply() public constant returns (uint);
-    function name() public constant returns (string _name);
-    function symbol() public constant returns (string _symbol);
     function balanceOf(address tokenOwner) public constant returns (uint balance);
     function allowance(address tokenOwner, address spender) public constant returns (uint remaining);
     function transfer(address to, uint tokens) public returns (bool success);

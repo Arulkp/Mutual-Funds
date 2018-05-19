@@ -1,4 +1,4 @@
-
+pragma solidity ^0.4.23;
 import "./ERC20.sol";
 contract Token{
     
@@ -17,14 +17,6 @@ contract Token{
     
     function transfer(address _token,address _to,uint _amt) public payable {
         ERC20(_token).transfer(_to,_amt);
-    }
-    
-    function name(address _token) public constant returns(string){
-        return ERC20(_token).name();
-    }
-    
-     function symbol(address _token) public constant returns(string){
-        return ERC20(_token).symbol();
     }
     
 }

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 import "./ERC20.sol";
 contract FundToken is ERC20
 {
@@ -13,7 +13,7 @@ contract FundToken is ERC20
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
 
-    function FundToken()public
+     constructor() public
     {
         totalsupply=100000;
         balanceOf[msg.sender]=totalsupply;
@@ -33,7 +33,7 @@ contract FundToken is ERC20
         balanceOf[from]=balanceOf[from]-value;
         balanceOf[to] =balanceOf[to]+value;
         //allowed[from][msg.sender] = allowed[from][msg.sender]-(value);
-        Transfer(from,to,value);
+       emit Transfer(from,to,value);
         return true;
     }
     
@@ -62,7 +62,7 @@ contract FundToken is ERC20
         require(value<=balanceOf[msg.sender]);
         balanceOf[msg.sender]=balanceOf[msg.sender]-value;
         balanceOf[to]=balanceOf[to]+value;
-        Transfer(msg.sender,to,value);
+        emit Transfer(msg.sender,to,value);
         return true;
     }
     function totalSupply() public view returns (uint256)
@@ -73,12 +73,7 @@ contract FundToken is ERC20
     {
         return balanceOf[_addr];
     }
-    function name() public constant returns(string){
-        return name;
-    }
-    function symbol() public constant returns(string){
-        return symbol;
-    }
+
     
 
  function mintToken(address _add_,uint256 _amo) public

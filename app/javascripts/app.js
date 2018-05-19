@@ -64,8 +64,8 @@ window.App = {
       self.pbal();
       //self.AR();
      // self.mtad2();
-      self.pmdetail();
-      self.Imdetail();
+     self.pmdetail();
+     // self.Imdetail();
       //self.mtdetail();
      // self.mtdetail1();
       self.ethbb();
@@ -74,6 +74,8 @@ window.App = {
       self.pbal();
       self.pbal1();
       self.divCheck();
+      self.ListInvester();
+      self.ListPortfolio();
      // self.pads();
       
      // self.bal();
@@ -277,13 +279,13 @@ window.App = {
   var meta;
   MetaCoins.deployed().then(function(instance) {
     meta = instance;
-    meta.Pcount().then(function(res,err){
-      for (var i=0;i<res.toNumber();i++){
+    meta.values().then(function(res,err){
+      for (var i=0;i<res[0].toNumber();i++){
         meta.ToatlportfolioMAddress(i).then(function(re,er){
           myarray=re;
           meta.getBalance(re).then(function(ree,errr){
               meta.Portfolio(re).then(function(fi,ers){
-                $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td><td>'+ree+'</td><td>'+fi[3]+'</td><td>'+fi[4]+'</td><td><script>function myfunction(){document.getElementById("id003").value='+re+';}</script></td></tr>')
+                $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+re+'</td><td>'+fi[0]+'</td><td>'+ree+'</td></tr>')
               });
         });
       });
@@ -293,27 +295,27 @@ window.App = {
   
   },
 
-  Imdetail: function() {
-    var j=1;
-    var myarray=[];
-  var self = this;
-  var meta;
-  MetaCoins.deployed().then(function(instance) {
-    meta = instance;
-    meta.Icount().then(function(res,err){
-      for (var i=0;i<res.toNumber();i++){
-        meta.getInvesterAddress(i,i).then(function(re,er){
-              meta.invester(re[0],re[1]).then(function(fi,ers){
-                $("#Itable").append('<tr><td>'+j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td></tr>')
+  // Imdetail: function() {
+  //   var j=1;
+  //   var myarray=[];
+  // var self = this;
+  // var meta;
+  // MetaCoins.deployed().then(function(instance) {
+  //   meta = instance;
+  //   meta.Icount().then(function(res,err){
+  //     for (var i=0;i<res.toNumber();i++){
+  //       meta.getInvesterAddress(i,i).then(function(re,er){
+  //             meta.invester(re[0],re[1]).then(function(fi,ers){
+  //               $("#Itable").append('<tr><td>'+j++ +'</td><td>'+fi[0]+'</td><td>'+fi[1]+'</td></tr>')
               
-              });
+  //             });
           
-        });
-      }
-    });
-  });
+  //       });
+  //     }
+  //   });
+  // });
   
-  },
+  // },
   pbal: function() {
     var self = this;
 
@@ -367,9 +369,9 @@ window.App = {
     var meta;
     MetaCoins.deployed().then(function(instance) {
       meta = instance;
-      return meta.Icount({from:account});
+      return meta.values({from:account});
     }).then(function(value) {
-      arr=value;
+      arr=value[1];
       self.refreshBalance();
     }).catch(function(e) {
      // console.log(e);
@@ -530,7 +532,8 @@ else{
     var self = this;
     var account=web3.eth.accounts;
     var meta;
-    MetaCoins.deployed().then(function(instance) {
+    MetaCoins.deployed().then(function(instance) 
+    {
       meta = instance;
       return meta.Portfolio(web3.eth.accounts);
     }).then(function(value) {
@@ -542,7 +545,74 @@ else{
       //self.setStatus("Error getting balance; see log.");
     });
   }, 
+
+
+  purchase1:function(){
+    var self = this;
+    var address = document.getElementById("a111").value;
+    var amount = document.getElementById("a222").value;
+    var meta;
+    MetaCoins.deployed().then(function(instance) 
+    {
+      meta = instance;
+      return meta.purchaseToken(address,amount,{from: account});
+    }).then(function(value) {
+    }).catch(function(e) {
+     // console.log(e);
+      //self.setStatus("Error getting balance; see log.");
+    });
+  }, 
  
+
+// list of investers for portfolio
+
+  ListInvester: function() {
+    var j=1;
+  var self = this;
+  var meta;
+  MetaCoins.deployed().then(function(instance) {
+    meta = instance;
+  
+      meta.portfoliocount(web3.eth.accounts).then(function(ress,errr){
+
+            for (var i=0;i<ress;i++){
+              meta.PortfolioList(web3.eth.accounts,i).then(function(res1,err1){
+              meta.invester(web3.eth.accounts,res1).then(function(reee,errr){
+                $("#Ptable1").append('<tr><td>'+ j++ +'</td><td>'+ res1 +'</td><td>'+reee[0]+'</td><td>'+reee[1]+'</td><td>'+'<html> <button type="button" class="btn btn-info " id="1" data-toggle="modal" data-target="#myModal" onclick="purchase1()">SELL</button></html>'+'</td></tr>')
+      });
+    });
+           }
+    });
+  });
+
+  },
+
+
+
+  ListPortfolio: function() {
+  var j=1;
+  var self = this;
+  var meta;
+  MetaCoins.deployed().then(function(instance) {
+    meta = instance;
+   
+      meta.Investercount(web3.eth.accounts).then(function(ress,errr){
+
+            for (var i=0;i<ress;i++){
+              meta.InvesterList(web3.eth.accounts,i).then(function(re,er){
+              meta.invester(re,web3.eth.accounts).then(function(reee,errr){
+                $("#Ptable10").append('<tr><td>'+ j++ +'</td><td>'+ re +'</td><td>'+reee[0]+'</td><td>'+reee[1]+'</td></tr>')
+      });
+    });
+           }
+    });
+  
+})
+  },
+
+
+  
+
 
 
   sendCoin: function() {
@@ -723,8 +793,8 @@ total: function (){
 
 
 invest : function (){
-  var reg_e = parseInt(document.getElementById("name1541").value);
-  var show =document.getElementById("name25200").value;
+  var reg_e = parseInt(document.getElementById("a12").value);
+  var show =document.getElementById("a11").value;
   var self = this;
   var meta;
   MetaCoins.deployed().then(function(instance) {
@@ -742,7 +812,7 @@ invest : function (){
   
 
   register : function (){
-    var reg_e = parseInt(document.getElementById("name541").value);
+    var reg_e = parseInt(document.getElementById("a1").value);
 
     var self = this;
     var meta;
