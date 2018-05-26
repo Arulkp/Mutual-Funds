@@ -63,7 +63,7 @@
             <a class="nav-link js-scroll-trigger"  href="#register">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Profile</a>
           </li>
 
           <li class="nav-item">
@@ -80,11 +80,11 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#invester">Investor</a>
           </li> -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#investerprofile">Investorprofile</a>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#invester">list of portfolio for invester</a>
+              <a class="nav-link js-scroll-trigger" href="#invester">invester investment details </a>
             </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#listofportfolio" >List of portfolio</a>
@@ -194,11 +194,11 @@
         <div class="modal-body">
           <!-- Token Address
           <input id="a1" size="40"/> <br><br> -->
-          Token Count&nbsp;&nbsp;&nbsp;&nbsp;
+          ETHER VALUE&nbsp;&nbsp;&nbsp;&nbsp;
           <input id="a1" size="40"/>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="App.register();">PURCHASE</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="App.register();">STAKE</button>
         </div>
       </div>
       
@@ -211,20 +211,40 @@
         <div class="modal-content">
          
           <div class="modal-body">
-            Token Address
-            <input id="a11" size="40"/> <br><br>
-            Token Count&nbsp;&nbsp;&nbsp;
+            Portfolio Address
+            <input id="a11" size="40"/> <br
+            Token Count&nbsp;&nbsp;&nbsp;<br>
             <input id="a12" size="40"/>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="App.invest();">PURCHASE</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="App.invest();">Invest</button>
           </div>
         </div>
         
       </div>
     </div>
  </div>
- 
+ <div class="modal fade" id="myModal3" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        Portfolio Address
+        <input id="aa1" size="40"/> <br>
+        Token Count&nbsp;&nbsp;&nbsp;<br>
+
+        <input id="aa2" size="40"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="App. SEL();">Sell</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+</div>
   
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="portfolio">
         <div class="my-auto">
@@ -247,7 +267,7 @@
 <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="listofinvester">
     <div class="my-auto">
  
-      <center><h2> portfolio LIST</h2></center><BR>
+      <center><h2> INVESTER LIST</h2></center><BR>
                      <div class="container">
                         <div class="table-responsive-xl">
                             <table class="table table-xl" id="Ptable10">
@@ -299,7 +319,7 @@
   <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="invester">
       <div class="my-auto">
    
-        <center><h2> INVESTER LIST</h2></center><BR>
+        <center><h2> INVESMENT DETAILS</h2></center><BR>
                        <div class="container">
                           <div class="table-responsive-xl">
                               <table class="table table-xl" id="Ptable1">

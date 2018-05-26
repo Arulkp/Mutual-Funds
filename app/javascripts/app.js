@@ -286,7 +286,8 @@ window.App = {
           meta.getBalance(re).then(function(ree,errr){
               meta.Portfolio(re).then(function(fi,ers){
                 $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+re+'</td><td>'+fi[0]+'</td><td>'+ree+'</td></tr>')
-              });
+              }); 
+              window.location.reload();
         });
       });
       }
@@ -557,6 +558,7 @@ else{
       meta = instance;
       return meta.purchaseToken(address,amount,{from: account});
     }).then(function(value) {
+      alert("Successfull!");
     }).catch(function(e) {
      // console.log(e);
       //self.setStatus("Error getting balance; see log.");
@@ -578,8 +580,9 @@ else{
             for (var i=0;i<ress;i++){
               meta.PortfolioList(web3.eth.accounts,i).then(function(res1,err1){
               meta.invester(web3.eth.accounts,res1).then(function(reee,errr){
-                $("#Ptable1").append('<tr><td>'+ j++ +'</td><td>'+ res1 +'</td><td>'+reee[0]+'</td><td>'+reee[1]+'</td><td>'+'<html> <button type="button" class="btn btn-info " id="1" data-toggle="modal" data-target="#myModal" onclick="purchase1()">SELL</button></html>'+'</td></tr>')
-      });
+                $("#Ptable1").append('<tr><td>'+ j++ +'</td><td>'+ res1 +'</td><td>'+reee[0]+'</td><td>'+reee[1]+'</td><td>'+'<html> <button type="button" class="btn btn-info " id="1" data-toggle="modal" data-target="#myModal3" ">SELL</button></html>'+'</td></tr>')
+                document.getElementById('aa1').value=res1;
+              });
     });
            }
     });
@@ -627,6 +630,12 @@ else{
       meta = instance;
       return meta.PortfolioReg( amount, {from: account});
     }).then(function() {
+      
+      
+      alert("Successfull!");
+      
+      App:pmdetail();
+      self.pmdetail();
       self.setStatus("Transaction complete!");
       self.refreshBalance();
     }).catch(function(e) {
@@ -801,6 +810,12 @@ invest : function (){
     meta = instance;
     return meta.InvesterGetToken(show,{from: account,value:web3.toWei(reg_e,'ether')});
   }).then(function(result) {
+    alert(Successful);
+    App:ListPortfolio();
+    App.ListInvester();
+    self.ListInvester();
+    self.ListPortfolio();
+
     console.log(result);
     // self.setStatus("Transaction complete!");
     // self.refreshBalance();
@@ -820,7 +835,12 @@ invest : function (){
       meta = instance;
       return meta.PortfolioReg({from: account,value:web3.toWei(reg_e,'ether')});
     }).then(function(result) {
+      
+      alert(Successful);
       console.log(result);
+      window.location.reload();
+      App:pmdetail();
+      self.pmdetail();
       // self.setStatus("Transaction complete!");
       // self.refreshBalance();
     }).catch(function(e) {
@@ -832,8 +852,8 @@ invest : function (){
 
 
   SEL: function (){
-    var reg_s = $("#name2").val();
-    var reg = $("#name3").val();
+    var reg_s = $("#aa1").val();
+    var reg = $("#aa2").val();
     var self = this;
     var meta;
     MetaCoins.deployed().then(function(instance) {
@@ -841,6 +861,7 @@ invest : function (){
       return meta.ReturnTokenToPortfolioManager(reg_s,reg,{from: account});
     }).then(function(result) {
       console.log(result);
+      alert("Successfull!");
       // self.setStatus("Transaction complete!");
       // self.refreshBalance();
     }).catch(function(e) {
