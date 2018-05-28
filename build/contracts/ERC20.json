@@ -180,9 +180,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.23;\r\n\r\ncontract ERC20 {\r\n    function totalSupply() public constant returns (uint);\r\n    function balanceOf(address tokenOwner) public constant returns (uint balance);\r\n    function allowance(address tokenOwner, address spender) public constant returns (uint remaining);\r\n    function transfer(address to, uint tokens) public returns (bool success);\r\n    function approve(address spender, uint tokens) public returns (bool success);\r\n    function transferFrom(address from, address to, uint tokens) public returns (bool success);\r\n\r\n    event Transfer(address indexed from, address indexed to, uint tokens);\r\n    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);\r\n}\r\n\r\n",
-  "sourcePath": "C:\\Users\\Sultana.0862\\Desktop\\New sat\\Mutual-Funds\\contracts\\ERC20.sol",
+  "sourcePath": "C:\\Users\\Sultana.0862\\Desktop\\New folder\\Mutual-Funds\\contracts\\ERC20.sol",
   "ast": {
-    "absolutePath": "/C/Users/Sultana.0862/Desktop/New sat/Mutual-Funds/contracts/ERC20.sol",
+    "absolutePath": "/C/Users/Sultana.0862/Desktop/New folder/Mutual-Funds/contracts/ERC20.sol",
     "exportedSymbols": {
       "ERC20": [
         748
@@ -1016,7 +1016,7 @@
     "src": "0:722:1"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/Sultana.0862/Desktop/New sat/Mutual-Funds/contracts/ERC20.sol",
+    "absolutePath": "/C/Users/Sultana.0862/Desktop/New folder/Mutual-Funds/contracts/ERC20.sol",
     "exportedSymbols": {
       "ERC20": [
         748
@@ -1855,5 +1855,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-26T07:17:38.442Z"
+  "updatedAt": "2018-05-28T07:15:03.424Z"
 }

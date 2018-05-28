@@ -287,7 +287,7 @@ window.App = {
               meta.Portfolio(re).then(function(fi,ers){
                 $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+re+'</td><td>'+fi[0]+'</td><td>'+ree+'</td></tr>')
               }); 
-              window.location.reload();
+             // window.location.reload();
         });
       });
       }
@@ -810,11 +810,11 @@ invest : function (){
     meta = instance;
     return meta.InvesterGetToken(show,{from: account,value:web3.toWei(reg_e,'ether')});
   }).then(function(result) {
-    alert(Successful);
-    App:ListPortfolio();
-    App.ListInvester();
-    self.ListInvester();
-    self.ListPortfolio();
+    alert("Successful");
+    // App:ListPortfolio();
+    // App.ListInvester();
+    // self.ListInvester();
+    // self.ListPortfolio();
 
     console.log(result);
     // self.setStatus("Transaction complete!");
@@ -836,11 +836,11 @@ invest : function (){
       return meta.PortfolioReg({from: account,value:web3.toWei(reg_e,'ether')});
     }).then(function(result) {
       
-      alert(Successful);
+      alert("Successful");
       console.log(result);
-      window.location.reload();
-      App:pmdetail();
-      self.pmdetail();
+      // window.location.reload();
+      // App:pmdetail();
+      // self.pmdetail();
       // self.setStatus("Transaction complete!");
       // self.refreshBalance();
     }).catch(function(e) {
