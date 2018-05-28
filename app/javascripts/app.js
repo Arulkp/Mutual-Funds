@@ -836,7 +836,7 @@ invest : function (){
       return meta.PortfolioReg({from: account,value:web3.toWei(reg_e,'ether')});
     }).then(function(result) {
       
-      alert(Successful);
+      alert("Successful");
       console.log(result);
       // window.location.reload();
       // App:pmdetail();
