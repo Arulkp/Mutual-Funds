@@ -1,5 +1,6 @@
 pragma solidity ^0.4.23;
 import "./FundToken.sol";
+import "./DostrixToken.sol";
 import "./SafeMath.sol";
 contract DMF 
 {
@@ -27,7 +28,7 @@ contract DMF
             uint256 TokenCount;
         }
 
-//Structure For MarketToken Purchase Details
+
        
 //Mapping Area
 //Map for getting and storing the PortfolioManager resgistration Details
@@ -69,7 +70,7 @@ contract DMF
         {
             return newadd.balance.div(1 ether);
         }
- //Function For Getting the Contract Address
+ 
     
  //Function For Buying the FundTokens by the Investor From the PortfolioManager
         function InvesterGetToken(address _add_) public payable
@@ -81,11 +82,7 @@ contract DMF
             Investment[msg.sender].PortfolioHolders.push(_add_);
             invester[msg.sender][_add_].Eth=invester[msg.sender][_add_].Eth.add(msg.value);
             invester[msg.sender][_add_].TokenCount=invester[msg.sender][_add_].TokenCount.add(tokens);
-            
-           // Investment[msg.sender].Eth = Investment[msg.sender].Eth.add(msg.value);
             uint256 test = msg.value.div(1 ether);
-           // invester[msg.sender][_add_].Eth = test;
-          //  Investment[msg.sender].TokenCount = tokens;
             PM_soldTK_Ether[_add_] = PM_soldTK_Ether[_add_].add(test);
             Portfolio[_add_].Eth = Portfolio[_add_].Eth.add(test);
             Portfolio[_add_].investerAddressForPortfolio.push(msg.sender);
@@ -120,26 +117,21 @@ contract DMF
             FundToken(contractAddress).transferFrom(msg.sender,_add_,value);
             TR = value.mul(0.1 ether);
            uint256 commissionForDmf= commissionForDmf.add((TR.mul(10)).div(100));
-        
             takecommission = takecommission.add((commissionForDmf.div(1 ether)));
             Portfolio[_add_].commissionForPortfolio = Portfolio[_add_].commissionForPortfolio.add((TR.mul(10)).div(100)); 
             uint256 a= (TR.sub(commissionForDmf.add(Portfolio[_add_].commissionForPortfolio))).add(commissionForDmf);
             _add_.transfer(Portfolio[_add_].commissionForPortfolio);
-            //address x = msg.sender;
-            newadd.call.gas(2500000).value(commissionForDmf)();
             (msg.sender).transfer(a);
             invester[msg.sender][_add_].Eth= invester[msg.sender][_add_].Eth.sub(TR);
         }
         
-        function purchaseToken(address buyToken,uint256 amountoftoken) public{
-           Purchase[msg.sender]=buyToken;
-           FundToken(contractAddress).transferFrom(buyToken,msg.sender,amountoftoken);
-            buyToken.call.gas(2500000).value(amountoftoken.mul(0.1 ether))();
+        function purchaseToken(address buyToken,uint256 amountoftoken) public payable{
+            MarketToken(buyToken).transfer(msg.sender,amountoftoken);
+            uint256 ETH = amountoftoken * 0.1 ether;
+            buyToken.transfer(ETH);
+           
         }
-        // function returnPurchasedToken( uint256 amountoftoken) public payable {
-        //     Purchase[msg.sender].transfer(amountoftoken.mul(0.1 ether));
-        //     FundToken(contractAddress).transferFrom(msg.sender,Purchase[msg.sender],amountoftoken);
-        // }
+        
 
 //Function For Many PortfolioManager Details
         function values() public view returns(uint256,uint256)

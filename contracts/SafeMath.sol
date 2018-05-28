@@ -1,3 +1,5 @@
+pragma solidity ^0.4.18;
+
 library SafeMath {
     function add(uint a, uint b) internal pure returns (uint c) {
         c = a + b;

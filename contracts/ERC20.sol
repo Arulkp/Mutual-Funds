@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.18;
 
 contract ERC20 {
     function totalSupply() public constant returns (uint);

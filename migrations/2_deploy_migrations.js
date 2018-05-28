@@ -4,10 +4,10 @@ var TokenManipulation=artifacts.require('Token')
 
 module.exports= function(deployer)
 {
-  deployer.deploy(TokenManipulation)
+  
   deployer.deploy(FundToken).then(function()
 {
-  return deployer.deploy(DMF,FundToken.address);
+  return deployer.deploy(DMF,FundToken.address,{gas:3000000});
 })
 }
 /*

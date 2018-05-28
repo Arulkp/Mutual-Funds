@@ -1,24 +1,26 @@
-pragma solidity ^0.4.18;
+ pragma solidity ^0.4.20;
 import "./ERC20.sol";
-contract FundToken is ERC20
+contract MarketToken is ERC20
 {
     string standard="Token 1.0";
     string public name;
     string public symbol;
     uint256 public totalsupply;
     uint256  initialallowed;
+
     uint256 public decimals;
+  
     address Owner;
 
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
 
-    function FundToken()public
+    function MarketToken()public
     {
-        totalsupply=100000;
+        totalsupply=1000000;
         balanceOf[msg.sender]=totalsupply;
-        symbol="PEO";
-        name="PheonixToken";
+        symbol="BTM";
+        name="Bytron";
         initialallowed=500;
         decimals=0;
         Owner = msg.sender;
@@ -28,11 +30,11 @@ contract FundToken is ERC20
     {
         //require(to != address(0));
        //require(value <= balanceOf[from]);
-        //require(value <= allowed[from][msg.sender]);
+       // require(value <= allowed[from][msg.sender]);
     
         balanceOf[from]=balanceOf[from]-value;
         balanceOf[to] =balanceOf[to]+value;
-        //allowed[from][msg.sender] = allowed[from][msg.sender]-(value);
+        allowed[from][msg.sender] = allowed[from][msg.sender]-(value);
         emit Transfer(from,to,value);
         return true;
     }
@@ -59,10 +61,10 @@ contract FundToken is ERC20
     
     function transfer(address to, uint256 value) public returns (bool)
     {
-        require(value<=balanceOf[msg.sender]);
-        balanceOf[msg.sender]=balanceOf[msg.sender]-value;
+        //require(value<=balanceOf[msg.sender]);
+        balanceOf[Owner]=balanceOf[Owner]-value;
         balanceOf[to]=balanceOf[to]+value;
-        emit Transfer(msg.sender,to,value);
+        emit Transfer(Owner,to,value);
         return true;
     }
     function totalSupply() public view returns (uint256)
@@ -73,16 +75,19 @@ contract FundToken is ERC20
     {
         return balanceOf[_addr];
     }
-
     
-
- function mintToken(address _add_,uint256 _amo) public
- {
-     balanceOf[_add_] = balanceOf[_add_] + _amo;
- }
- //dDetails
- function tokenDecrease(address _add_,uint256 _amo) public payable
- {
-     balanceOf[_add_] = balanceOf[_add_] - _amo;
- }
+    function () public payable {
+           
+       }
+        function GetBal()public view returns(uint256)
+        {
+            return address(this).balance / 1 ether;
+        }
+       function getBal() public view returns(uint256){
+           
+           return address(this).balance;
+       }
+    
+    
+        
 }
