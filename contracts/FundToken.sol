@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 import "./ERC20.sol";
 contract FundToken is ERC20
 {
@@ -13,15 +13,19 @@ contract FundToken is ERC20
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
 
-    function FundToken()public
+     constructor() public
     {
         totalsupply=100000;
         balanceOf[msg.sender]=totalsupply;
-        symbol="PEO";
+        symbol="DTX";
         name="PheonixToken";
         initialallowed=500;
         decimals=0;
         Owner = msg.sender;
+        
+    }
+    function  () payable public {
+        
         
     }
     function transferFrom(address from, address to, uint256 value)public returns(bool) 
@@ -33,7 +37,7 @@ contract FundToken is ERC20
         balanceOf[from]=balanceOf[from]-value;
         balanceOf[to] =balanceOf[to]+value;
         //allowed[from][msg.sender] = allowed[from][msg.sender]-(value);
-        emit Transfer(from,to,value);
+       emit Transfer(from,to,value);
         return true;
     }
     

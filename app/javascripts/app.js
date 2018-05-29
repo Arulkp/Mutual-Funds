@@ -287,7 +287,7 @@ window.App = {
               meta.Portfolio(re).then(function(fi,ers){
                 $("#Ptable").append('<tr><td>'+ j++ +'</td><td>'+re+'</td><td>'+fi[0]+'</td><td>'+ree+'</td></tr>')
               }); 
-              // window.location.reload();
+             // window.location.reload();
         });
       });
       }
@@ -634,10 +634,10 @@ else{
       
       alert("Successfull!");
       
-      // App:pmdetail();
-      // self.pmdetail();
-      // self.setStatus("Transaction complete!");
-      // self.refreshBalance();
+      App:pmdetail();
+      self.pmdetail();
+      self.setStatus("Transaction complete!");
+      self.refreshBalance();
     }).catch(function(e) {
      // console.log(e);
       self.setStatus("Error sending coin; see log.");
@@ -810,7 +810,7 @@ invest : function (){
     meta = instance;
     return meta.InvesterGetToken(show,{from: account,value:web3.toWei(reg_e,'ether')});
   }).then(function(result) {
-    alert(Successful);
+    alert("Successful");
     // App:ListPortfolio();
     // App.ListInvester();
     // self.ListInvester();
@@ -841,7 +841,7 @@ invest : function (){
       // window.location.reload();
       // App:pmdetail();
       // self.pmdetail();
-      // // self.setStatus("Transaction complete!");
+      // self.setStatus("Transaction complete!");
       // self.refreshBalance();
     }).catch(function(e) {
      // console.log(e);
