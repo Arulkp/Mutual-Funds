@@ -1,7 +1,145 @@
 pragma solidity ^0.4.23;
-import "./FundToken.sol";
-import "./SafeMath.sol";
-import "./TokenManipulation.sol";
+
+
+contract ERC20 {
+    function totalSupply() public constant returns (uint);
+    function balanceOf(address tokenOwner) public constant returns (uint balance);
+    function allowance(address tokenOwner, address spender) public constant returns (uint remaining);
+    function transfer(address to, uint tokens) public returns (bool success);
+    function approve(address spender, uint tokens) public returns (bool success);
+    function transferFrom(address from, address to, uint tokens) public returns (bool success);
+
+    event Transfer(address indexed from, address indexed to, uint tokens);
+    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
+}
+
+
+
+/*contract Token{
+    
+    function totalSupplytoken(address _token) public view returns(uint){
+        return ERC20(_token).totalSupply();
+    }
+    
+    function balanceOftoken(address _token) public view returns(uint){
+        return ERC20(_token).balanceOf(msg.sender);
+    }
+    
+    // before this You need to run approve function on your token contract...
+    
+    
+    function transfer(address _token,address _to,uint _amt) public payable {
+        ERC20(_token).transfer(_to,_amt);
+    }
+    
+}*/
+
+contract FundToken is ERC20
+{
+    string standard="Token 1.0";
+    string public name;
+    string public symbol;
+    uint256 public totalsupply;
+    uint256  initialallowed;
+    uint256 public decimals;
+    address Owner;
+
+    mapping(address=>uint) public balanceOf;
+    mapping(address=>mapping(address=>uint256))public allowed;
+
+    function FundToken()public
+    {
+        totalsupply=100000;
+        balanceOf[msg.sender]=totalsupply;
+        symbol="DMF";
+        name="DMF";
+        initialallowed=500;
+        decimals=0;
+        Owner = msg.sender;
+        
+    }
+    function transferFrom(address from, address to, uint256 value)public returns(bool) 
+    {
+        //require(to != address(0));
+       //require(value <= balanceOf[from]);
+        //require(value <= allowed[from][msg.sender]);
+    
+        balanceOf[from]=balanceOf[from]-value;
+        balanceOf[to] =balanceOf[to]+value;
+        //allowed[from][msg.sender] = allowed[from][msg.sender]-(value);
+        Transfer(from,to,value);
+        return true;
+    }
+    
+    function allowance(address _owner, address _to) public view returns (uint256) 
+    {
+        return allowed[_owner][_to];
+    }
+    function increaseApproval(address _to, uint value) public returns(bool)
+    {
+        allowed[msg.sender][_to]=allowed[msg.sender][_to]+(value);
+        return true;
+    }
+    function decreaseApproval(address _to, uint value) public returns(bool)
+    {
+        allowed[msg.sender][_to]=allowed[msg.sender][_to]-(value);
+        return true;
+    }
+    function approve(address spender, uint256 value) public returns (bool)
+    {
+        allowed[msg.sender][spender]=value;
+        return true;
+    }
+    
+    function transfer(address to, uint256 value) public returns (bool)
+    {
+        require(value<=balanceOf[msg.sender]);
+        balanceOf[msg.sender]=balanceOf[msg.sender]-value;
+        balanceOf[to]=balanceOf[to]+value;
+        Transfer(msg.sender,to,value);
+        return true;
+    }
+    function totalSupply() public view returns (uint256)
+    {
+       return totalsupply;
+    }
+    function balanceOf(address _addr) public view returns (uint256)
+    {
+        return balanceOf[_addr];
+    }
+    
+ function mintToken(address _add_,uint256 _amo) public
+ {
+     balanceOf[_add_] = balanceOf[_add_] + _amo;
+ }
+ //dDetails
+ function tokenDecrease(address _add_,uint256 _amo) public payable
+ {
+     balanceOf[_add_] = balanceOf[_add_] - _amo;
+ }
+}
+
+
+
+library SafeMath {
+    function add(uint a, uint b) internal pure returns (uint c) {
+        c = a + b;
+        require(c >= a);
+    }
+    function sub(uint a, uint b) internal pure returns (uint c) {
+        require(b <= a);
+        c = a - b;
+    }
+    function mul(uint a, uint b) internal pure returns (uint c) {
+        c = a * b;
+        require(a == 0 || c / a == b);
+    }
+    function div(uint a, uint b) internal pure returns (uint c) {
+        require(b > 0);
+        c = a / b;
+    }
+}
+
 contract DMF 
 {
         using SafeMath for uint256;
@@ -42,7 +180,7 @@ contract DMF
 //Constructor For initialize the contract Owner Address and Contract Deployed Address
         constructor(address na) public payable
         {
-            TokenInterface=new Token();
+            //TokenInterface=new Token();
             newadd=address(this);
             contractAddress=na;
         }
@@ -129,13 +267,15 @@ contract DMF
             //newadd.call.gas(2400000).value(commissionForDmf)();
             (msg.sender).transfer(a);
             invester[msg.sender][_add_].Eth= invester[msg.sender][_add_].Eth.sub(TR);
-               invester[msg.sender][_add_].TokenCount=invester[msg.sender][_add_].TokenCount.sub(value);
         }
         
         function purchaseToken(address buyToken,uint256 amountoftoken) public payable{
-           Token(TokenInterface).transfertoken(buyToken,msg.sender,amountoftoken);
+           transfertoken(buyToken,msg.sender,amountoftoken);
            buyToken.transfer(amountoftoken.mul(0.1 ether));
         }
+        function transfertoken(address _token,address _to,uint _amt) public payable {
+        ERC20(_token).transferFrom(msg.sender,_to,_amt);
+    }
      
 
 //Function For Many PortfolioManager Details
@@ -159,27 +299,3 @@ contract DMF
            return Investment[a].PortfolioHolders[i];
         }
 }                                                                                                            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

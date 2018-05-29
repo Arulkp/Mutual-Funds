@@ -1,13 +1,13 @@
 var FundToken = artifacts.require('FundToken')
 var DMF = artifacts.require('DMF')
-var TokenManipulation=artifacts.require('Token')
+// var TokenManipulation=artifacts.require('Token')
 
 module.exports= function(deployer)
 {
-  deployer.deploy(TokenManipulation)
+  // deployer.deploy(TokenManipulation)
   deployer.deploy(FundToken).then(function()
 {
-  return deployer.deploy(DMF,FundToken.address);
+  deployer.deploy(DMF,FundToken.address);
 })
 }
 /*
