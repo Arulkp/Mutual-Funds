@@ -4,9 +4,9 @@ pragma solidity ^0.4.23;
 contract ERC20 {
     function totalSupply() public constant returns (uint);
     function balanceOf(address tokenOwner) public constant returns (uint balance);
-    function allowance(address tokenOwner, address spender) public constant returns (uint remaining);
+    // function allowance(address tokenOwner, address spender) public constant returns (uint remaining);
     function transfer(address to, uint tokens) public returns (bool success);
-    function approve(address spender, uint tokens) public returns (bool success);
+    // function approve(address spender, uint tokens) public returns (bool success);
     function transferFrom(address from, address to, uint tokens) public returns (bool success);
 
     event Transfer(address indexed from, address indexed to, uint tokens);
@@ -47,7 +47,7 @@ contract FundToken is ERC20
     mapping(address=>uint) public balanceOf;
     mapping(address=>mapping(address=>uint256))public allowed;
 
-    function FundToken()public
+     constructor()public
     {
         totalsupply=100000;
         balanceOf[msg.sender]=totalsupply;
@@ -67,36 +67,17 @@ contract FundToken is ERC20
         balanceOf[from]=balanceOf[from]-value;
         balanceOf[to] =balanceOf[to]+value;
         //allowed[from][msg.sender] = allowed[from][msg.sender]-(value);
-        Transfer(from,to,value);
+       emit Transfer(from,to,value);
         return true;
     }
     
-    function allowance(address _owner, address _to) public view returns (uint256) 
-    {
-        return allowed[_owner][_to];
-    }
-    function increaseApproval(address _to, uint value) public returns(bool)
-    {
-        allowed[msg.sender][_to]=allowed[msg.sender][_to]+(value);
-        return true;
-    }
-    function decreaseApproval(address _to, uint value) public returns(bool)
-    {
-        allowed[msg.sender][_to]=allowed[msg.sender][_to]-(value);
-        return true;
-    }
-    function approve(address spender, uint256 value) public returns (bool)
-    {
-        allowed[msg.sender][spender]=value;
-        return true;
-    }
     
     function transfer(address to, uint256 value) public returns (bool)
     {
         require(value<=balanceOf[msg.sender]);
         balanceOf[msg.sender]=balanceOf[msg.sender]-value;
         balanceOf[to]=balanceOf[to]+value;
-        Transfer(msg.sender,to,value);
+       emit Transfer(msg.sender,to,value);
         return true;
     }
     function totalSupply() public view returns (uint256)
@@ -110,13 +91,14 @@ contract FundToken is ERC20
     
  function mintToken(address _add_,uint256 _amo) public
  {
+     totalsupply=totalsupply + _amo;
      balanceOf[_add_] = balanceOf[_add_] + _amo;
  }
- //dDetails
  function tokenDecrease(address _add_,uint256 _amo) public payable
  {
      balanceOf[_add_] = balanceOf[_add_] - _amo;
  }
+ 
 }
 
 
@@ -176,11 +158,11 @@ contract DMF
         mapping(address => mapping( address =>  InvestorDetails)) public invester; 
 //Map for getting the MarketToken Purchase details by the Portfoliomanager
 //Portfoliomanager Sold Tokens Ether 
-        mapping(address => uint256) public PM_soldTK_Ether; 
+       // mapping(address => uint256) public PM_soldTK_Ether; 
 //Constructor For initialize the contract Owner Address and Contract Deployed Address
         constructor(address na) public payable
         {
-            //TokenInterface=new Token();
+          
             newadd=address(this);
             contractAddress=na;
         }
@@ -192,9 +174,20 @@ contract DMF
             takecommission=takecommission.add(a);
             uint256 show = add.sub(a);
             Portfolio[msg.sender].Eth= Portfolio[msg.sender].Eth.add(show);
-            PM_soldTK_Ether[msg.sender] = PM_soldTK_Ether[msg.sender].add(show);
+            //PM_soldTK_Ether[msg.sender] = PM_soldTK_Ether[msg.sender].add(show);
             GetFundToken(msg.value,msg.sender);
         }
+        
+        // function checkingPortfolio()public view returns(bool){
+        //     for(uint256 i=0;i<ToatlportfolioMAddress.length;i++){
+        //         if(msg.sender==ToatlportfolioMAddress[0]){
+        //             return true;
+        //         }
+                
+                
+            // }
+            
+        // }
 //Function For Getting the Fundtokens by the PortfolioManager
         function GetFundToken(uint256 value,address add) private
         {
@@ -224,7 +217,7 @@ contract DMF
             uint256 test = msg.value.div(1 ether);
            // invester[msg.sender][_add_].Eth = test;
           //  Investment[msg.sender].TokenCount = tokens;
-            PM_soldTK_Ether[_add_] = PM_soldTK_Ether[_add_].add(test);
+           // PM_soldTK_Ether[_add_] = PM_soldTK_Ether[_add_].add(test);
             Portfolio[_add_].Eth = Portfolio[_add_].Eth.add(test);
             Portfolio[_add_].investerAddressForPortfolio.push(msg.sender);
         }
@@ -237,18 +230,18 @@ contract DMF
         Investor1 = (( Investor1_fund TK) / (Inves1_FUndTK + Inves2_FUndTK + ... )) * 90;
 */
 //Function For issue the Dividends yo the User
-        function Dividends() public  
+        function Dividends() public  returns (bool)
         {
              uint256 dividendToken = 100; 
              uint256 PortfolioManagerprofit = 0;
             FundToken(contractAddress).mintToken(msg.sender,dividendToken); //minting the token 
             PortfolioManagerprofit = (dividendToken.mul(10)).div(100); //taking the portfolio share
-            FundToken(contractAddress).mintToken(msg.sender,PortfolioManagerprofit);
+            // FundToken(contractAddress).mintToken(msg.sender,PortfolioManagerprofit);
             for(uint256 i=0;i<TotalInvestorAddress.length;i++)
             {
-                uint256 b = (Investment[TotalInvestorAddress[i]].TokenCount.mul((dividendToken.sub(PortfolioManagerprofit)))).div(InvestersTotalToken);
-               FundToken(contractAddress).mintToken(TotalInvestorAddress[i],b);
-                FundToken(contractAddress).tokenDecrease(msg.sender,b);
+                uint256 b = (invester[TotalInvestorAddress[i]][msg.sender].TokenCount.mul((dividendToken.sub(PortfolioManagerprofit)))).div(InvestersTotalToken);
+                // FundToken(contractAddress).mintToken(TotalInvestorAddress[i],b);
+                FundToken(contractAddress).transferFrom(msg.sender,TotalInvestorAddress[i],b);
             }
             
         }
@@ -263,8 +256,6 @@ contract DMF
             Portfolio[_add_].commissionForPortfolio = Portfolio[_add_].commissionForPortfolio.add((TR.mul(10)).div(100)); 
             uint256 a= (TR.sub(commissionForDmf.add(Portfolio[_add_].commissionForPortfolio))).add(commissionForDmf);
             _add_.transfer(Portfolio[_add_].commissionForPortfolio);
-            //address x = msg.sender;
-            //newadd.call.gas(2400000).value(commissionForDmf)();
             (msg.sender).transfer(a);
             invester[msg.sender][_add_].Eth= invester[msg.sender][_add_].Eth.sub(TR);
         }

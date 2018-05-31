@@ -8,7 +8,7 @@ import { default as contract } from 'truffle-contract'
 // Import our contract artifacts and turn them into usable abstractions.
 import FundToken from '../../build/contracts/FundToken.json'
 import DMF from '../../build/contracts/DMF.json'
-import TokenManipulation from '../../build/contracts/Token.json'
+// import TokenManipulation from '../../build/contracts/Token.json'
 
 
 //import dead from '../../migrations/3_deploy_migrations'
@@ -17,7 +17,7 @@ import TokenManipulation from '../../build/contracts/Token.json'
 // MetaCoin is our usable abstraction, which we'll use through the code below.
 var MetaCoin = contract(FundToken);
 var MetaCoins = contract(DMF);
-var token = contract(TokenManipulation);
+// var token = contract(TokenManipulation);
 
 
 // The following code is simple to show off interacting with your contracts.
@@ -34,7 +34,7 @@ window.App = {
     // Bootstrap the MetaCoin abstraction for Use.
     MetaCoin.setProvider(web3.currentProvider);
     MetaCoins.setProvider(web3.currentProvider);
-    token.setProvider(web3.currentProvider);
+    // token.setProvider(web3.currentProvider);
     // mtok.setProvider(web3.currentProvider);
     // mtok1.setProvider(web3.currentProvider);
    
